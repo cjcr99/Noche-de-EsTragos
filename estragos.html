@@ -1,0 +1,3101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noche de Es Tragos - Edición Élite</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ── VARIABLES DE TEMA ACTUALIZADAS ───────────────────────────────── */
+:root {
+  --bg: #0a0a12;
+  --card-bg: rgba(18, 18, 30, 0.85);
+  --accent-red: #ff3860;
+  --accent-gold: #e6c229;
+  --accent-blue: #3298dc;
+  --accent-purple: #9b59b6;
+  --accent-green: #4cd964;
+  --text: #f0f0ff;
+  --muted: #aaa;
+  --role-good: #4cd964;
+  --role-bad: #ff3860;
+  --role-neutral: #ffdd57;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --glass-bg: rgba(30, 30, 45, 0.6);
+  --border-gradient: linear-gradient(90deg, #ffd700, #e6c229, #ffd700);
+  --border-radius: 20px;
+  --box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ── ESTILOS GLOBALES ACTUALIZADAS ───────────────────────────────── */
+* { 
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: 
+  radial-gradient(circle at 30% 30%, rgba(26, 26, 46, 0.8), rgba(10, 10, 18, 0.9)),
+  url('img/fondo2.jpg') center/cover no-repeat fixed;
+  color: var(--text);
+  min-height: 100vh;
+  padding: 1rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+#app {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ── TIPOGRAFÍA ACTUALIZADA ─────────────────────────────────────── */
+h1, h2, h3 {
+  font-family: 'Cinzel Decorative', cursive;
+  text-align: center;
+  margin: 0.5rem 0 1rem;
+  letter-spacing: 1px;
+  font-weight: 900;
+}
+
+h1 {
+  font-size: 2.8rem;
+  background: linear-gradient(45deg, var(--accent-gold), #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 4px;
+  background: var(--border-gradient);
+  border-radius: 2px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: var(--accent-gold);
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--border-gradient);
+  margin: 0.8rem auto;
+  border-radius: 3px;
+}
+
+h3 {
+  font-size: 1.4rem;
+  color: var(--accent-blue);
+  margin: 1rem 0;
+}
+
+p { 
+  margin: 0.8rem 0;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ── TARJETAS MODERNAS ──────────────────────────────────────────── */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(230, 194, 41, 0.3);
+  border-radius: var(--border-radius);
+  padding: 1.8rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--box-shadow);
+  animation: fadeIn 0.5s ease-out;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--border-gradient);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+}
+
+.role-card {
+  animation: zoomIn 0.6s ease-out;
+  border-color: rgba(230, 194, 41, 0.5);
+}
+
+/* ── ANIMACIONES ─────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ── BOTONES MEJORADOS ───────────────────────────────────────── */
+button {
+  width: 100%;
+  padding: 1rem;
+  margin: 0.8rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(45deg, var(--accent-red), #d7002b);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.6s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button.secondary {
+  background: linear-gradient(45deg, var(--accent-gold), #c5a400);
+  color: #000;
+}
+
+button.secondary:hover {
+  background: linear-gradient(45deg, #ffea00, #d4b800);
+}
+
+/* ── LISTA DE JUGADORES MEJORADA ─────────────────────────────── */
+.player-list {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  background: var(--glass-bg);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.player-list h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--accent-gold);
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.player-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: var(--transition);
+  align-items: center;
+}
+
+.player-item:hover {
+  background: rgba(50, 50, 70, 0.4);
+  border-radius: 8px;
+}
+
+.player-name {
+  flex: 2;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.player-status, .player-drinks {
+  flex: 1;
+  text-align: center;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.status-vivo { color: var(--role-good); }
+.status-preso { color: var(--role-neutral); }
+.status-eliminado { color: var(--role-bad); }
+
+.player-drinks {
+  color: var(--accent-gold);
+}
+
+.drink-icon {
+  font-size: 1.2rem;
+}
+
+/* ── LOG DE EVENTOS MEJORADO ─────────────────────────────────── */
+#eventLog {
+  max-height: 180px;
+  overflow-y: auto;
+  background: rgba(20, 20, 30, 0.8);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+  font-family: 'Courier New', monospace;
+  line-height: 1.8;
+}
+
+.event-entry {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.event-entry:last-child {
+  border-bottom: none;
+}
+
+/* ── SCROLL BAR PERSONALIZADO ───────────────────────────────── */
+#eventLog::-webkit-scrollbar {
+  width: 8px;
+}
+
+#eventLog::-webkit-scrollbar-thumb {
+  background: var(--accent-gold);
+  border-radius: 4px;
+}
+
+/* ── SELECCIÓN DE ROLES MEJORADA ────────────────────────────── */
+.role-option { 
+  margin: 12px 0; 
+  display: flex;
+  align-items: center;
+}
+
+.role-list { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 10px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  margin: 1.2rem 0;
+}
+
+.role-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: var(--transition);
+  gap: 8px;
+}
+
+.role-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.role-item label {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#roleCounter {
+  text-align: center;
+  margin: 12px 0;
+  font-weight: 600;
+  color: var(--accent-gold);
+  font-size: 1.1rem;
+}
+
+/* ── INDICADORES DE ALINEACIÓN ─────────────────────────────── */
+.role-good { color: var(--role-good); }
+.role-bad { color: var(--role-bad); }
+.role-neutral { color: var(--role-neutral); }
+
+/* ── SECCIÓN DE TRAGOS MEJORADA ────────────────────────────── */
+.drink-section {
+  background: rgba(230, 194, 41, 0.08);
+  border: 1px solid var(--accent-gold);
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.drink-section h3 {
+  color: var(--accent-gold);
+  margin-top: 0;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.drink-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.drink-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transition: var(--transition);
+  gap: 15px;
+}
+
+.drink-item:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.drink-icon-large {
+  font-size: 1.8rem;
+  color: var(--accent-gold);
+  min-width: 30px;
+  text-align: center;
+}
+
+.drink-text {
+  flex: 1;
+  font-size: 1rem;
+}
+
+/* ── TÍTULO PERSONALIZADO ──────────────────────────────────── */
+.header-title {
+  font-family: 'Cinzel Decorative', cursive;
+  text-align: center;
+  font-size: 2rem;
+  margin: 0.5rem 0 1.5rem;
+  background: linear-gradient(45deg, #ffd700, #e6c229);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.header-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--border-gradient);
+  border-radius: 2px;
+}
+
+/* ── PANTALLA DE SELECCIÓN ─────────────────────────────────── */
+.role-selection-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+}
+
+.role-selection-screen .card {
+  flex: 1;
+}
+
+/* ── FORMULARIOS MEJORADOS ─────────────────────────────────── */
+input[type="text"], input[type="number"], select {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  margin: 12px 0;
+  background: rgba(20, 20, 30, 0.7);
+  color: var(--text);
+  border: 1px solid var(--accent-gold);
+  border-radius: 12px;
+  transition: var(--transition);
+  font-family: 'Montserrat', sans-serif;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(50, 152, 220, 0.3);
+}
+
+/* ── EFECTO DE NEÓN ───────────────────────────────────────── */
+.neon {
+  
+}
+
+.neon-red {
+  
+}
+
+/* ── CONTADOR DE TRAGOS EN JUGADOR ─────────────────────────── */
+.drink-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(230, 194, 41, 0.2);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  margin-left: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* ── TABLA DE ROLES ───────────────────────────────────────── */
+.role-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.role-table th, .role-table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.role-table th {
+  background: rgba(50, 50, 70, 0.4);
+  color: var(--accent-gold);
+}
+
+.role-table input[type="number"] {
+  width: 60px;
+  text-align: center;
+}
+
+/* ── VOTACIÓN ASESINA ─────────────────────────────────────── */
+.assassin-vote {
+  background: rgba(255, 56, 96, 0.1);
+  border: 1px solid var(--accent-red);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.assassin-vote::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-red), transparent);
+}
+
+.assassin-vote h3 {
+  color: var(--accent-red);
+  margin-top: 0;
+  text-align: center;
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+.vote-count {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.vote-count div {
+  text-align: center;
+  padding: 0.8rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  margin: 0.3rem;
+  min-width: 100px;
+  flex: 1;
+  border: 1px solid rgba(255, 56, 96, 0.3);
+}
+
+.vote-count div.selected {
+  background: rgba(255, 56, 96, 0.2);
+  border: 1px solid var(--accent-red);
+  animation: pulse 1.5s infinite;
+}
+
+.vote-player {
+  font-weight: bold;
+  color: var(--accent-red);
+  margin-bottom: 5px;
+}
+
+.vote-target {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* ── ELIMINACIÓN EFECTO ───────────────────────────────────── */
+.eliminated {
+  position: relative;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: rgba(255, 56, 96, 0.1);
+  margin: 0.5rem 0;
+  border-left: 3px solid var(--accent-red);
+}
+
+.eliminated .role {
+  font-weight: bold;
+  color: var(--accent-red);
+}
+
+/* ── BADGE DE ROL ─────────────────────────────────────────── */
+.role-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 8px;
+  background: rgba(50, 50, 70, 0.5);
+}
+
+.role-badge.asesino {
+  background: rgba(255, 56, 96, 0.2);
+  color: var(--accent-red);
+}
+
+.role-badge.bueno {
+  background: rgba(76, 217, 100, 0.2);
+  color: var(--role-good);
+}
+
+.role-badge.hidratado {
+  background: rgba(50, 152, 220, 0.2);
+  color: var(--accent-blue);
+}
+
+.role-badge.neutral {
+  background: rgba(255, 221, 87, 0.2);
+  color: var(--role-neutral);
+}
+
+/* ── ESTILOS MEJORADOS PARA LA RULETA ─────────────── */
+.ludopata-roulette {
+  background: var(--glass-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
+  border: 2px solid var(--accent-gold);
+  box-shadow: 0 0 20px rgba(230, 194, 41, 0.3);
+}
+
+.roulette-container {
+  position: relative;
+  height: 200px; /* Altura fija para mostrar 5 elementos */
+  overflow: hidden;
+  margin: 1rem 0;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  perspective: 1000px;
+}
+
+.roulette-wheel {
+  position: absolute;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.roulette-item {
+  padding: 12px;
+  text-align: center;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition: all 0.3s ease;
+  height: 40px; /* Altura fija para cada elemento */
+  line-height: 40px; /* Centrar texto verticalmente */
+  overflow: hidden; /* Evitar desbordamiento */
+  text-overflow: ellipsis; /* Texto largo */
+  white-space: nowrap;
+}
+
+.roulette-item.winner {
+  background: rgba(230, 194, 41, 0.3);
+  border-left: 3px solid var(--accent-gold);
+  border-right: 3px solid var(--accent-gold);
+}
+
+.roulette-result {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: rgba(230, 194, 41, 0.3);
+  z-index: 10;
+  border-top: 2px solid var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--accent-gold);
+  text-shadow: 0 0 5px rgba(230, 194, 41, 0.7);
+}
+
+.spin-button {
+  background: linear-gradient(45deg, var(--accent-purple), #8e44ad);
+  margin-top: 1rem;
+}
+
+.spin-button:hover {
+  background: linear-gradient(45deg, #9b59b6, #8e44ad);
+}
+
+.ludopata-result {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.ludopata-result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.ludopata-result-item:last-child {
+  border-bottom: none;
+}
+
+.winner {
+  font-weight: bold;
+  color: var(--accent-gold);
+  text-shadow: 0 0 5px rgba(230, 194, 41, 0.7);
+}
+
+/* ── HEADER DECORATION ────────────────────────────────────── */
+.header-decoration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 3rem;
+  opacity: 0.1;
+  transform: rotate(20deg);
+  z-index: -1;
+}
+
+/* ── LOADER ───────────────────────────────────────────────── */
+.loader {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--accent-gold);
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+#version-info {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  z-index: 1000;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ── ESTADO DE PRESO ──────────────────────────────────────── */
+.prison-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 221, 87, 0.2);
+  color: var(--role-neutral);
+  border-radius: 12px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* ── MEDUSA EVENT STYLES ──────────────────────────────────── */
+.medusa-event {
+  background: rgba(155, 89, 182, 0.1);
+  border: 1px solid var(--accent-purple);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.medusa-event::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-purple), transparent);
+}
+
+.medusa-event h3 {
+  color: var(--accent-purple);
+  margin-top: 0;
+  text-align: center;
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+.medusa-player {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.medusa-player:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.medusa-player.selected {
+  background: rgba(155, 89, 182, 0.3);
+  border: 1px solid var(--accent-purple);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(155, 89, 182, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(155, 89, 182, 0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(155, 89, 182, 0.4); }
+}
+
+/* ── DECORACIONES DE FONDO ───────────────────────────────── */
+.background-decoration {
+  position: fixed;
+  z-index: -1;
+  opacity: 0.05;
+  font-size: 5rem;
+  animation: float 6s infinite ease-in-out;
+}
+
+.decoration-1 { top: 10%; left: 5%; animation-delay: 0s; }
+.decoration-2 { top: 20%; right: 10%; animation-delay: 1s; }
+.decoration-3 { bottom: 15%; left: 15%; animation-delay: 2s; }
+.decoration-4 { bottom: 25%; right: 5%; animation-delay: 3s; }
+
+/* ── ICONOS PARA ROLES ───────────────────────────────────── */
+.role-icon {
+  font-size: 1.5rem;
+  width: 30px;
+  text-align: center;
+}
+
+.role-icon-asesino { color: var(--accent-red); }
+.role-icon-policia { color: var(--accent-blue); }
+.role-icon-medico { color: var(--accent-green); }
+.role-icon-bartender { color: var(--accent-gold); }
+.role-icon-ladron { color: #aaa; }
+.role-icon-loco { color: var(--role-neutral); }
+.role-icon-puta { color: #ff69b4; }
+.role-icon-dealer { color: #7b68ee; }
+.role-icon-hidratador { color: #00bfff; }
+.role-icon-envidioso { color: #32cd32; }
+.role-icon-menor { color: #add8e6; }
+.role-icon-proxeneta { color: #ff4500; }
+.role-icon-ludopata { color: #9370db; }
+.role-icon-suicida { color: #ff6347; }
+.role-icon-investigador { color: #20b2aa; }
+
+/* ── MEDIA QUERIES ────────────────────────────────────────── */
+@media (max-width: 500px) {
+  #app {
+    padding: 0.5rem;
+  }
+  
+  .card {
+    padding: 1.2rem;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .vote-count div {
+    min-width: 80px;
+    padding: 0.6rem;
+  }
+  
+  .prison-counter {
+    margin-left: 4px;
+    padding: 1px 5px;
+    font-size: 0.7rem;
+  }
+}
+
+/* ── ESTILOS PARA EL DIFÍCIL ─────────────────────────────── */
+.difficulty-select {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 1.5rem 0;
+}
+
+.difficulty-btn {
+  background: rgba(30, 30, 50, 0.6) !important;
+  border: 1px solid var(--accent-gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.difficulty-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(230, 194, 41, 0.4);
+}
+
+.difficulty-btn[data-level="pussy"] {
+  background: linear-gradient(45deg, rgba(50, 152, 220, 0.7), rgba(50, 152, 220, 0.9)) !important;
+}
+
+.difficulty-btn[data-level="girls"] {
+  background: linear-gradient(45deg, rgba(155, 89, 182, 0.7), rgba(155, 89, 182, 0.9)) !important;
+}
+
+.difficulty-btn[data-level="alcoholico"] {
+  background: linear-gradient(45deg, rgba(255, 56, 96, 0.7), rgba(255, 56, 96, 0.9)) !important;
+}
+</style>
+</head>
+<body>
+<!-- Decoraciones de fondo -->
+<div class="background-decoration decoration-1">🍷</div>
+<div class="background-decoration decoration-2">🔪</div>
+<div class="background-decoration decoration-3">🕵️</div>
+<div class="background-decoration decoration-4">👮</div>
+
+<div id="app"></div>
+<div id="version-info">v.1.0</div>
+<audio id="spinSound" src="sounds/slot.mp3" preload="auto"></audio>
+<audio id="medusaSound" src="sounds/medusa.mp3" preload="auto"></audio>
+<audio id="notSound" src="sounds/not.mp3" preload="auto"></audio>
+<audio id="asesinoSound" src="sounds/asesino.mp3" preload="auto"></audio>
+<script>
+/* ==============================================================
+   Noche de Es Tragos – Versión Élite (Actualizada)
+   ============================================================== */
+
+const app = document.getElementById('app');
+
+// Variables para reinicio
+let savedPlayers = [];
+let savedSelectedRoles = null;
+
+/* -------------------- ESTADO GLOBAL MEJORADO -------------------- */
+const game = {
+  numPlayers: 0,
+  players: [],
+  round: 0,
+  phase: '',               // "night" / "day"
+  eventLog: [],
+  nightActions: null,     // {kills, protects, swaps, bartender, arrests}
+  dayArrests: [],
+  dayVotes: [],
+  selectedRoles: null,    // Objeto con conteo de roles
+  drinkEvents: [],
+  assassinVotes: {},       // Almacena los votos de los asesinos
+  nightSummaryData: null,   // Para almacenar acciones detalladas
+  pendingLudopata: null,     // Almacena el Ludópata muerto pendiente de activar
+  difficulty: 'girls'      // Niveles: 'pussy', 'girls', 'alcoholico'
+};
+
+// Configuración de tragos por nivel
+const DRINK_CONFIG = {
+  pussy: {
+    murder: 1,
+    arrest: 1,
+    elimination: 1,
+    bartender: 1,
+    tie: 0,
+    losingTeam: 1
+  },
+  girls: {
+    murder: 2,
+    arrest: 1,
+    elimination: 3,
+    bartender: 1,
+    tie: 1,
+    losingTeam: 2
+  },
+  alcoholico: {
+    murder: 3,
+    arrest: 1,
+    elimination: 4,
+    bartender: 2,
+    tie: 2,
+    losingTeam: 3
+  }
+};
+
+/* ===== FUNCIONES DE SONIDO ===== */
+function playSound(id) {
+  const sound = document.getElementById(id);
+  if (sound) {
+    sound.currentTime = 0;
+    sound.play().catch(e => console.log("Error al reproducir sonido:", e));
+  }
+}
+
+function addDrinkEvent(msg) {
+  game.drinkEvents.push(msg);
+  playSound('notSound');
+}
+
+/* -------------------- UTILIDADES -------------------- */
+function getPublicRole(role) {
+  return role === "El menor" ? "El menor" : role;
+}
+
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+}
+
+function log(msg) {
+  const t = new Date().toLocaleTimeString();
+  game.eventLog.push(`<span class="log-time">[${t}]</span> ${msg}`);
+}
+
+function getPlayer(id) { 
+  return game.players.find(p => p.id === id); 
+}
+
+function renderLog() {
+  const el = document.getElementById('eventLog');
+  if (!el) return;
+  el.innerHTML = game.eventLog.map(e => `<div class="event-entry">${e}</div>`).join('');
+  el.scrollTop = el.scrollHeight;
+}
+
+function renderPlayerList() {
+  const cont = document.getElementById('playerList');
+  if (!cont) return;
+  
+  // Verificar si la partida ha comenzado (jugadores tienen roles asignados)
+  const gameStarted = game.players.length > 0 && game.players[0].role !== null;
+  
+  // Solo mostrar encabezado si la partida ha comenzado
+  const header = gameStarted ? `
+    <div class="player-item header">
+      <span class="player-name">Nombre</span>
+      <span class="player-drinks">Tragos</span>
+      <span class="player-status">Estado</span>
+    </div>
+  ` : '';
+  
+  cont.innerHTML = `
+    <h4 class="neon"></h4>
+    ${header}
+    ${game.players.map(p => `
+      <div class="player-item">
+        <span class="player-name">
+          <i class="fas fa-user"></i>
+          ${p.name} 
+          ${p.status === 'eliminado' ? `<span class="role-badge">${getPublicRole(p.role)}</span>` : ''}
+          ${p.drugged && game.phase === 'day' ? `<span class="role-badge" style="background: rgba(155, 89, 182, 0.2); color: var(--accent-purple);">Drogado</span>` : ''}
+          ${p.status === 'preso' ? `
+            <span class="role-badge" style="background: rgba(255, 221, 87, 0.2); color: var(--role-neutral);">
+              Preso
+              <span class="prison-counter">${p.detainedRounds} rondas</span>
+            </span>
+          ` : ''}
+          ${(p.hydrated && game.phase === 'day') ? `<span class="role-badge hidratado">Hidratado</span>` : ''}
+        </span>
+        <span class="player-drinks">${p.drinks || 0} <span class="drink-icon">🍸</span></span>
+        <span class="player-status status-${p.status}">
+          <i class="fas ${p.status === 'vivo' ? 'fa-heart' : p.status === 'preso' ? 'fa-lock' : 'fa-skull'}"></i>
+          ${p.status}
+        </span>
+      </div>`).join('')}`;
+}
+/* -------------------- RENDERIZADO GENÉRICO -------------------- */
+function setScreen(content) {
+  app.innerHTML = `
+    <div id="playerList"></div>
+    ${content}
+    <div class="header-decoration">⚔️</div>
+  `;
+  renderPlayerList();
+}
+
+/* -------------------- CONFIRMACIÓN DE TURNO -------------------- */
+function showConfirmPlayer(player, nextFn) {
+  const html = `
+    <div class="card confirm-card">
+      <h2>¿Eres ${player.name}?</h2>
+      <p>Presiona "Continuar" para acceder a tus opciones.</p>
+      <button id="btnConfirmPlayer"><i class="fas fa-arrow-right"></i> Continuar</button>
+    </div>`;
+  setScreen(html);
+  document.getElementById('btnConfirmPlayer').onclick = nextFn;
+}
+
+/* -------------------- DESCRIPCIONES DE ROLES ACTUALIZADAS -------------------- */
+const ROLE_DESCRIPTIONS = {
+  "Asesino": "Vota con otros asesinos para matar a un jugador cada noche. Conoces a tus compañeros asesinos. <span class='role-bad'>(Maligno)</span>",
+  "Policía": "Puede arrestar a un jugador durante la noche. No conoces a otros policías. <span class='role-good'>(Bueno)</span>",
+  "Loco": "Arresta aleatoriamente y vota al azar. <span class='role-good'>(Bueno)</span>",
+  "Médico": "Puede proteger a un jugador cada noche. <span class='role-good'>(Bueno)</span>",
+  "Bartender": "Elige a quien tomará un trago al amanecer. <span class='role-good'>(Bueno)</span>",
+  "Ladrón": "Una vez roba el rol de otro jugador. Puedes elegir no robar ahora y hacerlo más tarde. <span class='role-good'>(Bueno)</span>",
+  "Investigador": "Revela el rol de alguien una vez y luego se vuelve Policía. <span class='role-good'>(Bueno)</span>",
+  "Suicida": "Si es arrestado, se elimina inmediatamente. Si se enamora, muere con su amada. <span class='role-good'>(Bueno)</span>",
+  "Puta": "Elige con quien acostarse; si es Asesino puede contagiar. <span class='role-good'>(Bueno)</span>",
+  "Dealer": "Droga a un jugador multiplicando sus tragos por 2. <span class='role-good'>(Bueno)</span>",
+  "Hidratador": "Elige quien no tomará su próximo shot de la ronda. Se resetea cada noche. <span class='role-good'>(Bueno)</span>",
+  "Envidioso": "Elige un jugador al principio del juego. Al final, el que menos tragos haya tomado de los dos toma 2 shots. <span class='role-good'>(Bueno)</span>",
+  "El menor": "Eres un ciudadano común, pero si eres arrestado te convertirás en asesino. <span class='role-good'>(Bueno)</span>",
+  "Proxeneta": "Si la Puta se acuesta contigo, tú controlarás con quién se acuesta cada noche. <span class='role-good'>(Bueno)</span>",
+  "Ludópata": "Al morir, activa una ruleta que elige 3 jugadores al azar que deben tomar 1 shot cada uno. <span class='role-good'>(Bueno)</span>"
+};
+
+/* -------------------- LISTA DE ROLES DISPONIBLES ACTUALIZADA -------------------- */
+const ALL_ROLES = [
+  "Asesino", "Policía", "Loco", "Médico", "Bartender",
+  "Ladrón", "Investigador", "Suicida", "Puta", "Dealer",
+  "Hidratador", "Envidioso", "El menor", "Proxeneta", "Ludópata"
+];
+
+/* -------------------- ICONOS PARA ROLES -------------------- */
+const ROLE_ICONS = {
+  "Asesino": "fa-user-ninja role-icon-asesino",
+  "Policía": "fa-shield-alt role-icon-policia",
+  "Loco": "fa-grin-tongue-wink role-icon-loco",
+  "Médico": "fa-heartbeat role-icon-medico",
+  "Bartender": "fa-cocktail role-icon-bartender",
+  "Ladrón": "fa-mask role-icon-ladron",
+  "Investigador": "fa-search role-icon-investigador",
+  "Suicida": "fa-skull role-icon-suicida",
+  "Puta": "fa-heart role-icon-puta",
+  "Dealer": "fa-cannabis role-icon-dealer",
+  "Hidratador": "fa-tint role-icon-hidratador",
+  "Envidioso": "fa-eye role-icon-envidioso",
+  "El menor": "fa-child role-icon-menor",
+  "Proxeneta": "fa-money-bill-wave role-icon-proxeneta",
+  "Ludópata": "fa-dice role-icon-ludopata"
+};
+
+/* -------------------- PANTALLA DE INICIO MEJORADA -------------------- */
+function showStartScreen() {
+  const html = `
+    <div class="card">
+      <h1>Noche de Es Tragos</h1>
+      <p style="text-align:center; font-size:1.2rem; margin-bottom: 1.5rem;">El juego de roles con tragos</p>
+      
+      <div class="drink-section">
+        <h3>Selecciona la dificultad:</h3>
+        <div class="difficulty-select">
+          <button class="difficulty-btn" data-level="pussy"><i class="fas fa-cat"></i> Pussy</button>
+          <button class="difficulty-btn" data-level="girls"><i class="fas fa-female"></i> Girls</button>
+          <button class="difficulty-btn" data-level="alcoholico"><i class="fas fa-beer"></i> Alcohólico</button>
+        </div>
+      </div>
+      
+      <div class="drink-section">
+        <h3>¡Prepara tus bebidas!</h3>
+        <p>En este juego, cada evento conlleva tomar tragos:</p>
+        <ul class="drink-list">
+          <li class="drink-item">
+            <span class="drink-icon-large"><i class="fas fa-skull"></i></span>
+            <span class="drink-text">Asesinato: <strong>1-3 tragos</strong> según dificultad</span>
+          </li>
+          <li class="drink-item">
+            <span class="drink-icon-large"><i class="fas fa-handcuffs"></i></span>
+            <span class="drink-text">Arresto: <strong>1 trago</strong></span>
+          </li>
+          <li class="drink-item">
+            <span class="drink-icon-large"><i class="fas fa-ban"></i></span>
+            <span class="drink-text">Eliminación: <strong>1-4 tragos</strong> según dificultad</span>
+          </li>
+          <li class="drink-item">
+            <span class="drink-icon-large"><i class="fas fa-glass-martini-alt"></i></span>
+            <span class="drink-text">Bartender: <strong>1-2 tragos</strong> según dificultad</span>
+          </li>
+          <li class="drink-item">
+            <span class="drink-icon-large"><i class="fas fa-balance-scale"></i></span>
+            <span class="drink-text">Empate en votación: <strong>0-2 tragos</strong> según dificultad</span>
+          </li>
+          <li class="drink-item">
+            <span class="drink-icon-large"><i class="fas fa-pills"></i></span>
+            <span class="drink-text">Drogado: <strong>Multiplica tragos por 2</strong></span>
+          </li>
+          <li class="drink-item">
+            <span class="drink-icon-large"><i class="fas fa-tint"></i></span>
+            <span class="drink-text">Hidratado: <strong>No toma el próximo trago</strong></span>
+          </li>
+        </ul>
+      </div>
+      <button id="btnInfo" class="secondary"><i class="fas fa-book"></i> Instrucciones</button>
+    </div>`;
+  setScreen(html);
+  
+  // Añadir event listeners a los botones de dificultad
+  document.querySelectorAll('.difficulty-btn').forEach(btn => {
+    btn.onclick = function() {
+      game.difficulty = this.dataset.level;
+      startSetup();
+    };
+  });
+  
+  document.getElementById('btnInfo').onclick = showInstructions;
+}
+
+/* -------------------- INSTRUCCIONES MEJORADAS -------------------- */
+function showInstructions() {
+  // Ocultar "El menor" de las instrucciones
+  const rolesToShow = Object.entries(ROLE_DESCRIPTIONS)
+    .filter(([role]) => role !== "El menor");
+  
+  const html = `
+    <div class="card">
+      <h2><i class="fas fa-book"></i> Instrucciones</h2>
+      <p>El juego se juega en una única pantalla pasando el teléfono de jugador a jugador. Cada ronda consta de Noche y Día.</p>
+      <ul>
+        <li><i class="fas fa-moon"></i> <strong>Noche:</strong> los roles con acción nocturna eligen su objetivo.</li>
+        <li><i class="fas fa-sun"></i> <strong>Día:</strong> se aplican arrestos nocturnos y todos votan para eliminar a alguien.</li>
+        <li><i class="fas fa-glass-martini-alt"></i> Los asesinados, arrestados y los que pierdan una votación deben beber según lo indicado.</li>
+        <li><i class="fas fa-mask"></i> Los roles se revelan cuando un jugador es eliminado.</li>
+        <li><i class="fas fa-lock"></i> Los jugadores presos no pueden votar pero pueden ser votados.</li>
+        <li><i class="fas fa-clock"></i> Los jugadores presos no cuentan para determinar el fin del juego.</li>
+        <li><i class="fas fa-history"></i> <strong>Nueva regla:</strong> Los presos cumplen un ciclo completo de día, noche y día antes de ser liberados.</li>
+      </ul>
+      <h3>Niveles de Dificultad</h3>
+      <div class="role-list">
+        <div class="role-item">
+          <i class="fas fa-cat role-icon"></i>
+          <strong>Pussy:</strong> Tragos reducidos. No hay tragos por empate. Equipo perdedor toma 1 shot.
+        </div>
+        <div class="role-item">
+          <i class="fas fa-female role-icon"></i>
+          <strong>Girls:</strong> Tragos estándar. Como se jugaba originalmente.
+        </div>
+        <div class="role-item">
+          <i class="fas fa-beer role-icon"></i>
+          <strong>Alcohólico:</strong> Tragos intensificados. Incluye evento "La Medusa". El que menos toma al final bebe 2 shots extra.
+        </div>
+      </div>
+      <h3>Roles Disponibles</h3>
+      <div class="role-list">
+        ${rolesToShow.map(([role, desc]) => `
+          <div class="role-item">
+            <i class="fas ${ROLE_ICONS[role]} role-icon"></i>
+            <div>
+              <strong>${role}:</strong> ${desc}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <button id="btnBack" class="secondary"><i class="fas fa-arrow-left"></i> Volver</button>
+    </div>`;
+  setScreen(html);
+  document.getElementById('btnBack').onclick = showStartScreen;
+}
+
+/* -------------------- CONFIGURACIÓN INICIAL -------------------- */
+function startSetup() {
+  const html = `
+    <div class="card">
+      <h2><i class="fas fa-users"></i> ¿Cuántos jugadores?</h2>
+      <input type="number" id="numPlayers" min="4" max="20" value="6" style="width:100%;">
+      <button id="btnNext"><i class="fas fa-arrow-right"></i> Siguiente</button>
+    </div>`;
+  setScreen(html);
+  document.getElementById('btnNext').onclick = () => {
+    const n = parseInt(document.getElementById('numPlayers').value);
+    if (isNaN(n) || n < 4 || n > 20) {
+      alert('Introduce un número entre 4 y 20.');
+      return;
+    }
+    game.numPlayers = n;
+    showRoleSelection();
+  };
+}
+
+/* -------------------- SELECCIÓN DE ROLES -------------------- */
+function showRoleSelection() {
+  const html = `
+    <div class="card role-selection-screen">
+      <h2 class="header-title">Selección de Roles</h2>
+      <p>Elige cómo asignar los roles:</p>
+      
+      <div class="role-option">
+        <input type="radio" id="randomRoles" name="roleOption" value="random" checked>
+        <label for="randomRoles">Asignación aleatoria</label>
+      </div>
+      
+      <div class="role-option">
+        <input type="radio" id="manualRoles" name="roleOption" value="manual">
+        <label for="manualRoles">Selección manual de roles</label>
+      </div>
+      
+      <div id="manualSelection" style="display:none; margin-top:1rem;">
+        <p>Asigna la cantidad de cada rol (total: ${game.numPlayers}):</p>
+        <div class="role-assignment">
+          <table class="role-table">
+            <thead>
+              <tr>
+                <th>Rol</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${ALL_ROLES.map(role => `
+                <tr>
+                  <td><i class="fas ${ROLE_ICONS[role]}"></i> ${role}</td>
+                  <td><input type="number" id="role_${role}" min="0" max="${game.numPlayers}" value="0"></td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+        <div id="roleCounter">Total seleccionado: 0/${game.numPlayers}</div>
+      </div>
+      
+      <button id="btnRoleNext"><i class="fas fa-arrow-right"></i> Continuar</button>
+    </div>
+  `;
+  
+  setScreen(html);
+  
+   // Obtener elementos después de renderizar
+  const randomOption = document.getElementById('randomRoles');
+  const manualOption = document.getElementById('manualRoles');
+  const manualSelection = document.getElementById('manualSelection');
+  
+  // Función para actualizar visibilidad
+  function updateSelectionVisibility() {
+    manualSelection.style.display = manualOption.checked ? 'block' : 'none';
+    if (manualOption.checked) updateRoleCounter();
+  }
+  
+  // Configurar evento para ambos radio buttons
+  randomOption.addEventListener('change', updateSelectionVisibility);
+  manualOption.addEventListener('change', updateSelectionVisibility);
+  
+  // Inicializar visibilidad
+  updateSelectionVisibility();
+  
+  // Mostrar/ocultar selección manual
+  document.getElementById('manualRoles').addEventListener('change', function() {
+    document.getElementById('manualSelection').style.display = this.checked ? 'block' : 'none';
+    updateRoleCounter();
+  });
+  
+  // Actualizar contador de roles seleccionados
+  const roleInputs = document.querySelectorAll('#manualSelection input[type="number"]');
+  roleInputs.forEach(input => {
+    input.addEventListener('change', updateRoleCounter);
+    input.addEventListener('input', updateRoleCounter);
+  });
+  
+  // Inicializar contador
+  updateRoleCounter();
+  
+  // Botón continuar
+  document.getElementById('btnRoleNext').onclick = () => {
+    if (document.getElementById('randomRoles').checked) {
+      collectNames(0, []);
+    } else {
+      const selectedRoles = {};
+      let total = 0;
+      roleInputs.forEach(input => {
+        const role = input.id.replace('role_', '');
+        const count = parseInt(input.value) || 0;
+        if (count > 0) {
+          selectedRoles[role] = count;
+          total += count;
+        }
+      });
+      
+      if (total > game.numPlayers) {
+        alert(`Has seleccionado ${total} roles, pero solo hay ${game.numPlayers} jugadores.`);
+        return;
+      }
+      
+      // Validar que haya al menos 1 asesino
+      if (!selectedRoles["Asesino"] || selectedRoles["Asesino"] < 1) {
+        alert("Debe haber al menos un asesino.");
+        return;
+      }
+      
+      game.selectedRoles = selectedRoles;
+      collectNames(0, []);
+    }
+  };
+}
+
+function updateRoleCounter() {
+  if (!document.getElementById('manualRoles')?.checked) return;
+  
+  let total = 0;
+  document.querySelectorAll('#manualSelection input[type="number"]').forEach(input => {
+    total += parseInt(input.value) || 0;
+  });
+  
+  const counter = document.getElementById('roleCounter');
+  if (counter) {
+    counter.textContent = `Total seleccionado: ${total}/${game.numPlayers}`;
+    counter.style.color = total > game.numPlayers ? "#ff5555" : (total === game.numPlayers ? "#4f4" : "#ffdd57");
+  }
+}
+
+/* -------------------- RECOLECTAR NOMBRES -------------------- */
+function collectNames(idx, names) {
+  if (idx >= game.numPlayers) {
+    savedPlayers = names.slice(); // Guardar para reinicio
+    game.players = names.map((nm, i) => ({
+      id: i,
+      name: nm.trim() || `Jugador ${i + 1}`,
+      role: null,
+      originalRole: null,
+      status: 'vivo',       // vivo / preso / eliminado
+      detainedRounds: 0,    // Rondas restantes de detención
+      lastPartnerId: null,
+      thiefUsed: false,
+      stolenRole: null,     // Rol robado (para Ladrón)
+      investigatorUsed: false,
+      infected: false,
+      drugged: false,      // Estado drogado (para Dealer)
+      dealerLastTarget: null, // Último objetivo del Dealer
+      drinks: 0,            // Tragos acumulados
+      hydrated: false,      // Hidratador
+      envidiaTargetId: null,// Envidioso
+      inLoveWith: null,     // Suicida enamorado
+      willBecomeAssassin: false, // Para "El menor" después del arresto
+      pimpControlled: false,      // Para Puta: si está controlada por Proxeneta
+      pimpId: null               // Para Proxeneta: ID de la Puta controlada
+    }));
+    assignRoles();
+    return;
+  }
+  const html = `
+    <div class="card">
+      <h2><i class="fas fa-user"></i> Nombre del jugador ${idx + 1}</h2>
+      <input type="text" id="playerName" placeholder="Nombre">
+      <button id="btnNextName"><i class="fas fa-arrow-right"></i> Siguiente</button>
+    </div>`;
+  setScreen(html);
+  document.getElementById('btnNextName').onclick = () => {
+    const n = document.getElementById('playerName').value.trim();
+    if (!n) { alert('Introduce un nombre.'); return; }
+    names.push(n);
+    collectNames(idx + 1, names);
+  };
+}
+
+/* -------------------- ASIGNACIÓN DE ROLES -------------------- */
+function assignRoles() {
+  savedSelectedRoles = game.selectedRoles; // Guardar para reinicio
+  let roles = [];
+  
+  if (game.selectedRoles) {
+    // Construir lista de roles según las cantidades seleccionadas
+    Object.entries(game.selectedRoles).forEach(([role, count]) => {
+      for (let i = 0; i < count; i++) {
+        roles.push(role);
+      }
+    });
+    
+    // Completar con "Sin rol" si faltan
+    while (roles.length < game.numPlayers) {
+      roles.push("Sin rol");
+    }
+  } else {
+    // Asignación aleatoria original
+    const pool = ALL_ROLES;
+    // Siempre al menos un Asesino y un Policía
+    roles = ["Asesino", "Policía"];
+    if (game.numPlayers >= 6) roles.push("Médico", "Bartender");
+    while (roles.length < game.numPlayers) {
+      roles.push(pool[Math.floor(Math.random() * pool.length)]);
+    }
+  }
+  
+  shuffle(roles);
+  game.players.forEach((p, i) => { 
+    p.role = roles[i]; 
+    p.originalRole = roles[i]; 
+  });
+  
+  // Inicializar votos de asesinos
+  game.assassinVotes = {};
+  
+  revealRoles(0);
+}
+
+/* -------------------- REVELAR ROL A CADA JUGADOR -------------------- */
+function revealRoles(idx) {
+  if (idx >= game.players.length) {
+    startNightPhase();
+    return;
+  }
+  const p = game.players[idx];
+  const html = `
+    <div class="card">
+      <h2>Jugador ${idx + 1}</h2>
+      <p>Pasar el teléfono a <strong>${p.name}</strong> y pulsar "Mostrar mi rol".</p>
+      <button id="btnShow"><i class="fas fa-eye"></i> Mostrar mi rol</button>
+    </div>`;
+  setScreen(html);
+  document.getElementById('btnShow').onclick = () => {
+    const publicRole = getPublicRole(p.role);
+    let desc = ROLE_DESCRIPTIONS[p.role] || 'Sin habilidades especiales.';
+    
+    // Información adicional para asesinos - SIEMPRE mostrar compañeros
+    if (p.role === 'Asesino') {
+      const otherAssassins = game.players.filter(
+        pl => pl.role === 'Asesino' && pl.id !== p.id
+      );
+      if (otherAssassins.length > 0) {
+        const names = otherAssassins.map(a => a.name).join(', ');
+        desc += `<br><br>Tus compañeros asesinos son: <strong>${names}</strong>`;
+      } else {
+        desc += "<br><br>Eres el único asesino.";
+      }
+    }
+    
+    let card = '';
+    
+    // Pantalla especial para Envidioso
+    if (p.role === 'Envidioso') {
+      const targets = game.players.filter(pl => pl.id !== p.id);
+      const options = targets.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+      
+      card = `
+        <div class="card role-card">
+          <h3>Tu rol es:</h3>
+          <h2 class="neon"><i class="fas ${ROLE_ICONS[p.role]}"></i> ${publicRole}</h2>
+          <p>${desc}</p>
+          <p>Elige a quién envidiarás:</p>
+          <select id="envidiaTarget">
+            ${options}
+          </select>
+          <button id="btnGotIt"><i class="fas fa-check"></i> Seleccionar</button>
+        </div>`;
+    } 
+    else {
+      card = `
+        <div class="card role-card">
+          <h3>Tu rol es:</h3>
+          <h2 class="neon"><i class="fas ${ROLE_ICONS[p.role]}"></i> ${publicRole}</h2>
+          <p>${desc}</p>
+          <button id="btnGotIt"><i class="fas fa-check"></i> Entendido</button>
+        </div>`;
+    }
+    
+    setScreen(card);
+    
+    const btnHandler = () => {
+      if (p.role === 'Envidioso') {
+        const targetId = parseInt(document.getElementById('envidiaTarget').value);
+        p.envidiaTargetId = targetId;
+        log(`El Envidioso ha elegido envidiar a alguien`);
+      } 
+      revealRoles(idx + 1);
+    };
+    
+    document.getElementById('btnGotIt').onclick = btnHandler;
+  };
+}
+
+/* -------------------- INICIO DE NOCHE -------------------- */
+function startNightPhase() {
+  game.round++;
+  game.phase = 'night';
+  game.nightActions = { kills: [], protects: [], swaps: [], bartender: null, arrests: [], dealer: null, hydrator: null };
+  game.drinkEvents = []; // Inicializar eventos de tragos
+  game.assassinVotes = {}; // Reiniciar votos de asesinos
+  game.nightSummaryData = {
+    kills: [],
+    arrests: [],
+    bartender: null,
+    dealer: null,
+    puta: null,
+    swaps: [],
+    hydrator: null
+  };
+  
+  // Resetear estados temporales
+  game.players.forEach(p => {
+    p.drugged = false;
+    p.hydrated = false; // Se resetea cada noche
+  });
+  
+  log(`<span class="neon">--- Noche ${game.round} ---</span>`);
+  const html = `
+    <div class="card">
+      <h2><i class="fas fa-moon"></i> Noche ${game.round}</h2>
+      <button id="btnNext"><i class="fas fa-arrow-right"></i> Comenzar turnos nocturnos</button>
+    </div>`;
+  setScreen(html);
+  document.getElementById('btnNext').onclick = () => nightTurn(0);
+}
+
+/* -------------------- TURNOS NOCTURNOS -------------------- */
+function nightTurn(idx) {
+  if (idx >= game.players.length) { 
+    nightSummary();
+    return;
+  }
+  
+  const p = game.players[idx];
+  if (p.status !== 'vivo') { nightTurn(idx + 1); return; }
+
+  // Confirmación del votante
+  showConfirmPlayer(p, () => {
+    // Filtros especiales para diferentes roles
+    let aliveTargets = game.players.filter(pl => 
+      pl.status === 'vivo' && 
+      pl.id !== p.id
+    );
+    
+    // Para asesinos: no pueden atacar a otros asesinos
+    if (p.role === 'Asesino') {
+      aliveTargets = aliveTargets.filter(pl => pl.role !== 'Asesino');
+    }
+    
+    // Para dealer: no puede drogar al mismo objetivo dos noches seguidas
+    if (p.role === 'Dealer') {
+      aliveTargets = aliveTargets.filter(pl => pl.id !== p.dealerLastTarget);
+    }
+    
+    // Para puta: no puede repetir pareja
+    if (p.role === 'Puta') {
+      aliveTargets = aliveTargets.filter(pl => pl.id !== p.lastPartnerId);
+    }
+    
+    const opts = aliveTargets.map(pl => `<option value="${pl.id}">${pl.name}</option>`).join('');
+    let inner = `<p>Es tu turno, <strong>${p.name}</strong> <span class="role-badge">${getPublicRole(p.role)}</span>.</p>`;
+
+    // Obtener asesinos vivos
+    const aliveAssassins = game.players.filter(
+      pl => pl.role === "Asesino" && pl.status === "vivo" && pl.id !== p.id
+    );
+    const numAssassins = aliveAssassins.length + 1; // +1 por el jugador actual
+
+    switch (p.role) {
+      case 'Asesino':
+        // Mostrar votos actuales si hay otros asesinos
+        let voteInfo = '';
+        if (numAssassins > 1) {
+          // Contar votos actuales
+          const voteCounts = {};
+          Object.values(game.assassinVotes).forEach(targetId => {
+            voteCounts[targetId] = (voteCounts[targetId] || 0) + 1;
+          });
+          
+          voteInfo = `<div class="assassin-vote">
+            <h3>Consejo de Asesinos</h3>
+            <p>Hay ${numAssassins} asesinos en juego. Cada uno vota en su turno.</p>
+            <div class="vote-count">`;
+            
+          // Mostrar votos de otros asesinos (sin nombres)
+          for (const [targetId, count] of Object.entries(voteCounts)) {
+            const target = getPlayer(parseInt(targetId));
+            voteInfo += `
+              <div class="${game.assassinVotes[p.id] == targetId ? 'selected' : ''}">
+                <div class="vote-target">${target.name}</div>
+                <div>Votos: ${count}</div>
+              </div>`;
+          }
+          
+          voteInfo += `</div></div>`;
+        }
+        
+        inner += `${voteInfo}<p>Elige a quién quieres asesinar:</p>
+                  <select id="target">${opts}</select>`;
+        break;
+      case 'Policía':
+        inner += `<p>Elige a quién arrestarás mañana (no conoces a otros policías):</p>
+                  <select id="target">${opts}</select>`;
+        break;
+      case 'Ladrón':
+        if (p.thiefUsed) {
+          if (p.stolenRole) {
+            inner += `<p>Ya robaste un rol (${p.stolenRole}). Ahora tienes ese rol.</p>`;
+          } else {
+            inner += `<p>Ya usaste tu robo. No puedes hacer nada.</p>`;
+          }
+        } else {
+          inner += `<p>Puedes robar un rol ahora o esperar:</p>
+                    <select id="target">
+                      <option value="-1">No robar ahora</option>
+                      ${opts}
+                    </select>`;
+        }
+        break;
+      case 'Investigador':
+        if (p.investigatorUsed) {
+          inner += `<p>Ya investigaste a alguien. No puedes hacer nada.</p>`;
+        } else {
+          inner += `<p>Elige a quién revelarás su rol (una sola vez). Luego serás Policía.</p>
+                    <select id="target">${opts}</select>`;
+        }
+        break;
+      case 'Médico':
+        inner += `<p>Elige a quién protegerás esta noche:</p>
+                  <select id="target">${opts}</select>`;
+        break;
+      case 'Puta':
+        if (p.status === 'preso') {
+          const otherPrisoners = game.players.filter(
+            pl => pl.status === 'preso' && pl.id !== p.id
+          );
+          
+          if (otherPrisoners.length > 0) {
+            const randomPartner = otherPrisoners[Math.floor(Math.random() * otherPrisoners.length)];
+            p.lastPartnerId = randomPartner.id;
+            const partner = getPlayer(randomPartner.id);
+            
+            // AÑADIR ESTAS VERIFICACIONES
+            const isAsesino = partner.role === "Asesino";
+            const isProxeneta = partner.role === "Proxeneta"; // Nueva verificación
+            
+            if (isAsesino) {
+              p.infected = true;
+              partner.infected = true;
+            }
+            
+            // ESTABLECER CONTROL SI ES PROXENETA
+            if (isProxeneta) {
+              p.pimpControlled = true;
+              partner.pimpId = p.id;
+              log(`${p.name} se acostó con el Proxeneta. ¡Ahora el Proxeneta controla sus acciones!`);
+            }
+            
+            game.nightSummaryData.puta = {
+              puta: p,
+              target: partner,
+              isAsesino: isAsesino,
+              isProxeneta: isProxeneta // Añadir este dato al resumen
+            };
+            
+            log(`${p.name} (presa) se acostó automáticamente con ${partner.name} (preso)`);
+          } else {
+            log(`${p.name} (presa) no encontró compañeros en prisión`);
+          }
+          nightTurn(idx + 1);
+          return;
+        }
+
+        // Si está controlada por un proxeneta, saltar turno
+        if (p.pimpControlled) {
+          nightTurn(idx + 1);
+          return;
+        }
+        
+        const possible = aliveTargets.filter(pl => pl.id !== p.lastPartnerId);
+        if (possible.length === 0) {
+          inner += `<p>No hay candidatos válidos para acostarse.</p>`;
+        } else {
+          const optP = possible.map(pl => `<option value="${pl.id}">${pl.name}</option>`).join('');
+          inner += `<p>Elige con quién acostarte (no puedes repetir 2 noches seguidas):</p>
+                    <select id="target">${optP}</select>`;
+        }
+        break;
+        
+      case 'Proxeneta': // Nuevo caso para Proxeneta
+        if (p.pimpId !== null) {
+          const putaPlayer = getPlayer(p.pimpId);
+          if (putaPlayer && putaPlayer.status === 'vivo') {
+            const possible = aliveTargets.filter(pl => 
+              pl.id !== putaPlayer.lastPartnerId && 
+              pl.id !== p.id
+            );
+            
+            if (possible.length === 0) {
+              inner += `<p>No hay candidatos válidos para la Puta.</p>`;
+            } else {
+              const optP = possible.map(pl => `<option value="${pl.id}">${pl.name}</option>`).join('');
+              inner += `<p>Elige con quién se acostará la Puta (${putaPlayer.name}) esta noche:</p>
+                        <select id="target">${optP}</select>`;
+            }
+          } else {
+            inner += `<p>La Puta que controlas ya no está disponible.</p>`;
+            p.pimpId = null;
+          }
+        } else {
+          inner += `<p>No controlas a ninguna Puta actualmente.</p>`;
+        }
+        break;
+        
+      case 'Bartender':
+        inner += `<p>Elige a quién tomará un trago al amanecer:</p>
+                  <select id="target">${opts}</select>`;
+        break;
+      case 'Dealer':
+        const dealerOptions = aliveTargets.filter(pl => pl.id !== p.dealerLastTarget);
+        if (dealerOptions.length === 0) {
+          inner += `<p>No hay candidatos válidos para drogar.</p>`;
+        } else {
+          const optD = dealerOptions.map(pl => `<option value="${pl.id}">${pl.name}</option>`).join('');
+          inner += `<p>Elige a quién drogar (no puedes repetir 2 noches seguidas):</p>
+                    <select id="target">${optD}</select>`;
+        }
+        break;
+      case 'Hidratador':
+        inner += `<p>Elige a quién hidratar (no tomará su próximo trago):</p>
+                  <select id="target">${opts}</select>`;
+        break;
+      case 'Loco': // El loco ahora actúa automáticamente en la noche
+        // Acción automática sin interfaz
+        const targets = aliveTargets;
+        if (targets.length) {
+          const randomTarget = targets[Math.floor(Math.random() * targets.length)];
+          game.nightActions.arrests.push({ officerId: p.id, targetId: randomTarget.id });
+          game.nightSummaryData.arrests.push({
+            officer: p,
+            target: getPlayer(randomTarget.id)
+          });
+        }
+        nightTurn(idx + 1);
+        return;
+      default:
+        inner += `<p>No tienes acción esta noche.</p>`;
+    }
+
+    const html = `<div class="card">
+                    ${inner}
+                    <button id="btnConfirm"><i class="fas fa-check"></i> Confirmar</button>
+                  </div>`;
+    setScreen(html);
+    document.getElementById('btnConfirm').onclick = () => {
+      const sel = document.getElementById('target');
+      const targetId = sel ? parseInt(sel.value) : null;
+      
+      switch (p.role) {
+        case 'Asesino':
+          if (targetId !== null) {
+            // Registrar voto del asesino
+            game.assassinVotes[p.id] = targetId;
+          }
+          break;
+        case 'Policía':
+          if (targetId !== null) {
+            game.nightActions.arrests.push({ officerId: p.id, targetId });
+            game.nightSummaryData.arrests.push({
+              officer: p,
+              target: getPlayer(targetId)
+            });
+          }
+          break;
+        case 'Ladrón':
+          if (!p.thiefUsed && targetId !== null) {
+            if (targetId === -1) {
+              // No robar ahora
+            } else {
+              const victim = getPlayer(targetId);
+              p.stolenRole = victim.role;
+              p.role = victim.role; // El ladrón adquiere el nuevo rol
+              p.thiefUsed = true;
+              game.nightActions.swaps.push({ thiefId: p.id, targetId });
+              game.nightSummaryData.swaps.push({
+                thief: p,
+                victim: victim,
+                stolenRole: victim.role
+              });
+            }
+          }
+          break;
+        case 'Investigador':
+          if (!p.investigatorUsed && targetId !== null) {
+            const victim = getPlayer(targetId);
+            alert(`El rol de ${victim.name} es ${getPublicRole(victim.role)}.`);
+            p.role = "Policía";
+            p.investigatorUsed = true;
+          }
+          break;
+        case 'Médico':
+          if (targetId !== null) {
+            game.nightActions.protects.push({ doctorId: p.id, targetId });
+          }
+          break;
+        case 'Puta':
+          if (targetId !== null) {
+            p.lastPartnerId = targetId;
+            const partner = getPlayer(targetId);
+            const isAsesino = partner.role === "Asesino";
+            const isProxeneta = partner.role === "Proxeneta"; // Verificar si es Proxeneta
+            
+            if (isAsesino) {
+              p.infected = true;
+              partner.infected = true;
+            }
+            
+            // Si es Proxeneta, establecer control
+            if (isProxeneta) {
+              p.pimpControlled = true;
+              partner.pimpId = p.id;
+              log(`${p.name} se acostó con el Proxeneta. ¡Ahora el Proxeneta controla sus acciones!`);
+            }
+            
+            // Si el objetivo es Suicida
+            if (partner.role === "Suicida") {
+              partner.inLoveWith = p.id;
+            }
+            
+            game.nightSummaryData.puta = {
+              puta: p,
+              target: partner,
+              isAsesino: isAsesino,
+              isProxeneta: isProxeneta
+            };
+          }
+          break;
+          
+        case 'Proxeneta': // Acción del Proxeneta
+          if (targetId !== null && p.pimpId !== null) {
+            const putaPlayer = getPlayer(p.pimpId);
+            if (putaPlayer && putaPlayer.status === 'vivo') {
+              putaPlayer.lastPartnerId = targetId;
+              const partner = getPlayer(targetId);
+              const isAsesino = partner.role === "Asesino";
+              
+              if (isAsesino) {
+                putaPlayer.infected = true;
+                partner.infected = true;
+              }
+              
+              // Si el objetivo es Suicida
+              if (partner.role === "Suicida") {
+                partner.inLoveWith = putaPlayer.id;
+              }
+              
+              game.nightSummaryData.puta = {
+                puta: putaPlayer,
+                target: partner,
+                isAsesino: isAsesino,
+                controlledBy: p.name
+              };
+            }
+          }
+          break;
+        case 'Bartender':
+          if (targetId !== null) {
+            game.nightActions.bartender = targetId;
+            game.nightSummaryData.bartender = {
+              bartender: p,
+              target: getPlayer(targetId)
+            };
+          }
+          break;
+        case 'Dealer':
+          if (targetId !== null) {
+            const target = getPlayer(targetId);
+            target.drugged = true;
+            p.dealerLastTarget = targetId;
+            game.nightActions.dealer = targetId;
+            game.nightSummaryData.dealer = {
+              dealer: p,
+              target: target
+            };
+          }
+          break;
+        case 'Hidratador':
+          if (targetId !== null) {
+            const target = getPlayer(targetId);
+            target.hydrated = true;
+            game.nightSummaryData.hydrator = {
+              hydrator: p,
+              target: target
+            };
+          }
+          break;
+        default:
+          // nada
+      }
+      // pasar al siguiente jugador de la noche
+      nightTurn(idx + 1);
+    };
+  });
+}
+
+/* -------------------- RESUMEN DE LA NOCHE -------------------- */
+function nightSummary() {
+  // 1️⃣ proteger contra asesinatos
+  const protectedSet = new Set(game.nightActions.protects.map(o => o.targetId));
+  const deaths = [];
+
+  // 2️⃣ procesar votos de asesinos
+  processAssassinVotes(protectedSet, deaths);
+
+  // 3️⃣ infección de la Puta y Asesino
+  game.players.forEach(p => {
+    if (p.infected) {
+      if (!protectedSet.has(p.id)) {
+        // Comprobar si está hidratado
+        const drinkAmount = p.drugged ? 
+          DRINK_CONFIG[game.difficulty].murder * 2 : 
+          DRINK_CONFIG[game.difficulty].murder;
+          
+        if (p.hydrated) {
+          log(`${p.name} estaba hidratado y no toma los ${drinkAmount} tragos por infección.`);
+          p.hydrated = false;
+        } else {
+          p.drinks += drinkAmount;
+          addDrinkEvent(`${p.name} debe beber ${drinkAmount} tragos por infección.`);
+        }
+        
+        p.status = 'eliminado';
+        deaths.push(p);
+        game.nightSummaryData.kills.push({
+          victim: p,
+          reason: 'infección',
+          drinkAmount: drinkAmount
+        });
+        
+        // Comprobar si era la Puta y tenía un enamorado (Suicida)
+        if (p.role === "Puta") {
+          const suicidaInLove = game.players.find(pl => 
+            pl.role === "Suicida" && 
+            pl.inLoveWith === p.id && 
+            pl.status === 'vivo'
+          );
+          if (suicidaInLove) {
+            const drinkAmountSuicida = suicidaInLove.drugged ? 
+              DRINK_CONFIG[game.difficulty].elimination * 2 : 
+              DRINK_CONFIG[game.difficulty].elimination;
+              
+            suicidaInLove.status = 'eliminado';
+            if (suicidaInLove.hydrated) {
+              log(`${suicidaInLove.name} estaba hidratado y no toma los ${drinkAmountSuicida} tragos por amor.`);
+              suicidaInLove.hydrated = false;
+            } else {
+              suicidaInLove.drinks += drinkAmountSuicida;
+              addDrinkEvent(`${suicidaInLove.name} debe beber ${drinkAmountSuicida} tragos por muerte de amor.`);
+            }
+            game.nightSummaryData.kills.push({
+              victim: suicidaInLove,
+              reason: 'muerte de amor',
+              drinkAmount: drinkAmountSuicida
+            });
+          }
+        }
+      } else {
+        log(`Un jugador fue protegido y sobrevivió al ataque de los asesinos.`);
+      }
+      p.infected = false;
+    }
+  });
+
+  // 4️⃣ bartender (solo nota)
+  if (game.nightActions.bartender !== null) {
+    const target = getPlayer(game.nightActions.bartender);
+    const drinkAmount = target.drugged ? 
+      DRINK_CONFIG[game.difficulty].bartender * 2 : 
+      DRINK_CONFIG[game.difficulty].bartender;
+      
+    if (target.hydrated) {
+      log(`${target.name} estaba hidratado y no toma el trago del Bartender.`);
+      target.hydrated = false;
+    } else {
+      target.drinks += drinkAmount;
+      addDrinkEvent(`${target.name} debe beber ${drinkAmount} tragos por el Bartender.`);
+    }
+  }
+
+  // Mostrar resumen detallado
+  let summaryHTML = `<div class="card"><h2><i class="fas fa-moon"></i> Resumen de la Noche ${game.round}</h2>`;
+  
+  // Mostrar acciones de roles con nombres
+  if (game.nightSummaryData.arrests.length > 0) {
+    summaryHTML += `<div class="assassin-vote">
+      <h3>Arrestos Planeados</h3>
+      <ul>`;
+    game.nightSummaryData.arrests.forEach(a => {
+      summaryHTML += `<li>Se planea arrestar a ${a.target.name}</li>`;
+    });
+    summaryHTML += `</ul></div>`;
+  }
+  
+  if (game.nightSummaryData.bartender) {
+    const bartender = game.nightSummaryData.bartender;
+    summaryHTML += `<p>El Bartender eligió a ${bartender.target.name} para tomar un trago</p>`;
+  }
+  
+  if (game.nightSummaryData.dealer) {
+    const dealer = game.nightSummaryData.dealer;
+    summaryHTML += `<p>El Dealer drogó a ${dealer.target.name}</p>`;
+  }
+  
+  if (game.nightSummaryData.hydrator) {
+    const hydrator = game.nightSummaryData.hydrator;
+    summaryHTML += `<p>El Hidratador protegió a ${hydrator.target.name} de su próximo trago</p>`;
+  }
+  
+  if (game.nightSummaryData.puta) {
+    const puta = game.nightSummaryData.puta;
+    if (puta.isAsesino) {
+      summaryHTML += `<p>La Puta se acostó con ${puta.target.name} (Asesino) → y lo infectó con VIH. El asesino no dudó en matarla</p>`;
+    } else {
+      summaryHTML += `<p>La Puta se acostó con alguien anoche, que loca</p>`;
+    }
+  }
+  
+  if (game.nightSummaryData.swaps.length > 0) {
+    summaryHTML += `<div class="assassin-vote">
+      <h3>Robos de Roles</h3>
+      <ul>`;
+    game.nightSummaryData.swaps.forEach(s => {
+      summaryHTML += `<li>El Ladrón hizo de las suyas anoche</li>`;
+    });
+    summaryHTML += `</ul></div>`;
+  }
+  
+  // Mostrar asesinatos
+  if (game.nightSummaryData.kills.length > 0) {
+    summaryHTML += `<div class="assassin-vote">
+      <h3>Asesinatos</h3>
+      <ul>`;
+    game.nightSummaryData.kills.forEach(k => {
+      const reason = k.reason ? ` (${k.reason})` : '';
+      summaryHTML += `<li>${k.victim.name}${reason} - ${k.drinkAmount} tragos</li>`;
+    });
+    summaryHTML += `</ul></div>`;
+  }
+  
+  // Mostrar eventos de tragos
+  if (game.drinkEvents.length > 0) {
+    summaryHTML += `<div class="drink-section">
+               <h3>¡Tragos a beber!</h3>
+               <ul class="drink-list">`;
+    game.drinkEvents.forEach(e => summaryHTML += `<li class="drink-item"><span class="drink-icon-large">🍹</span><span class="drink-text">${e}</span></li>`);
+    summaryHTML += `</ul></div>`;
+  }
+  
+  summaryHTML += `<div id="eventLog"></div>`;
+  summaryHTML += `<button id="btnNextDay"><i class="fas fa-sun"></i> Continuar al día</button>`;
+  summaryHTML += `</div>`;
+  setScreen(summaryHTML);
+  renderLog();
+
+  document.getElementById('btnNextDay').onclick = () => {
+    if (game.pendingLudopata) {
+      activateLudopataAbility(game.pendingLudopata);
+    } else {
+      // En nivel Alcoholico, antes del día, evento La Medusa
+      if (game.difficulty === 'alcoholico') {
+        medusaEvent();
+      } else {
+        startDayPhase();
+      }
+    }
+  };
+}
+
+function processAssassinVotes(protectedSet, deaths) {
+  const aliveAssassins = game.players.filter(p => p.role === 'Asesino' && p.status === 'vivo');
+  
+  // Si no hay asesinos vivos, no hacemos nada
+  if (aliveAssassins.length === 0) return;
+  
+  // Contar votos
+  const voteCounts = {};
+  Object.values(game.assassinVotes).forEach(targetId => {
+    voteCounts[targetId] = (voteCounts[targetId] || 0) + 1;
+  });
+  
+  // Encontrar el objetivo con más votos
+  const maxVotes = Math.max(...Object.values(voteCounts), 0);
+  const topTargets = Object.keys(voteCounts).filter(id => voteCounts[id] === maxVotes);
+  
+  // Si hay un único objetivo con más votos, se asesina
+  if (topTargets.length === 1) {
+    const targetId = parseInt(topTargets[0]);
+    const victim = getPlayer(targetId);
+    
+    // Verificar si el objetivo está protegido
+    if (!protectedSet.has(targetId) && victim.status === 'vivo') {
+      playSound('asesinoSound'); // SONIDO DE ASESINATO
+      
+      victim.status = 'eliminado';
+      const drinkAmount = victim.drugged ? 
+        DRINK_CONFIG[game.difficulty].murder * 2 : 
+        DRINK_CONFIG[game.difficulty].murder;
+      
+      // Comprobar hidratado
+      if (victim.hydrated) {
+        log(`${victim.name} estaba hidratado y no toma los ${drinkAmount} tragos por asesinato.`);
+        victim.hydrated = false;
+      } else {
+        victim.drinks += drinkAmount;
+        addDrinkEvent(`${victim.name} debe beber ${drinkAmount} tragos por asesinato.`);
+      }
+      
+      deaths.push(victim);
+      game.nightSummaryData.kills.push({
+        victim: victim,
+        drinkAmount: drinkAmount
+      });
+      
+      // Comprobar si era Ludópata
+      if (victim.role === "Ludópata") {
+        game.pendingLudopata = victim;
+      }
+      
+      // Comprobar si era la Puta y tenía un enamorado (Suicida)
+      if (victim.role === "Puta") {
+        const suicidaInLove = game.players.find(pl => 
+          pl.role === "Suicida" && 
+          pl.inLoveWith === victim.id && 
+          pl.status === 'vivo'
+        );
+        if (suicidaInLove) {
+          const drinkAmountSuicida = suicidaInLove.drugged ? 
+            DRINK_CONFIG[game.difficulty].elimination * 2 : 
+            DRINK_CONFIG[game.difficulty].elimination;
+            
+          suicidaInLove.status = 'eliminado';
+          if (suicidaInLove.hydrated) {
+            log(`${suicidaInLove.name} estaba hidratado y no toma los ${drinkAmountSuicida} tragos por amor.`);
+            suicidaInLove.hydrated = false;
+          } else {
+            suicidaInLove.drinks += drinkAmountSuicida;
+            addDrinkEvent(`${suicidaInLove.name} debe beber ${drinkAmountSuicida} tragos por muerte de amor.`);
+          }
+          game.nightSummaryData.kills.push({
+            victim: suicidaInLove,
+            reason: 'muerte de amor',
+            drinkAmount: drinkAmountSuicida
+          });
+        }
+      }
+    } else if (victim.status === 'vivo') {
+      log(`Un jugador fue protegido y sobrevivió al ataque de los asesinos.`);
+    }
+  } else if (topTargets.length > 1) {
+    log(`Los asesinos no se pusieron de acuerdo (empate en votos). Nadie fue asesinado.`);
+  }
+}
+
+/* -------------------- INICIO DE DÍA (CON ARRESTOS) -------------------- */
+function startDayPhase() {
+  game.phase = 'day';
+  game.dayArrests = [];
+  game.dayVotes = [];
+  game.drinkEvents = []; // Inicializar eventos de tragos
+  log(`<span class="neon">--- Día ${game.round} ---</span>`);
+  
+  // Aplicar arrestos planeados en la noche
+  applyNightArrests();
+  
+  const html = `<div class="card"><h2><i class="fas fa-sun"></i> Día ${game.round}</h2>
+                <button id="btnVoting"><i class="fas fa-vote-yea"></i> Iniciar votación</button></div>`;
+  setScreen(html);
+  document.getElementById('btnVoting').onclick = () => startVoting(0);
+}
+
+/* -------------------- APLICAR ARRESTOS NOCTURNOS (MODIFICADO) -------------------- */
+function applyNightArrests() {
+  game.nightActions.arrests.forEach(a => {
+    const target = getPlayer(a.targetId);
+    if (target.status !== 'vivo') return;
+    
+    // Caso especial: El menor
+    if (target.role === 'El menor') {
+      target.status = 'preso';
+      target.detainedRounds = 2; // CAMBIO: de 3 a 2 fases (día + noche)
+      target.willBecomeAssassin = true;
+      const drinkAmount = target.drugged ? 
+        DRINK_CONFIG[game.difficulty].arrest * 2 : 
+        DRINK_CONFIG[game.difficulty].arrest;
+      
+      if (target.hydrated) {
+        log(`${target.name} estaba hidratado y no toma los ${drinkAmount} tragos por arresto.`);
+        target.hydrated = false;
+      } else {
+        target.drinks += drinkAmount;
+        addDrinkEvent(`${target.name} debe beber ${drinkAmount} tragos por arresto.`);
+      }
+      // CAMBIO: Mensaje actualizado a 2 fases
+      log(`${target.name} fue arrestado y cumplirá 2 fases de detención (día y noche).`);
+      return;
+    }
+    
+    if (target.role === 'Suicida') {
+      target.status = 'eliminado';
+      const drinkAmount = target.drugged ? 
+        DRINK_CONFIG[game.difficulty].elimination * 2 : 
+        DRINK_CONFIG[game.difficulty].elimination;
+      
+      // Comprobar hidratado
+      if (target.hydrated) {
+        log(`${target.name} estaba hidratado y no toma los ${drinkAmount} tragos por suicidio.`);
+        target.hydrated = false;
+      } else {
+        target.drinks += drinkAmount;
+        addDrinkEvent(`${target.name} debe beber ${drinkAmount} tragos por suicidio.`);
+      }
+      log(`<div class="eliminated">${target.name} <span class="role">(era ${getPublicRole(target.role)})</span> fue eliminado por votación.</div>`);
+    } else {
+      target.status = 'preso';
+      target.detainedRounds = 2; // CAMBIO: de 3 a 2 fases (día + noche)
+      const drinkAmount = target.drugged ? 
+        DRINK_CONFIG[game.difficulty].arrest * 2 : 
+        DRINK_CONFIG[game.difficulty].arrest;
+      
+      // Comprobar hidratado
+      if (target.hydrated) {
+        log(`${target.name} estaba hidratado y no toma los ${drinkAmount} tragos por arresto.`);
+        target.hydrated = false;
+      } else {
+        target.drinks += drinkAmount;
+        addDrinkEvent(`${target.name} debe beber ${drinkAmount} tragos por arresto.`);
+      }
+      // CAMBIO: Mensaje actualizado a 2 fases
+      log(`${target.name} ha sido arrestado y cumplirá 2 fases de detención (día y noche).`);
+    }
+  });
+  
+  // Actualizar presos al inicio del día
+  updatePrisonersAtStartOfDay();
+  
+  // Mostrar eventos de tragos por arrestos
+  if (game.drinkEvents.length > 0) {
+    const html = `<div class="card">
+                    <h3>Resultados de los arrestos</h3>
+                    <div class="drink-section">
+                      <h3>¡Tragos a beber!</h3>
+                      <ul class="drink-list">`;
+    const drinksHTML = game.drinkEvents.map(e => `<li class="drink-item"><span class="drink-icon-large">🍸</span><span class="drink-text">${e}</span></li>`).join('');
+    setScreen(`<div id="playerList"></div>${html}${drinksHTML}</ul></div></div>`);
+    renderPlayerList();
+  }
+}
+
+/* -------------------- ACTUALIZAR PRESOS AL INICIO DEL DÍA (MODIFICADO) -------------------- */
+function updatePrisonersAtStartOfDay() {
+  game.players.forEach(p => {
+    if (p.status === 'preso') {
+      // Reducir contador de detención
+      p.detainedRounds--;
+      
+      // En nivel Alcoholico, beber en la noche para salir
+      if (game.difficulty === 'alcoholico' && p.detainedRounds === 1) {
+        const drinkAmount = 1;
+        if (p.hydrated) {
+          log(`${p.name} estaba hidratado y no toma el trago de fianza para salir.`);
+          p.hydrated = false;
+        } else {
+          p.drinks += drinkAmount;
+          addDrinkEvent(`${p.name} debe beber ${drinkAmount} trago de fianza para salir.`);
+        }
+      }
+      
+      // Si el contador llega a cero, liberar al jugador
+      if (p.detainedRounds <= 0) {
+        if (p.willBecomeAssassin) {
+          p.role = "Asesino";
+          p.willBecomeAssassin = false;
+          log(`${p.name} cumplió su detención y se convirtió en asesino.`);
+        } else {
+          log(`${p.name} cumplió su detención y vuelve al juego.`);
+        }
+        p.status = 'vivo';
+      } else {
+        // CAMBIO: Mensaje actualizado
+        log(`${p.name} permanece en prisión. Falta 1 fase.`);
+      }
+    }
+  });
+}
+
+/* -------------------- EVENTO LA MEDUSA (ALCOHOLICO) -------------------- */
+function medusaEvent() {
+  log(`<span class="neon">--- Evento La Medusa ---</span>`);
+  
+  // Solo jugadores vivos pueden participar
+  const alivePlayers = game.players.filter(p => p.status === 'vivo');
+  
+  // Si hay menos de 2 jugadores vivos, saltar evento
+  if (alivePlayers.length < 2) {
+    log(`No hay suficientes jugadores para La Medusa.`);
+    startDayPhase();
+    return;
+  }
+  
+  game.medusaChoices = {};
+  medusaTurn(0);
+}
+
+function medusaTurn(idx) {
+  const alivePlayers = game.players.filter(p => p.status === 'vivo');
+  
+  if (idx >= alivePlayers.length) {
+    resolveMedusaEvent();
+    return;
+  }
+  
+  const p = alivePlayers[idx];
+  
+  showConfirmPlayer(p, () => {
+    const options = alivePlayers.filter(pl => pl.id !== p.id)
+      .map(pl => `<option value="${pl.id}">${pl.name}</option>`)
+      .join('');
+    
+    const html = `<div class="card">
+      <div class="medusa-event">
+        <h3>La Medusa</h3>
+        <p>Elige a quién quieres matar con la mirada:</p>
+        <select id="medusaChoice">${options}</select>
+        <button id="btnMedusa"><i class="fas fa-eye"></i> Enviar</button>
+      </div>
+    </div>`;
+    
+    setScreen(html);
+    
+    document.getElementById('btnMedusa').onclick = () => {
+      const choiceId = parseInt(document.getElementById('medusaChoice').value);
+      game.medusaChoices[p.id] = choiceId;
+      log(`${p.name} ha hecho su elección en La Medusa.`);
+      medusaTurn(idx + 1);
+    };
+  });
+}
+
+function resolveMedusaEvent() {
+  const matches = [];
+  const processedPairs = new Set(); // Para evitar duplicados
+
+  // Buscar parejas que se eligieron mutuamente
+  Object.entries(game.medusaChoices).forEach(([chooserId, chosenId]) => {
+    const chooser = getPlayer(parseInt(chooserId));
+    const chosen = getPlayer(chosenId);
+    
+    // Verificar si el elegido también eligió al que lo eligió
+    if (game.medusaChoices[chosenId] === parseInt(chooserId)) {
+      // Crear un identificador único para la pareja (sin importar el orden)
+      const pairKey = [Math.min(chooserId, chosenId), Math.max(chooserId, chosenId)].join('-');
+      
+      // Solo procesar si no hemos visto esta pareja antes
+      if (!processedPairs.has(pairKey)) {
+        processedPairs.add(pairKey);
+        matches.push({ player1: chooser, player2: chosen });
+      }
+    }
+  });
+  
+  // Aplicar tragos a las parejas que hicieron match
+  const medusaResults = []; // Almacenar resultados para mostrar
+  matches.forEach(pair => {
+    const drinkAmount = 1;
+    
+    if (pair.player1.hydrated) {
+      pair.player1.hydrated = false;
+    } else {
+      pair.player1.drinks += drinkAmount;
+    }
+    
+    if (pair.player2.hydrated) {
+      pair.player2.hydrated = false;
+    } else {
+      pair.player2.drinks += drinkAmount;
+    }
+    
+    // Solo un mensaje por match (no por jugador)
+    medusaResults.push({
+      player1: pair.player1.name,
+      player2: pair.player2.name,
+      drinkAmount: drinkAmount
+    });
+  });
+  
+  // Si hubo matches, mostrar resumen
+  if (medusaResults.length > 0) {
+    log(`<span class="neon">Resultados de La Medusa: Se formaron ${medusaResults.length} parejas!</span>`);
+    showMedusaResults(medusaResults);
+  } else {
+    log(`No hubo matches en La Medusa. Nadie bebe.`);
+    // SOLUCIÓN: Avanzar a la fase correspondiente
+    if (game.phase === 'night') {
+      startDayPhase();
+    } else {
+      if (checkWinConditions()) return;
+      startNightPhase();
+    }
+  }
+}
+
+function showMedusaResults(results) {
+  playSound('medusaSound'); // SONIDO DE MEDUSA
+  
+  const html = `
+    <div class="card">
+      <h2 class="neon" style="font-size: 2.2rem; text-align: center;">¡Resultados de La Medusa!</h2>
+      
+      <div style="display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0;">
+        ${results.map(res => `
+          <div class="medusa-match" style="
+            background: linear-gradient(45deg, rgba(155, 89, 182, 0.3), rgba(100, 65, 165, 0.3));
+            border: 2px solid var(--accent-purple);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            animation: pulse 2s infinite ease-in-out;
+          ">
+            <div style="font-size: 1.8rem; margin-bottom: 1rem;">🥂 ¡MATCH! 🥂</div>
+            <div style="font-size: 1.4rem; font-weight: bold;">
+              ${res.player1} + ${res.player2}
+            </div>
+            <div style="font-size: 1.2rem; margin-top: 1rem;">
+              Ambos beben <span class="neon" style="font-size: 1.5rem;">${res.drinkAmount}</span> trago(s)
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      
+      <button id="btnContinueMedusa"><i class="fas fa-arrow-right"></i> Continuar</button>
+    </div>
+  `;
+  
+  setScreen(html);
+  
+  // SOLUCIÓN: Avanzar a la fase correspondiente
+  document.getElementById('btnContinueMedusa').onclick = () => {
+    if (game.phase === 'night') {
+      startDayPhase();
+    } else {
+      if (checkWinConditions()) return;
+      startNightPhase();
+    }
+  };
+}
+
+/* -------------------- VOTACIÓN DIARIA -------------------- */
+function startVoting(idx) {
+  // Solo jugadores vivos pueden votar (los presos no pueden votar)
+  const voters = game.players.filter(p => p.status === 'vivo');
+  
+  if (idx >= voters.length) { 
+    tallyVotes(); 
+    return;
+  }
+  
+  const v = voters[idx];
+
+  // Confirmación del votante
+  showConfirmPlayer(v, () => {
+    if (v.role === 'Loco') {
+      // Loco vota al azar automáticamente
+      const options = game.players.filter(
+        p => p.status !== 'eliminado' && p.id !== v.id
+      );
+      
+      if (options.length) {
+        // 50% de probabilidad de no votar
+        if (Math.random() < 0.5) {
+          game.dayVotes.push({ voterId: v.id, targetId: -1 }); // No votar
+        } else {
+          const randomTarget = options[Math.floor(Math.random() * options.length)];
+          game.dayVotes.push({ voterId: v.id, targetId: randomTarget.id });
+        }
+      } else {
+        game.dayVotes.push({ voterId: v.id, targetId: -1 }); // No votar
+      }
+      startVoting(idx + 1);
+      return;
+    }
+
+    // Todos los jugadores no eliminados (vivos y presos) pueden ser votados
+    const options = game.players.filter(
+      p => p.status !== 'eliminado' && p.id !== v.id
+    );
+    
+    const optHTML = `
+      <option value="-1">No votar</option>
+      ${options.map(p => `<option value="${p.id}">${p.name} ${p.status === 'preso' ? '(Preso)' : ''}</option>`).join('')}
+    `;
+    
+    let roleInfo = '';
+    
+    // Policías no saben quién es otro policía
+    if (v.role === 'Policía') {
+      roleInfo = '<p class="muted">(No conoces a otros policías)</p>';
+    }
+    
+    const html = `<div class="card"><h3>${v.name} <span class="role-badge">${getPublicRole(v.role)}</span></h3>
+                  ${roleInfo}
+                  <p>Elige a quién eliminar o selecciona "No votar":</p>
+                  <select id="vote">${optHTML}</select>
+                  <button id="btnVote"><i class="fas fa-vote-yea"></i> Votar</button></div>`;
+    setScreen(html);
+    document.getElementById('btnVote').onclick = () => {
+      const targetId = parseInt(document.getElementById('vote').value);
+      game.dayVotes.push({ voterId: v.id, targetId });
+      startVoting(idx + 1);
+    };
+  });
+}
+
+/* -------------------- TABULACIÓN DE VOTACIONES -------------------- */
+function tallyVotes() {
+  const tally = {};
+  
+  // Contar votos (incluyendo la opción de no votar)
+  game.dayVotes.forEach(v => { 
+    tally[v.targetId] = (tally[v.targetId] || 0) + 1;
+  });
+  
+  // Encontrar el máximo de votos
+  const max = Math.max(...Object.values(tally));
+  const top = Object.entries(tally).filter(([, c]) => c === max).map(([id]) => parseInt(id));
+  
+  // Comprobar si la opción "No votar" (-1) está entre las más votadas
+  if (top.includes(-1)) {
+    // Todos los jugadores (vivos, presos, pero no eliminados) deben beber
+    const drinkAmount = DRINK_CONFIG[game.difficulty].tie;
+    if (drinkAmount > 0) {
+      game.players.filter(p => p.status !== 'eliminado').forEach(p => {
+        const amount = p.drugged ? drinkAmount * 2 : drinkAmount;
+        if (p.hydrated) {
+          log(`${p.name} estaba hidratado y no toma el trago por no votar.`);
+          p.hydrated = false;
+        } else {
+          p.drinks += amount;
+        }
+      });
+      log(`La mayoría decidió no votar a nadie. Todos los jugadores no eliminados deben beber ${drinkAmount} trago(s).`);
+      addDrinkEvent(`Todos los jugadores no eliminados deben beber ${drinkAmount} trago(s) por no votar a nadie.`);
+    } else {
+      log(`La mayoría decidió no votar a nadie. No hay tragos asignados.`);
+    }
+  } 
+    // Si hay un único ganador que no es "No votar"
+  else if (top.length === 1 && top[0] !== -1) {
+    const eliminated = getPlayer(top[0]);
+    eliminated.status = 'eliminado';
+    const drinkAmount = eliminated.drugged ? 
+      DRINK_CONFIG[game.difficulty].elimination * 2 : 
+      DRINK_CONFIG[game.difficulty].elimination;
+    
+    // Comprobar hidratado
+    if (eliminated.hydrated) {
+      log(`${eliminated.name} estaba hidratado y no toma los ${drinkAmount} tragos por eliminación.`);
+      eliminated.hydrated = false;
+    } else {
+      eliminated.drinks += drinkAmount;
+      addDrinkEvent(`${eliminated.name} debe beber ${drinkAmount} tragos por eliminación.`);
+    }
+    
+    log(`<div class="eliminated">${eliminated.name} <span class="role">(era ${getPublicRole(eliminated.role)})</span> fue eliminado por votación.</div>`);
+    
+    // Comprobar si era Ludópata
+    if (eliminated.role === "Ludópata") {
+      game.pendingLudopata = eliminated;
+    }
+  } 
+  // Empate entre jugadores (sin incluir "No votar")
+  else if (top.length > 1 && !top.includes(-1)) {
+    const drinkAmount = DRINK_CONFIG[game.difficulty].tie;
+    if (drinkAmount > 0) {
+      // Todos los jugadores vivos toman 1 trago por empate (o 2 si están drogaados)
+      game.players.filter(p => p.status === 'vivo').forEach(p => {
+        const amount = p.drugged ? drinkAmount * 2 : drinkAmount;
+        if (p.hydrated) {
+          log(`${p.name} estaba hidratado y no toma el trago por empate.`);
+          p.hydrated = false;
+        } else {
+          p.drinks += amount;
+        }
+      });
+      log(`Empate en la votación. Todos los jugadores vivos beben ${drinkAmount} trago(s).`);
+      addDrinkEvent(`Todos los jugadores vivos deben beber ${drinkAmount} trago(s) por empate.`);
+    } else {
+      log(`Empate en la votación. No hay tragos asignados.`);
+    }
+  }
+
+  daySummary();
+}
+
+/* -------------------- RESUMEN DEL DÍA -------------------- */
+function daySummary() {
+  let html = `<div class="card"><h2><i class="fas fa-sun"></i> Resumen del Día ${game.round}</h2>`;
+  
+  // Mostrar eventos de tragos
+  if (game.drinkEvents.length > 0) {
+    html += `<div class="drink-section">
+               <h3>¡Tragos a beber!</h3>
+               <ul class="drink-list">`;
+    game.drinkEvents.forEach(e => html += `<li class="drink-item"><span class="drink-icon-large">🍹</span><span class="drink-text">${e}</span></li>`);
+    html += `</ul></div>`;
+  } else {
+    html += `<div class="drink-section">
+               <h3>¡Suerte!</h3>
+               <p>No hay tragos asignados en este día.</p>
+             </div>`;
+  }
+  
+  html += `<div id="eventLog"></div>`;
+  html += `<button id="btnNextNight"><i class="fas fa-moon"></i> Continuar a la Noche ${game.round + 1}</button>`;
+  html += `</div>`;
+  
+  setScreen(html);
+  renderLog();
+  
+ document.getElementById('btnNextNight').onclick = () => {
+    if (game.pendingLudopata) {
+      activateLudopataAbility(game.pendingLudopata);
+    } else {
+      // En nivel Alcoholico, después del día, evento La Medusa
+      if (game.difficulty === 'alcoholico') {
+        medusaEvent();
+      } else {
+        if (checkWinConditions()) return;
+        startNightPhase();
+      }
+    }
+  };
+}
+
+/* -------------------- HABILIDAD MEJORADA DEL LUDÓPATA -------------------- */
+function activateLudopataAbility(deadPlayer) {
+   // Obtener elemento de audio
+  const spinAudio = document.getElementById('spinSound');
+  // Jugadores objetivo: vivos o presos (no eliminados)
+  const targets = game.players.filter(p => p.status !== 'eliminado');
+  const results = [];
+  
+  let spinCount = 0;
+  
+  function spinRoulette() {
+    spinCount++;
+    
+    // Seleccionar ganador real
+    const winner = targets[Math.floor(Math.random() * targets.length)];
+    
+    // Generar una lista de 30 elementos con jugadores aleatorios
+    const rouletteItems = Array(30).fill(null).map(() => {
+      const randomPlayer = targets[Math.floor(Math.random() * targets.length)];
+      return randomPlayer.name;
+    });
+
+    // Insertar al ganador en 5 posiciones aleatorias
+    const winnerPositions = [];
+    for (let i = 0; i < 5; i++) {
+      const pos = Math.floor(Math.random() * 30);
+      rouletteItems[pos] = winner.name;
+      winnerPositions.push(pos);
+    }
+
+    // Elegir una posición de parada (una de las que tiene al ganador)
+    const stopIndex = winnerPositions[Math.floor(Math.random() * winnerPositions.length)];
+
+    // Altura de cada ítem (debe coincidir con el CSS)
+    const itemHeight = 40; // px
+
+    // Calcular la posición para que el elemento ganador quede en el centro
+    const centerPosition = 2; // Queremos que el ganador esté en la posición 2 (centro de 5)
+    const finalPosition = -(stopIndex * itemHeight) + (centerPosition * itemHeight);
+
+    // Agregar 3 vueltas completas para dar efecto (reducido de 5 a 3)
+    const extraSpins = 3;
+    const totalHeight = rouletteItems.length * itemHeight;
+    const extraDistance = extraSpins * totalHeight;
+    const totalPosition = finalPosition - extraDistance;
+
+    const html = `<div class="card">
+      <h2>Habilidad del Ludópata</h2>
+      <p>${deadPlayer.name} (Ludópata) ha muerto. ¡Se activa la ruleta!</p>
+      <p>Giro ${spinCount} de 3: Selecciona un jugador que tomará 1 shot</p>
+      
+      <div class="ludopata-roulette">
+        <div class="roulette-container">
+          <div id="rouletteWheel" class="roulette-wheel">
+            ${rouletteItems.map((name, idx) => 
+              `<div class="roulette-item ${name === winner.name ? 'winner-item' : ''}">${name}</div>`
+            ).join('')}
+          </div>
+          <div class="roulette-result">Resultado: ?</div>
+        </div>
+        <button id="spinButton" class="spin-button"><i class="fas fa-dice"></i> Girar Ruleta</button>
+      </div>
+    </div>`;
+    
+    setScreen(html);
+    
+    document.getElementById('spinButton').onclick = () => {
+      
+        // Reproducir sonido
+      spinAudio.currentTime = 0;
+      spinAudio.play().catch(e => console.log("Error al reproducir sonido:", e));
+      const wheel = document.getElementById('rouletteWheel');
+      const resultDisplay = document.querySelector('.roulette-result');
+      
+      // Aplicar la transformación gradualmente
+      wheel.style.transition = 'transform 4s cubic-bezier(0.2, 0.8, 0.2, 1)';
+      wheel.style.transform = `translateY(${totalPosition}px)`;
+      
+      // Deshabilitar el botón durante la animación
+      document.getElementById('spinButton').disabled = true;
+      
+      setTimeout(() => {
+        // Mostrar el resultado
+        resultDisplay.textContent = `Resultado: ${winner.name}`;
+        
+        // Resaltar el elemento ganador en la ruleta
+        const winnerElements = document.querySelectorAll('.roulette-item');
+        winnerElements.forEach((el, i) => {
+          if (rouletteItems[i] === winner.name) {
+            el.classList.add('winner');
+          }
+        });
+        
+        // Aplicar trago
+        let drinkAmount = 1;
+        if (game.difficulty === 'alcoholico') {
+          drinkAmount = 2; // En nivel Alcoholico, 2 tragos por giro
+        }
+        if (winner.drugged) {
+          drinkAmount *= 2; // Si está drogado, duplica
+        }
+        
+        if (winner.hydrated) {
+          log(`${winner.name} estaba hidratado y no toma el trago del Ludópata.`);
+          winner.hydrated = false;
+        } else {
+          winner.drinks += drinkAmount;
+          addDrinkEvent(`${winner.name} debe beber ${drinkAmount} tragos por la habilidad del Ludópata.`);
+        }
+        
+        results.push({
+          player: winner,
+          drinks: drinkAmount
+        });
+        
+        renderPlayerList();
+        
+        const resultHTML = `<div class="ludopata-result">
+          <h4>Resultado del giro ${spinCount}:</h4>
+          <div class="ludopata-result-item">
+            <span class="winner">${winner.name}</span>
+            <span>+${drinkAmount} trago(s)</span>
+          </div>
+          <button id="nextSpin">Continuar</button>
+        </div>`;
+        
+        document.querySelector('.ludopata-roulette').innerHTML += resultHTML;
+        document.getElementById('nextSpin').onclick = nextStep;
+      }, 4100);
+    };
+  }
+  
+  function nextStep() {
+    if (spinCount < 3) {
+      spinRoulette();
+    } else {
+      showLudopataSummary(results);
+    }
+  }
+  
+  function showLudopataSummary(results) {
+    let summaryHTML = `<div class="card">
+      <h2>Resumen de la Ruleta Ludópata</h2>
+      <p>La habilidad de ${deadPlayer.name} ha terminado. Resultados:</p>
+      
+      <div class="ludopata-result">`;
+    
+    results.forEach((result, index) => {
+      summaryHTML += `<div class="ludopata-result-item">
+        <span>Giro ${index + 1}: ${result.player.name}</span>
+        <span>+${result.drinks} trago(s)</span>
+      </div>`;
+    });
+    
+    summaryHTML += `</div><button id="continueAfterLudopata"><i class="fas fa-arrow-right"></i> Continuar</button></div>`;
+    
+    setScreen(summaryHTML);
+    
+    document.getElementById('continueAfterLudopata').onclick = () => {
+      // Limpiar pendiente
+      game.pendingLudopata = null;
+      
+      // Continuar con el flujo normal
+      if (game.phase === 'night') {
+        startDayPhase();
+      } else {
+        if (checkWinConditions()) return;
+        startNightPhase();
+      }
+    };
+  }
+  
+  // Iniciar primer giro
+  spinRoulette();
+}
+/* -------------------- COMPROBAR VICTORIA ACTUALIZADA -------------------- */
+function checkWinConditions() {
+  // Filtrar jugadores activos (vivos o presos) - eliminados no cuentan
+  const activePlayers = game.players.filter(p => p.status !== 'eliminado');
+  
+  // Contar asesinos activos (vivos o presos)
+  const activeAssassins = activePlayers.filter(p => p.role === 'Asesino');
+  
+  // Contar buenos activos (vivos o presos)
+  const activeGood = activePlayers.filter(p => p.role !== 'Asesino');
+  
+  // Contar asesinos libres (solo estado "vivo")
+  const freeAssassins = game.players.filter(p => p.role === 'Asesino' && p.status === 'vivo');
+  
+  // CONDICIÓN 1: Equipo Bueno gana si no hay asesinos libres
+  if (freeAssassins.length === 0) {
+    endGame('good');
+    return true;
+  }
+  
+  // CONDICIÓN 2: Equipo Malo gana si:
+  // a) Más asesinos activos que buenos activos
+  // b) O si hay 1 vs 1 exacto (1 asesino y 1 bueno)
+  if (activeAssassins.length > activeGood.length || 
+      (activeAssassins.length === 1 && activeGood.length === 1)) {
+    endGame('bad');
+    return true;
+  }
+  
+  return false;
+}
+
+
+/* -------------------- FUNCIÓN DE REINICIO -------------------- */
+function restartGame() {
+  // Resetear estado del juego
+  game.numPlayers = savedPlayers.length;
+  game.round = 0;
+  game.phase = '';
+  game.eventLog = [];
+  game.nightActions = null;
+  game.dayArrests = [];
+  game.dayVotes = [];
+  game.drinkEvents = [];
+  game.assassinVotes = {};
+  game.nightSummaryData = null;
+  
+  // Reconstruir jugadores
+  game.players = savedPlayers.map((name, i) => ({
+    id: i,
+    name: name.trim() || `Jugador ${i + 1}`,
+    role: null,
+    originalRole: null,
+    status: 'vivo',
+    detainedRounds: 0,
+    lastPartnerId: null,
+    thiefUsed: false,
+    stolenRole: null,
+    investigatorUsed: false,
+    infected: false,
+    drugged: false,
+    dealerLastTarget: null,
+    drinks: 0,
+    hydrated: false,
+    envidiaTargetId: null,
+    inLoveWith: null,
+    willBecomeAssassin: false,
+    pimpControlled: false,
+    pimpId: null
+  }));
+  
+  // Usar configuración de roles guardada
+  game.selectedRoles = savedSelectedRoles;
+  
+  // Volver a asignar roles (mezclados)
+  assignRoles();
+}
+
+/* -------------------- FIN DEL JUEGO MEJORADO -------------------- */
+function endGame(winner) {
+  const config = DRINK_CONFIG[game.difficulty];
+  const winMsg = winner === 'good' ?
+    '¡Los buenos han ganado! Todos los asesinos fueron eliminados o están presos.' :
+    '¡Los malos han ganado! El número de asesinos vivos es mayor o igual al de buenos vivos.';
+
+    const losingTeam = winner === 'good' ? 
+    game.players.filter(p => p.role === "Asesino") : 
+    game.players.filter(p => p.role !== "Asesino");
+  
+  losingTeam.forEach(player => {
+    const drinkAmount = config.losingTeam;
+    player.drinks += drinkAmount;
+    log(`${player.name} (${winner === 'good' ? 'asesino' : 'bueno'}) debe tomar ${drinkAmount} shots por perder.`);
+  });
+  
+  // Calcular quién tomó más tragos
+  const topDrinkers = [...game.players].sort((a, b) => b.drinks - a.drinks);
+  const maxDrinks = topDrinkers[0].drinks;
+  const heavyDrinkers = topDrinkers.filter(p => p.drinks === maxDrinks);
+  
+  // En nivel Alcoholico, el que menos tragos tomó debe tomar 2 shots extra
+  if (game.difficulty === 'alcoholico') {
+    const minDrinks = Math.min(...game.players.map(p => p.drinks));
+    const lightDrinkers = game.players.filter(p => p.drinks === minDrinks);
+    
+    lightDrinkers.forEach(p => {
+      p.drinks += 2;
+      addDrinkEvent(`En nivel Alcohólico, ${p.name} (el que menos tragos tomó) debe beber 2 shots extra.`);
+    });
+  }
+  
+  // Procesar envidiosos
+  const envidosos = game.players.filter(p => p.role === "Envidioso" && p.envidiaTargetId !== undefined);
+  envidosos.forEach(env => {
+    const target = getPlayer(env.envidiaTargetId);
+    if (!target) return;
+
+    if (env.drinks < target.drinks) {
+      env.drinks += 2;
+      log(`El Envidioso ${env.name} tenía menos tragos que ${target.name}. ${env.name} toma 2 tragos extra.`);
+    } else if (env.drinks > target.drinks) {
+      target.drinks += 2;
+      log(`El Envidioso ${env.name} tenía más tragos que ${target.name}. ${target.name} toma 2 tragos extra.`);
+    } else {
+      // Empate: ambos toman 1 trago
+      env.drinks += 1;
+      target.drinks += 1;
+      log(`El Envidioso ${env.name} y ${target.name} tenían los mismos tragos. Ambos toman 1 trago extra.`);
+    }
+  });
+
+  // Procesar ludópatas muertos que no activaron su habilidad
+  const deadLudopatas = game.players.filter(p => 
+    p.role === "Ludópata" && 
+    p.status === 'eliminado' && 
+    !p.ludopataActivated
+  );
+  
+  // Mostrar resumen final
+  showFinalSummary(winner, heavyDrinkers, maxDrinks);
+
+}
+
+/* -------------------- RESUMEN FINAL -------------------- */
+function showFinalSummary(winner, heavyDrinkers, maxDrinks) {
+  const winMsg = winner === 'good' ?
+    '¡Los buenos han ganado! Todos los asesinos fueron eliminados o están presos.' :
+    '¡Los malos han ganado! El número de asesinos vivos es mayor o igual al de buenos vivos.';
+  
+  const drinkMsg = heavyDrinkers.length > 1 ?
+    `Los jugadores que más tomaron: ${heavyDrinkers.map(p => p.name).join(', ')} (${maxDrinks} tragos cada uno)` :
+    `El jugador que más tomó: ${heavyDrinkers[0].name} (${maxDrinks} tragos)`;
+  
+  const html = `<div class="card">
+                <h2 class="neon">Fin del juego</h2>
+                <p style="font-size:1.2rem; text-align:center;">${winMsg}</p>
+                <p style="text-align:center; font-weight:500;">${drinkMsg}</p>
+                <div class="drink-section">
+                  <h3>Resumen de tragos</h3>
+                  <div class="player-list">
+                    ${game.players.map(p => `
+                      <div class="player-item">
+                        <span class="player-name">
+                          <i class="fas fa-user"></i>
+                          ${p.name} 
+                          <span class="role-badge ${p.role === 'Asesino' ? 'asesino' : 'bueno'}">${getPublicRole(p.role)}</span>
+                        </span>
+                        <span class="player-drinks">${p.drinks || 0} <span class="drink-icon">🍸</span></span>
+                        <span class="player-status status-${p.status}">
+                          <i class="fas ${p.status === 'vivo' ? 'fa-heart' : p.status === 'preso' ? 'fa-lock' : 'fa-skull'}"></i>
+                          ${p.status}
+                        </span>
+                      </div>`).join('')}
+                  </div>
+                </div>
+                <h3>Log de eventos</h3>
+                <div id="eventLog"></div>
+                <button id="btnRestart" class="secondary"><i class="fas fa-redo"></i> Reiniciar</button></div>`;
+  setScreen(html);
+  renderLog();
+  document.getElementById('btnRestart').onclick = restartGame;
+}
+
+/* -------------------- INICIO -------------------- */
+showStartScreen();
+</script>
+</body>
+</html>
