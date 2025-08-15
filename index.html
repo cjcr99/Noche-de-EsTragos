@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Noche de Es Tragos - Edición Élite</title>
+<title>Noche de EsTragos</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -967,6 +967,9 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 <audio id="notSound" src="sounds/not.mp3" preload="auto"></audio>
 <audio id="asesinoSound" src="sounds/asesino.mp3" preload="auto"></audio>
 <script>
+  if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(err => console.error(err));
+}
 /* ==============================================================
    Noche de Es Tragos – Versión Élite (Actualizada)
    ============================================================== */
@@ -1177,7 +1180,7 @@ const ROLE_ICONS = {
 function showStartScreen() {
   const html = `
     <div class="card">
-      <h1>Noche de Es Tragos</h1>
+      <h1>Noche de EsTragos</h1>
       <p style="text-align:center; font-size:1.2rem; margin-bottom: 1.5rem;">El juego de roles con tragos</p>
       
       <div class="drink-section">
