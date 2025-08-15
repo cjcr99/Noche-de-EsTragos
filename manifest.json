@@ -2,7 +2,7 @@
   "name": "Noche de Es Tragos",
   "short_name": "EsTragos",
   "description": "El juego de roles con tragos",
-  "start_url": "/",
+  "start_url": "https://cjcr99.github.io/Noche-de-EsTragos/",
   "display": "standalone",
   "background_color": "#0a0a12",
   "theme_color": "#e6c229",
