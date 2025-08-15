@@ -2944,7 +2944,7 @@ function checkWinConditions() {
   }
   
   // Los malos ganan si el número de asesinos vivos es mayor o igual que el número de buenos vivos
-  if (goodAlive <= activeAssassins.length) {
+  if (goodAlive < activeAssassins.length) {
     endGame('bad');
     return true;
   }
