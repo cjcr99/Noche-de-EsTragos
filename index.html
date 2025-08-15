@@ -6,6 +6,16 @@
 <title>Noche de Es Tragos - Edición Élite</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e6c229">
+<link rel="icon" href="icon-192x192.png">
+
+<!-- Para iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Es Tragos">
+<link rel="apple-touch-icon" href="icon-192x192.png">
 <style>
 /* ── VARIABLES DE TEMA ACTUALIZADAS ───────────────────────────────── */
 :root {
@@ -2911,38 +2921,33 @@ function activateLudopataAbility(deadPlayer) {
   // Iniciar primer giro
   spinRoulette();
 }
-/* -------------------- COMPROBAR VICTORIA ACTUALIZADA -------------------- */
+
+/* -------------------- COMPROBAR VICTORIA -------------------- */
 function checkWinConditions() {
-  // Filtrar jugadores activos (vivos o presos) - eliminados no cuentan
-  const activePlayers = game.players.filter(p => p.status !== 'eliminado');
+  // Solo considerar jugadores vivos para determinar el fin del juego
+  const activePlayers = game.players.filter(p => p.status === 'vivo'||  p.status === 'preso');
   
-  // Contar asesinos activos (vivos o presos)
-  const activeAssassins = activePlayers.filter(p => p.role === 'Asesino');
+  // Contar asesinos (tanto vivos como presos)
+  const allAssassins = game.players.filter(p => p.role === 'Asesino');
+  const activeAssassins = allAssassins.filter(p => p.status === 'vivo');
   
-  // Contar buenos activos (vivos o presos)
-  const activeGood = activePlayers.filter(p => p.role !== 'Asesino');
-  
-  // Contar asesinos libres (solo estado "vivo")
-  const freeAssassins = game.players.filter(p => p.role === 'Asesino' && p.status === 'vivo');
-  
-  // CONDICIÓN 1: Equipo Bueno gana si no hay asesinos libres
-  if (freeAssassins.length === 0) {
+  // Contar buenos vivos
+  const goodAlive = activePlayers.filter(p => p.role !== 'Asesino').length;
+
+  // Los buenos ganan si no quedan asesinos activos (vivos)
+  if (activeAssassins.length === 0) {
     endGame('good');
     return true;
   }
   
-  // CONDICIÓN 2: Equipo Malo gana si:
-  // a) Más asesinos activos que buenos activos
-  // b) O si hay 1 vs 1 exacto (1 asesino y 1 bueno)
-  if (activeAssassins.length > activeGood.length || 
-      (activeAssassins.length === 1 && activeGood.length === 1)) {
+  // Los malos ganan si el número de asesinos vivos es mayor o igual que el número de buenos vivos
+  if (goodAlive <= activeAssassins.length) {
     endGame('bad');
     return true;
   }
   
   return false;
 }
-
 
 /* -------------------- FUNCIÓN DE REINICIO -------------------- */
 function restartGame() {
