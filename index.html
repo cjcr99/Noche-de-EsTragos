@@ -1601,6 +1601,7 @@ function revealRoles(idx) {
 
 /* -------------------- INICIO DE NOCHE -------------------- */
 function startNightPhase() {
+  if (checkWinConditions()) return;
   game.round++;
   game.phase = 'night';
   game.nightActions = { kills: [], protects: [], swaps: [], bartender: null, arrests: [], dealer: null, hydrator: null };
@@ -2171,6 +2172,7 @@ function nightSummary() {
   renderLog();
 
   document.getElementById('btnNextDay').onclick = () => {
+     if (checkWinConditions()) return;
     if (game.pendingLudopata) {
       activateLudopataAbility(game.pendingLudopata);
     } else {
@@ -2271,6 +2273,7 @@ function processAssassinVotes(protectedSet, deaths) {
 
 /* -------------------- INICIO DE DÍA (CON ARRESTOS) -------------------- */
 function startDayPhase() {
+  if (checkWinConditions()) return;
   game.phase = 'day';
   game.dayArrests = [];
   game.dayVotes = [];
@@ -2343,6 +2346,8 @@ function applyNightArrests() {
         target.drinks += drinkAmount;
         addDrinkEvent(`${target.name} debe beber ${drinkAmount} tragos por arresto.`);
       }
+      
+      if (checkWinConditions()) return true;
       // CAMBIO: Mensaje actualizado a 2 fases
       log(`${target.name} ha sido arrestado y cumplirá 2 fases de detención (día y noche).`);
     }
@@ -2472,7 +2477,11 @@ function resolveMedusaEvent() {
       if (!processedPairs.has(pairKey)) {
         processedPairs.add(pairKey);
         matches.push({ player1: chooser, player2: chosen });
+        
+        if (checkWinConditions()) return;
       }
+      
+      
     }
   });
   
@@ -2668,6 +2677,8 @@ function tallyVotes() {
     const drinkAmount = eliminated.drugged ? 
       DRINK_CONFIG[game.difficulty].elimination * 2 : 
       DRINK_CONFIG[game.difficulty].elimination;
+      
+      if (checkWinConditions()) return true;
     
     // Comprobar hidratado
     if (eliminated.hydrated) {
@@ -2735,6 +2746,7 @@ function daySummary() {
   renderLog();
   
  document.getElementById('btnNextNight').onclick = () => {
+    if (checkWinConditions()) return;
     if (game.pendingLudopata) {
       activateLudopataAbility(game.pendingLudopata);
     } else {
@@ -2882,6 +2894,7 @@ function activateLudopataAbility(deadPlayer) {
   }
   
   function nextStep() {
+    if (checkWinConditions()) return;
     if (spinCount < 3) {
       spinRoulette();
     } else {
@@ -2928,7 +2941,7 @@ function activateLudopataAbility(deadPlayer) {
 /* -------------------- COMPROBAR VICTORIA -------------------- */
 function checkWinConditions() {
   // Solo considerar jugadores vivos para determinar el fin del juego
-  const activePlayers = game.players.filter(p => p.status === 'vivo'||  p.status === 'preso');
+  const activePlayers = game.players.filter(p => p.status === 'vivo' ||  p.status === 'preso');
   
   // Contar asesinos (tanto vivos como presos)
   const allAssassins = game.players.filter(p => p.role === 'Asesino');
