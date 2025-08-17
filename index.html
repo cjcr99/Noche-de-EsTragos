@@ -1145,6 +1145,160 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
     font-size: 0.7rem;
   }
 }
+/* Nuevos estilos para selección de roles */
+.role-selection-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 1.5rem 0;
+}
+
+.role-selection-card {
+  background: var(--card-bg);
+  border: 2px solid rgba(230, 194, 41, 0.3);
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.role-selection-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 10px 25px rgba(230, 194, 41, 0.2);
+}
+
+.role-selection-card.selected {
+  border-color: var(--accent-gold);
+  background: rgba(230, 194, 41, 0.1);
+  box-shadow: 0 0 15px rgba(230, 194, 41, 0.3);
+}
+
+.role-selection-icon {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.role-selection-content {
+  flex: 1;
+}
+
+.role-selection-content h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: var(--accent-gold);
+}
+
+.role-selection-content p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.role-assignment-container {
+  margin-top: 20px;
+  background: rgba(30, 30, 45, 0.7);
+  border-radius: 16px;
+  padding: 10px;
+  border: 1px solid rgba(230, 194, 41, 0.2);
+  display: none;
+}
+
+.role-assignment-container.visible {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.role-item-card {
+  background: rgba(40, 40, 60, 0.6);
+  border-radius: 12px;
+  padding: 15px;
+  transition: all 0.3s ease;
+  border-left: 3px solid var(--accent-gold);
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.role-item-card:hover {
+  transform: translateY(-3px);
+  background: rgba(50, 50, 70, 0.7);
+}
+
+.role-item-icon {
+  font-size: 1.5rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+.role-item-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.role-counter {
+  text-align: center;
+  margin: 15px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(30, 30, 45, 0.8);
+}
+
+.role-counter.total-ok {
+  color: var(--role-good);
+  border: 2px solid var(--role-good);
+}
+
+.role-counter.total-warning {
+  color: var(--role-neutral);
+  border: 2px solid var(--role-neutral);
+}
+
+.role-counter.total-error {
+  color: var(--role-bad);
+  border: 2px solid var(--role-bad);
+}
+
+.role-input {
+  width: 40px;
+  padding: 3px;
+  background: rgba(20, 20, 30, 0.7);
+  color: var(--text);
+  border: 1px solid var(--accent-gold);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.role-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(50, 152, 220, 0.3);
+}
+
+/* Animación para la sección de asignación */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ── ESTILOS PARA EL DIFÍCIL ─────────────────────────────── */
 .difficulty-select {
@@ -1976,44 +2130,52 @@ function startSetup() {
   };
 }
 
-/* -------------------- SELECCIÓN DE ROLES -------------------- */
+/* -------------------- SELECCIÓN DE ROLES MEJORADA -------------------- */
 function showRoleSelection() {
   const html = `
     <div class="card role-selection-screen">
       <h2 class="header-title">Selección de Roles</h2>
       <p>Elige cómo asignar los roles:</p>
       
-      <div class="role-option">
-        <input type="radio" id="randomRoles" name="roleOption" value="random" checked>
-        <label for="randomRoles">Asignación aleatoria</label>
-      </div>
-      
-      <div class="role-option">
-        <input type="radio" id="manualRoles" name="roleOption" value="manual">
-        <label for="manualRoles">Selección manual de roles</label>
-      </div>
-      
-      <div id="manualSelection" style="display:none; margin-top:1rem;">
-        <p>Asigna la cantidad de cada rol (total: ${game.numPlayers}):</p>
-        <div class="role-assignment">
-          <table class="role-table">
-            <thead>
-              <tr>
-                <th>Rol</th>
-                <th>Cantidad</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${ALL_ROLES.map(role => `
-                <tr>
-                  <td><i class="fas ${ROLE_ICONS[role]}"></i> ${role}</td>
-                  <td><input type="number" id="role_${role}" min="0" max="${game.numPlayers}" value="0"></td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
+      <div class="role-selection-container">
+        <div class="role-selection-card" data-option="random">
+          <div class="role-selection-icon">
+            <i class="fas fa-random"></i>
+          </div>
+          <div class="role-selection-content">
+            <h3>Asignación aleatoria</h3>
+            <p>Los roles se distribuirán automáticamente de forma equilibrada.</p>
+          </div>
         </div>
-        <div id="roleCounter">Total seleccionado: 0/${game.numPlayers}</div>
+        
+        <div class="role-selection-card" data-option="manual">
+          <div class="role-selection-icon">
+            <i class="fas fa-edit"></i>
+          </div>
+          <div class="role-selection-content">
+            <h3>Selección manual</h3>
+            <p>Elige tú mismo cuántos jugadores tendrán cada rol.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="role-assignment-container" id="manualSelection">
+        <h3>Asignación Manual de Roles</h3>
+        <p>Asigna la cantidad de cada rol (total: ${game.numPlayers}):</p>
+        
+        <div class="role-grid">
+          ${ALL_ROLES.map(role => `
+            <div class="role-item-card">
+              <div class="role-item-icon">
+                <i class="fas ${ROLE_ICONS[role]}"></i>
+              </div>
+              <div class="role-item-name">${role}</div>
+              <input type="number" class="role-input" id="role_${role}" min="0" max="${game.numPlayers}" value="0">
+            </div>
+          `).join('')}
+        </div>
+        
+        <div class="role-counter" id="roleCounter">Total seleccionado: 0/${game.numPlayers}</div>
       </div>
       
       <button id="btnRoleNext"><i class="fas fa-arrow-right"></i> Continuar</button>
@@ -2022,43 +2184,44 @@ function showRoleSelection() {
   
   setScreen(html);
   
-   // Obtener elementos después de renderizar
-  const randomOption = document.getElementById('randomRoles');
-  const manualOption = document.getElementById('manualRoles');
-  const manualSelection = document.getElementById('manualSelection');
+  // Seleccionar la primera opción por defecto
+  const randomCard = document.querySelector('[data-option="random"]');
+  randomCard.classList.add('selected');
   
-  // Función para actualizar visibilidad
-  function updateSelectionVisibility() {
-    manualSelection.style.display = manualOption.checked ? 'block' : 'none';
-    if (manualOption.checked) updateRoleCounter();
-  }
-  
-  // Configurar evento para ambos radio buttons
-  randomOption.addEventListener('change', updateSelectionVisibility);
-  manualOption.addEventListener('change', updateSelectionVisibility);
-  
-  // Inicializar visibilidad
-  updateSelectionVisibility();
-  
-  // Mostrar/ocultar selección manual
-  document.getElementById('manualRoles').addEventListener('change', function() {
-    document.getElementById('manualSelection').style.display = this.checked ? 'block' : 'none';
-    updateRoleCounter();
+  // Manejar clic en las tarjetas
+  document.querySelectorAll('.role-selection-card').forEach(card => {
+    card.addEventListener('click', function() {
+      // Quitar selección de todas las tarjetas
+      document.querySelectorAll('.role-selection-card').forEach(c => 
+        c.classList.remove('selected')
+      );
+      
+      // Seleccionar esta tarjeta
+      this.classList.add('selected');
+      
+      // Mostrar u ocultar la sección de asignación manual
+      const manualSection = document.getElementById('manualSelection');
+      if (this.dataset.option === 'manual') {
+        manualSection.classList.add('visible');
+        updateRoleCounter();
+      } else {
+        manualSection.classList.remove('visible');
+      }
+    });
   });
   
   // Actualizar contador de roles seleccionados
-  const roleInputs = document.querySelectorAll('#manualSelection input[type="number"]');
+  const roleInputs = document.querySelectorAll('.role-input');
   roleInputs.forEach(input => {
     input.addEventListener('change', updateRoleCounter);
     input.addEventListener('input', updateRoleCounter);
   });
   
-  // Inicializar contador
-  updateRoleCounter();
-  
   // Botón continuar
   document.getElementById('btnRoleNext').onclick = () => {
-    if (document.getElementById('randomRoles').checked) {
+    const selectedOption = document.querySelector('.role-selection-card.selected').dataset.option;
+    
+    if (selectedOption === 'random') {
       collectNames(0, []);
     } else {
       const selectedRoles = {};
@@ -2090,19 +2253,31 @@ function showRoleSelection() {
 }
 
 function updateRoleCounter() {
-  if (!document.getElementById('manualRoles')?.checked) return;
+  const manualSection = document.getElementById('manualSelection');
+  if (!manualSection.classList.contains('visible')) return;
   
   let total = 0;
-  document.querySelectorAll('#manualSelection input[type="number"]').forEach(input => {
+  document.querySelectorAll('.role-input').forEach(input => {
     total += parseInt(input.value) || 0;
   });
   
   const counter = document.getElementById('roleCounter');
   if (counter) {
     counter.textContent = `Total seleccionado: ${total}/${game.numPlayers}`;
-    counter.style.color = total > game.numPlayers ? "#ff5555" : (total === game.numPlayers ? "#4f4" : "#ffdd57");
+    
+    // Actualizar clase según el total
+    counter.classList.remove('total-ok', 'total-warning', 'total-error');
+    
+    if (total === game.numPlayers) {
+      counter.classList.add('total-ok');
+    } else if (total > game.numPlayers) {
+      counter.classList.add('total-error');
+    } else {
+      counter.classList.add('total-warning');
+    }
   }
 }
+
 
 /* -------------------- RECOLECTAR NOMBRES -------------------- */
 function collectNames(idx, names) {
