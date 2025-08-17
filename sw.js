@@ -7,7 +7,10 @@ const urlsToCache = [
   '/sounds/not.mp3',
   '/sounds/slot.mp3',
   '/img/fondo2.jpg',
-  '/img/fondo6.png'
+  '/img/fondo6.png',
+  '/img/alcoholico.png'
+  '/img/girls.png'
+  '/img/pussy.png'
   '/icon-192x192.png',
   // agrega todos los recursos locales que necesites
 ];
