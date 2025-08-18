@@ -11,7 +11,9 @@ const urlsToCache = [
   '/img/alcoholico.png'
   '/img/girls.png'
   '/img/pussy.png'
-  '/icon-192x192.png',
+  '/icon-192x192.png'
+  '/img/',
+  
   // agrega todos los recursos locales que necesites
 ];
 

@@ -6,6 +6,15 @@
 <title>Noche de EsTragos</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e6c229">
+<link rel="icon" href="icon-192x192.png">
+
+<!-- Para iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Es Tragos">
+<link rel="apple-touch-icon" href="icon-192x192.png">
 
 <style>
 /* Evitar pull-to-refresh en dispositivos móviles */
@@ -71,7 +80,7 @@ body {
 .instructions-container {
   max-width: 700px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
 }
 
 .instructions-section {
@@ -191,6 +200,7 @@ body {
 .role-description {
   font-size: 0.95rem;
   line-height: 1.6;
+  color: white;
 }
 
 .difficulty-cards {
@@ -1111,7 +1121,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 .role-icon-hidratador { color: #00bfff; }
 .role-icon-envidioso { color: #32cd32; }
 .role-icon-menor { color: #add8e6; }
-.role-icon-proxeneta { color: #ff4500; }
+.role-icon-Chulo { color: #ff4500; }
 .role-icon-ludopata { color: #9370db; }
 .role-icon-suicida { color: #ff6347; }
 .role-icon-investigador { color: #20b2aa; }
@@ -1462,6 +1472,330 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 .difficulty-card.alcoholico .difficulty-card-image {
   animation-delay: 1s;
 }
+
+/* Nuevos estilos para imágenes de roles */
+.role-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin: 0 auto 15px;
+  display: block;
+  border-radius: 50%;
+  border: 2px solid var(--accent-gold);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.player-role-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: middle;
+  border-radius: 50%;
+  border: 1px solid rgba(230, 194, 41, 0.5);
+}
+
+       /* Tarjetas */
+        .card {
+            background: rgba(18, 18, 30, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(230, 194, 41, 0.3);
+            border-radius: 20px;
+            padding: 1.8rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.5s ease-out;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #e6c229, #ffd700);
+        }
+
+        /* Botones */
+        button {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, #ff3860, #d7002b);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.6s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        button.secondary {
+            background: linear-gradient(45deg, #e6c229, #c5a400);
+            color: #000;
+        }
+
+        button.secondary:hover {
+            background: linear-gradient(45deg, #ffea00, #d4b800);
+        }
+
+
+        /* Carrusel */
+        .carousel-container {
+            position: relative;
+            margin: 2rem 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+            height: 500px;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, rgba(18, 18, 30, 0.9), rgba(18, 18, 30, 0.7));
+        }
+
+        .carousel-item.pussy {
+            border: 3px solid #3298dc;
+        }
+
+        .carousel-item.girls {
+            border: 3px solid #9b59b6;
+        }
+
+        .carousel-item.alcoholico {
+            border: 3px solid #ff3860;
+        }
+
+        .carousel-image {
+            width: 250px;
+            height: 250px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .carousel-title {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffd700, #e6c229);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .carousel-description {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 1rem;
+            max-width: 90%;
+        }
+
+        .carousel-drinks {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .carousel-drinks strong {
+            color: #e6c229;
+            font-weight: 700;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+            gap: 10px;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: #e6c229;
+            transform: scale(1.2);
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 1rem;
+        }
+
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(230, 194, 41, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a0a12;
+            font-size: 1.2rem;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            transform: scale(1.1);
+            background: #ffd700;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(230, 194, 41, 0.5); }
+            70% { box-shadow: 0 0 0 10px rgba(230, 194, 41, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(230, 194, 41, 0); }
+        }
+
+        /* Decoraciones */
+        .background-decoration {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.05;
+            font-size: 5rem;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .decoration-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .decoration-2 { top: 20%; right: 10%; animation-delay: 1s; }
+        .decoration-3 { bottom: 15%; left: 15%; animation-delay: 2s; }
+        .decoration-4 { bottom: 25%; right: 5%; animation-delay: 3s; }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            
+            .carousel-container {
+                height: 380px;
+            }
+            
+            .carousel-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .carousel-title {
+                font-size: 1.5rem;
+            }
+            
+            .carousel-description {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Estilos para el contenedor de burbujas */
+.bubbles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  border-radius: 20px;
+}
+
+/* Estilos para cada burbuja */
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: rise 10s infinite ease-in;
+}
+
+@keyframes rise {
+  0% {
+    bottom: -100px;
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(100px);
+  }
+  100% {
+    bottom: 100%;
+    transform: translateX(-100px);
+  }
+}
+        
 </style>
 </head>
 <body>
@@ -1471,7 +1805,50 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 <div class="background-decoration decoration-3">🕵️</div>
 <div class="background-decoration decoration-4">👮</div>
 
-<div id="app"></div>
+  <div id="app">
+        <div class="card">
+            <h1>Noche de EsTragos</h1>
+            <p style="text-align:center; font-size:1.2rem; margin-bottom: 1.5rem;">El juego de roles con tragos</p>
+            
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-item pussy" data-level="pussy">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%233298dc' d='M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7.07,18.28C7.5,17.38 10.12,16.5 12,16.5C13.88,16.5 16.5,17.38 16.93,18.28C15.57,19.36 13.86,20 12,20C10.14,20 8.43,19.36 7.07,18.28M18.36,16.83C16.93,15.09 13.46,14.5 12,14.5C10.54,14.5 7.07,15.09 5.64,16.83C4.62,15.5 4,13.82 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,13.82 19.38,15.5 18.36,16.83M12,6C10.06,6 8.5,7.56 8.5,9.5C8.5,11.44 10.06,13 12,13C13.94,13 15.5,11.44 15.5,9.5C15.5,7.56 13.94,6 12,6M12,11A1.5,1.5 0 0,1 10.5,9.5A1.5,1.5 0 0,1 12,8A1.5,1.5 0 0,1 13.5,9.5A1.5,1.5 0 0,1 12,11Z'/%3E%3C/svg%3E" alt="Pussy" class="carousel-image">
+                        <h3 class="carousel-title"><i class="fas fa-cat"></i> Pussy</h3>
+                        <p class="carousel-description">Tragos reducidos. Ideal para principiantes o sesiones relajadas.</p>
+                        
+                    
+                    <div class="carousel-item girls" data-level="girls">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239b59b6' d='M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7.07,18.28C7.5,17.38 10.12,16.5 12,16.5C13.88,16.5 16.5,17.38 16.93,18.28C15.57,19.36 13.86,20 12,20C10.14,20 8.43,19.36 7.07,18.28M18.36,16.83C16.93,15.09 13.46,14.5 12,14.5C10.54,14.5 7.07,15.09 5.64,16.83C4.62,15.5 4,13.82 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,13.82 19.38,15.5 18.36,16.83M12,6C10.06,6 8.5,7.56 8.5,9.5C8.5,11.44 10.06,13 12,13C13.94,13 15.5,11.44 15.5,9.5C15.5,7.56 13.94,6 12,6M12,11A1.5,1.5 0 0,1 10.5,9.5A1.5,1.5 0 0,1 12,8A1.5,1.5 0 0,1 13.5,9.5A1.5,1.5 0 0,1 12,11Z'/%3E%3C/svg%3E" alt="Girls" class="carousel-image">
+                        <h3 class="carousel-title"><i class="fas fa-female"></i> Girls</h3>
+                        <p class="carousel-description">Dificultad media. Tragos equilibrados para jugar y divertirse.</p>
+                        
+                    </div>
+                    
+                    <div class="carousel-item alcoholico" data-level="alcoholico">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ff3860' d='M20.8,22.7L19.1,21H2V19H17.1L13,14.9C12.4,15.6 11.5,16 10.5,16C8.6,16 7,14.4 7,12.5C7,11.5 7.4,10.6 8.1,10L1.1,3L2.4,1.7L22.1,21.4L20.8,22.7M12,2C17.5,2 22,6.5 22,12C22,13.1 21.9,14.1 21.6,15.1L20,13.5C20,13.3 20,13.2 20,13C20,8.6 16.4,5 12,5C10.8,5 9.7,5.3 8.6,5.7L7.1,4.2C8.6,3.4 10.3,2.9 12,2.1L12,2M10,7C10.6,7 11,7.4 11,8C11,8.2 10.9,8.4 10.8,8.6L9.4,7.2C9.6,7.1 9.8,7 10,7M7,12.5C7,12.7 7,12.9 7.1,13.1L5.7,11.7C5.2,12 5,12.5 5,13C5,14.4 6,15.5 7.3,15.9C7.8,14.7 7.5,13.2 7,12.5M10,10C9.4,10 9,10.4 9,11C9,11.3 9.1,11.5 9.3,11.7L10.9,13.3C11.3,13.7 12,13.5 12,13C12,12.4 11.6,12 11,12C10.7,12 10.5,12.1 10.3,12.3L8.7,10.7C9,10.3 9.4,10 10,10Z'/%3E%3C/svg%3E" alt="Alcohólico" class="carousel-image">
+                        <h3 class="carousel-title"><i class="fas fa-beer"></i> Alcohólico</h3>
+                        <p class="carousel-description">Para expertos. Tragos intensificados con eventos especiales.</p>
+                        
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <div class="carousel-indicators">
+                    <div class="carousel-indicator active" data-index="0"></div>
+                    <div class="carousel-indicator" data-index="1"></div>
+                    <div class="carousel-indicator" data-index="2"></div>
+                </div>
+            </div>
+            
+            <button id="btnStart"><i class="fas fa-play"></i> Iniciar partida</button>
+            <button id="btnInfo" class="secondary"><i class="fas fa-book"></i> Instrucciones</button>
+        </div>
+    </div>
 <div id="version-info">v.1.0</div>
 <audio id="spinSound" src="sounds/slot.mp3" preload="auto"></audio>
 <audio id="medusaSound" src="sounds/medusa.mp3" preload="auto"></audio>
@@ -1480,6 +1857,54 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 <script>
   if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(err => console.error(err));
+}
+
+function createBubbles() {
+  const carouselItems = document.querySelectorAll('.carousel-item');
+  
+  carouselItems.forEach(item => {
+    const bubblesContainer = document.createElement('div');
+    bubblesContainer.className = 'bubbles-container';
+    
+    // Generar 15 burbujas por tarjeta
+    for (let i = 0; i < 15; i++) {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      
+      // Tamaño aleatorio entre 10px y 80px
+      const size = Math.random() * 70 + 10;
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      
+      // Posición inicial aleatoria
+      bubble.style.left = `${Math.random() * 100}%`;
+      
+      // Retraso aleatorio en la animación para que no todas empiecen a la vez
+      bubble.style.animationDelay = `${Math.random() * 5}s`;
+      
+      // Duración de la animación aleatoria entre 5s y 15s
+      const duration = Math.random() * 10 + 5;
+      bubble.style.animationDuration = `${duration}s`;
+      
+      bubblesContainer.appendChild(bubble);
+    }
+    
+    item.appendChild(bubblesContainer);
+  });
+}
+
+// Llamar a la función después de cargar la página
+window.addEventListener('load', createBubbles);
+
+// Agrega este código al inicio del juego
+function initAudioContext() {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const ctx = new AudioContext();
+  document.addEventListener('click', () => {
+    if (ctx.state === 'suspended') {
+      ctx.resume();
+    }
+  }, { once: true });
 }
 
 /* ==============================================================
@@ -1523,7 +1948,7 @@ const DRINK_CONFIG = {
   girls: {
     murder: 2,
     arrest: 1,
-    elimination: 3,
+    elimination: 2,
     bartender: 1,
     tie: 1,
     losingTeam: 2
@@ -1531,19 +1956,31 @@ const DRINK_CONFIG = {
   alcoholico: {
     murder: 3,
     arrest: 1,
-    elimination: 4,
+    elimination: 3,
     bartender: 2,
     tie: 2,
-    losingTeam: 3
+    losingTeam: 2
   }
 };
 
 /* ===== FUNCIONES DE SONIDO ===== */
 function playSound(id) {
-  const sound = document.getElementById(id);
-  if (sound) {
+  try {
+    const sound = document.getElementById(id);
+    if (!sound) return;
+    
     sound.currentTime = 0;
-    sound.play().catch(e => console.log("Error al reproducir sonido:", e));
+    const promise = sound.play();
+    
+    if (promise !== undefined) {
+      promise.catch(e => {
+        console.log("Reproducción automática bloqueada:", e);
+        // Mostrar instrucción al usuario
+        alert("Haz clic en cualquier lugar para activar los sonidos");
+      });
+    }
+  } catch (e) {
+    console.error("Error con sonido:", id, e);
   }
 }
 
@@ -1599,10 +2036,12 @@ function renderPlayerList() {
   cont.innerHTML = `
     <h4 class="neon"></h4>
     ${header}
-    ${game.players.map(p => `
+    ${game.players.map(p => {
+      const roleImage = 'ciudadano.png';
+      return `
       <div class="player-item">
         <span class="player-name">
-          <i class="fas fa-user"></i>
+          <img src="img/${roleImage}" alt="${p.role}" class="player-role-icon">
           ${p.name} 
           ${p.status === 'eliminado' ? `<span class="role-badge">${getPublicRole(p.role)}</span>` : ''}
           ${p.drugged && game.phase === 'day' ? `<span class="role-badge" style="background: rgba(155, 89, 182, 0.2); color: var(--accent-purple);">Drogado</span>` : ''}
@@ -1619,8 +2058,10 @@ function renderPlayerList() {
           <i class="fas ${p.status === 'vivo' ? 'fa-heart' : p.status === 'preso' ? 'fa-lock' : 'fa-skull'}"></i>
           ${p.status}
         </span>
-      </div>`).join('')}`;
+      </div>`
+    }).join('')}`;
 }
+
 /* -------------------- RENDERIZADO GENÉRICO -------------------- */
 function setScreen(content) {
   app.innerHTML = `
@@ -1643,6 +2084,26 @@ function showConfirmPlayer(player, nextFn) {
   document.getElementById('btnConfirmPlayer').onclick = nextFn;
 }
 
+/* ===== MAPA DE IMÁGENES POR ROL ===== */
+const ROLE_IMAGES = {
+  "Asesino": "asesino.png",
+  "Policía": "policia.png",
+  "Loco": "loco.png",
+  "Médico": "medico.png",
+  "Bartender": "bartender.png",
+  "Ladrón": "ladron.png",
+  "Investigador": "investigador.png",
+  "Suicida": "suicida.png",
+  "Puta": "puta.png",
+  "Dealer": "dealer.png",
+  "Hidratador": "hidratador.png",
+  "Envidioso": "envidioso.png",
+  "El menor": "menor.png",
+  "Chulo": "Chulo.png",
+  "Ludópata": "ludopata.png",
+  "Ciudadano": "ciudadano.png"
+};
+
 /* -------------------- DESCRIPCIONES DE ROLES ACTUALIZADAS -------------------- */
 const ROLE_DESCRIPTIONS = {
   "Asesino": "Vota con otros asesinos para matar a un jugador cada noche. Conoces a tus compañeros asesinos. <span class='role-bad'>(Maligno)</span>",
@@ -1658,7 +2119,7 @@ const ROLE_DESCRIPTIONS = {
   "Hidratador": "Elige quien no tomará su próximo shot de la ronda. Se resetea cada noche. <span class='role-good'>(Bueno)</span>",
   "Envidioso": "Elige un jugador al principio del juego. Al final, el que menos tragos haya tomado de los dos toma 2 shots. <span class='role-good'>(Bueno)</span>",
   "El menor": "Eres un ciudadano común, pero si eres arrestado te convertirás en asesino. <span class='role-good'>(Bueno)</span>",
-  "Proxeneta": "Si la Puta se acuesta contigo, tú controlarás con quién se acuesta cada noche. <span class='role-good'>(Bueno)</span>",
+  "Chulo": "Si la Puta se acuesta contigo, tú controlarás con quién se acuesta cada noche. <span class='role-good'>(Bueno)</span>",
   "Ludópata": "Al morir, activa una ruleta que elige 3 jugadores al azar que deben tomar 1 shot cada uno. <span class='role-good'>(Bueno)</span>"
 };
 
@@ -1666,7 +2127,7 @@ const ROLE_DESCRIPTIONS = {
 const ALL_ROLES = [
   "Asesino", "Policía", "Loco", "Médico", "Bartender",
   "Ladrón", "Investigador", "Suicida", "Puta", "Dealer",
-  "Hidratador", "Envidioso", "El menor", "Proxeneta", "Ludópata", "Ciudadano"
+  "Hidratador", "Envidioso", "El menor", "Chulo", "Ludópata", "Ciudadano"
 ];
 
 /* -------------------- ICONOS PARA ROLES -------------------- */
@@ -1684,7 +2145,7 @@ const ROLE_ICONS = {
   "Hidratador": "fa-tint role-icon-hidratador",
   "Envidioso": "fa-eye role-icon-envidioso",
   "El menor": "fa-child role-icon-menor",
-  "Proxeneta": "fa-money-bill-wave role-icon-proxeneta",
+  "Chulo": "fa-money-bill-wave role-icon-Chulo",
   "Ludópata": "fa-dice role-icon-ludopata",
   "Ciudadano": "fa-user role-icon-ciudadano",
 };
@@ -1694,97 +2155,162 @@ function showStartScreen() {
   const html = `
     <div class="card">
       <h1>Noche de EsTragos</h1>
-      <p style="text-align:center; font-size:1.2rem; margin-bottom: 1.5rem;">El juego de roles con tragos</p>
+      <p style="text-align:center; font-size:1.2rem; margin-bottom: 1.5rem;">Juego de roles con tragos. Elige el nivel de dificultad:</p>
       
-      <div class="drink-section">
-        <h3>Selecciona la dificultad:</h3>
-        <div class="difficulty-cards-container">
-          <div class="difficulty-card pussy" data-level="pussy">
-            <div class="difficulty-card-image">
-              <img src="img/pussy.png" alt="Pussy">
-            </div>
-            <h3><i class="fas fa-cat difficulty-icon"></i> Pussy</h3>
-            <p class="difficulty-description">Tragos reducidos. Ideal para principiantes.</p>
-            <p>Asesinato: <strong>1 trago</strong></p>
-            <p>Eliminación: <strong>1 trago</strong></p>
-            <p>Bartender: <strong>1 trago</strong></p>
+      <div class="carousel-container">
+        <div class="carousel">
+          <div class="carousel-item pussy" data-level="pussy">
+          <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+          </div>
+            <img src="img/pussy.png" alt="Pussy" class="carousel-image">
+            <h3><i class="fas fa-cat"></i> Pussy</h3>
+            <p class="carousel-description">Tragos reducidos. Ideal para principiantes.</p>
+            
           </div>
           
-          <div class="difficulty-card girls" data-level="girls">
-            <div class="difficulty-card-image">
-              <img src="img/girls.png" alt="Girls">
-            </div>
-            <h3><i class="fas fa-female difficulty-icon"></i> Girls</h3>
-            <p class="difficulty-description">Dificultad estándar. Como se juega tradicionalmente.</p>
-            <p>Asesinato: <strong>2 tragos</strong></p>
-            <p>Eliminación: <strong>3 tragos</strong></p>
-            <p>Bartender: <strong>1 trago</strong></p>
+          <div class="carousel-item girls" data-level="girls">
+          <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+          </div>
+            <img src="img/girls.png" alt="Girls" class="carousel-image">
+            <h3><i class="fas fa-female"></i> Girls</h3>
+            <p class="carousel-description">Dificultad media. Tragos equilibrados para jugar y divertirse.</p>
+
           </div>
           
-          <div class="difficulty-card alcoholico" data-level="alcoholico">
-            <div class="difficulty-card-image">
-              <img src="img/alcoholico.png" alt="Alcohólico">
-            </div>
-            <h3><i class="fas fa-beer difficulty-icon"></i> Alcohólico</h3>
-            <p class="difficulty-description">Para expertos. Tragos intensificados con eventos especiales.</p>
-            <p>Asesinato: <strong>3 tragos</strong></p>
-            <p>Eliminación: <strong>4 tragos</strong></p>
-            <p>Bartender: <strong>2 tragos</strong></p>
+          <div class="carousel-item alcoholico" data-level="alcoholico">
+          <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
           </div>
+            <img src="img/alcoholico.png" alt="Alcohólico" class="carousel-image">
+            <h3><i class="fas fa-beer"></i> Alcohólico</h3>
+            <p class="carousel-description">Tragos intensificados con eventos especiales.</p>
+            
+          </div>
+        </div>
+        
+        <div class="carousel-controls">
+          <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        
+        <div class="carousel-indicators">
+          <div class="carousel-indicator active" data-index="0"></div>
+          <div class="carousel-indicator" data-index="1"></div>
+          <div class="carousel-indicator" data-index="2"></div>
         </div>
       </div>
       
-      <div class="drink-section">
-        <h3>¡Prepara tus bebidas!</h3>
-        <p>En este juego, cada evento conlleva tomar tragos:</p>
-        <ul class="drink-list">
-          <li class="drink-item">
-            <span class="drink-icon-large"><i class="fas fa-skull"></i></span>
-            <span class="drink-text">Asesinato: <strong>1-3 tragos</strong> según dificultad</span>
-          </li>
-          <li class="drink-item">
-            <span class="drink-icon-large"><i class="fas fa-handcuffs"></i></span>
-            <span class="drink-text">Arresto: <strong>1 trago</strong></span>
-          </li>
-          <li class="drink-item">
-            <span class="drink-icon-large"><i class="fas fa-ban"></i></span>
-            <span class="drink-text">Eliminación: <strong>1-4 tragos</strong> según dificultad</span>
-          </li>
-          <li class="drink-item">
-            <span class="drink-icon-large"><i class="fas fa-glass-martini-alt"></i></span>
-            <span class="drink-text">Bartender: <strong>1-2 tragos</strong> según dificultad</span>
-          </li>
-          <li class="drink-item">
-            <span class="drink-icon-large"><i class="fas fa-balance-scale"></i></span>
-            <span class="drink-text">Empate en votación: <strong>0-2 tragos</strong> según dificultad</span>
-          </li>
-          <li class="drink-item">
-            <span class="drink-icon-large"><i class="fas fa-pills"></i></span>
-            <span class="drink-text">Drogado: <strong>Multiplica tragos por 2</strong></span>
-          </li>
-          <li class="drink-item">
-            <span class="drink-icon-large"><i class="fas fa-tint"></i></span>
-            <span class="drink-text">Hidratado: <strong>No toma el próximo trago</strong></span>
-          </li>
-        </ul>
-      </div>
+      <button id="btnStart"><i class="fas fa-play"></i> Iniciar partida</button>
       <button id="btnInfo" class="secondary"><i class="fas fa-book"></i> Instrucciones</button>
     </div>`;
+  
   setScreen(html);
   
-  // Añadir event listeners a las tarjetas de dificultad
-  document.querySelectorAll('.difficulty-card').forEach(card => {
-    card.onclick = function() {
-      game.difficulty = this.dataset.level;
-      startSetup();
-    };
-  });
+  // Inicializar el carrusel
+  initCarousel();
   
   document.getElementById('btnInfo').onclick = showInstructions;
+  document.getElementById('btnStart').onclick = () => startSetup();
+}
+
+/* ===== FUNCIONALIDAD DEL CARRUSEL ===== */
+function initCarousel() {
+  const carousel = document.querySelector('.carousel');
+  const items = document.querySelectorAll('.carousel-item');
+  const indicators = document.querySelectorAll('.carousel-indicator');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  
+  let currentIndex = 0;
+  
+  // Actualizar el carrusel
+  function updateCarousel() {
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Actualizar indicadores
+    indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === currentIndex);
+    });
+    
+    // Actualizar dificultad seleccionada
+    game.difficulty = items[currentIndex].dataset.level;
+  }
+  
+  // Event listeners para los controles del carrusel
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    updateCarousel();
+  });
+  
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % items.length;
+    updateCarousel();
+  });
+  
+  // Event listeners para los indicadores
+  indicators.forEach(indicator => {
+    indicator.addEventListener('click', () => {
+      currentIndex = parseInt(indicator.dataset.index);
+      updateCarousel();
+    });
+  });
+  
+  // Event listeners para gestos táctiles
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  carousel.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, false);
+  
+  carousel.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, false);
+  
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    
+    if (touchEndX < touchStartX - swipeThreshold) {
+      // Deslizar a la izquierda
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    }
+    
+    if (touchEndX > touchStartX + swipeThreshold) {
+      // Deslizar a la derecha
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      updateCarousel();
+    }
+  }
+  
+  // Inicializar el carrusel
+  updateCarousel();
 }
 
 /* -------------------- INSTRUCCIONES MEJORADAS -------------------- */
 function showInstructions() {
+  // Mantenemos la función de instrucciones original
   const html = `
     <div class="instructions-container">
       <div class="instructions-section">
@@ -1862,7 +2388,7 @@ function showInstructions() {
           
           <div class="difficulty-card girls">
             <h3><i class="fas fa-female"></i> Girls</h3>
-            <p>Dificultad estándar. Como se juega tradicionalmente.</p>
+            <p>Dificultad media. Tragos equilibrados ideal para jugar y divertirse.</p>
             <div class="drink-rules">
               <div class="drink-rule">
                 <div class="drink-rule-icon"><i class="fas fa-skull"></i></div>
@@ -1870,7 +2396,7 @@ function showInstructions() {
               </div>
               <div class="drink-rule">
                 <div class="drink-rule-icon"><i class="fas fa-ban"></i></div>
-                <div class="drink-rule-text">Eliminación: <strong>3 tragos</strong></div>
+                <div class="drink-rule-text">Eliminación: <strong>2 tragos</strong></div>
               </div>
               <div class="drink-rule">
                 <div class="drink-rule-icon"><i class="fas fa-glass-martini-alt"></i></div>
@@ -1889,7 +2415,7 @@ function showInstructions() {
               </div>
               <div class="drink-rule">
                 <div class="drink-rule-icon"><i class="fas fa-ban"></i></div>
-                <div class="drink-rule-text">Eliminación: <strong>4 tragos</strong></div>
+                <div class="drink-rule-text">Eliminación: <strong>3 tragos</strong></div>
               </div>
               <div class="drink-rule">
                 <div class="drink-rule-icon"><i class="fas fa-glass-martini-alt"></i></div>
@@ -2078,7 +2604,7 @@ function showInstructions() {
             <div class="role-header">
               <div class="role-icon"><i class="fas fa-money-bill-wave"></i></div>
               <div>
-                <div class="role-title">Proxeneta <span class="role-alignment">Bueno</span></div>
+                <div class="role-title">Chulo <span class="role-alignment">Bueno</span></div>
               </div>
             </div>
             <div class="role-description">
@@ -2129,6 +2655,10 @@ function startSetup() {
     showRoleSelection();
   };
 }
+
+
+
+
 
 /* -------------------- SELECCIÓN DE ROLES MEJORADA -------------------- */
 function showRoleSelection() {
@@ -2302,8 +2832,8 @@ function collectNames(idx, names) {
       envidiaTargetId: null,// Envidioso
       inLoveWith: null,     // Suicida enamorado
       willBecomeAssassin: false, // Para "El menor" después del arresto
-      pimpControlled: false,      // Para Puta: si está controlada por Proxeneta
-      pimpId: null,               // Para Proxeneta: ID de la Puta controlada
+      pimpControlled: false,      // Para Puta: si está controlada por Chulo
+      pimpId: null,               // Para Chulo: ID de la Puta controlada
       medicoLastTarget: null,      // Para Médico: último objetivo protegido
       delayedInfection: false,     // Nueva propiedad: infección diferida
       infectedRound: null          // Nueva propiedad: ronda de infección
@@ -2341,7 +2871,7 @@ function assignRoles() {
     
     // Completar con "Sin rol" si faltan
     while (roles.length < game.numPlayers) {
-      roles.push("Sin rol");
+      roles.push("Ciudadano");
     }
   } else {
     // Asignación aleatoria original
@@ -2366,12 +2896,14 @@ function assignRoles() {
   revealRoles(0);
 }
 
-/* -------------------- REVELAR ROL A CADA JUGADOR -------------------- */
+/* -------------------- REVELAR ROL A CADA JUGADOR CON IMAGENES -------------------- */
 function revealRoles(idx) {
   if (idx >= game.players.length) {
-    startNightPhase();
+    // Nueva fase: acciones iniciales
+    initialRoleActions(0);
     return;
   }
+  
   const p = game.players[idx];
   const html = `
     <div class="card">
@@ -2380,11 +2912,13 @@ function revealRoles(idx) {
       <button id="btnShow"><i class="fas fa-eye"></i> Mostrar mi rol</button>
     </div>`;
   setScreen(html);
+  
   document.getElementById('btnShow').onclick = () => {
     const publicRole = getPublicRole(p.role);
     let desc = ROLE_DESCRIPTIONS[p.role] || 'Sin habilidades especiales.';
+    const roleImage = ROLE_IMAGES[p.role] || 'ciudadano.png';
     
-    // Información adicional para asesinos - SIEMPRE mostrar compañeros
+    // Información para asesinos
     if (p.role === 'Asesino') {
       const otherAssassins = game.players.filter(
         pl => pl.role === 'Asesino' && pl.id !== p.id
@@ -2398,6 +2932,7 @@ function revealRoles(idx) {
     }
     
     let card = '';
+    const roleImageHTML = `<img src="img/${roleImage}" alt="${publicRole}" class="role-image">`;
     
     // Pantalla especial para Envidioso
     if (p.role === 'Envidioso') {
@@ -2407,7 +2942,8 @@ function revealRoles(idx) {
       card = `
         <div class="card role-card">
           <h3>Tu rol es:</h3>
-          <h2 class="neon"><i class="fas ${ROLE_ICONS[p.role]}"></i> ${publicRole}</h2>
+          ${roleImageHTML}
+          <h2 class="neon">${publicRole}</h2>
           <p>${desc}</p>
           <p>Elige a quién envidiarás:</p>
           <select id="envidiaTarget">
@@ -2420,7 +2956,8 @@ function revealRoles(idx) {
       card = `
         <div class="card role-card">
           <h3>Tu rol es:</h3>
-          <h2 class="neon"><i class="fas ${ROLE_ICONS[p.role]}"></i> ${publicRole}</h2>
+          ${roleImageHTML}
+          <h2 class="neon">${publicRole}</h2>
           <p>${desc}</p>
           <button id="btnGotIt"><i class="fas fa-check"></i> Entendido</button>
         </div>`;
@@ -2440,6 +2977,34 @@ function revealRoles(idx) {
     document.getElementById('btnGotIt').onclick = btnHandler;
   };
 }
+
+/* ===== NUEVO: FASE DE ACCIONES INICIALES ===== */
+function initialRoleActions(idx) {
+  if (idx >= game.players.length) {
+    // Todas las acciones iniciales realizadas, comenzar la primera noche
+    startNightPhase();
+    return;
+  }
+
+  const p = game.players[idx];
+
+  // Solo jugadores vivos realizan acciones
+  if (p.status !== 'vivo') {
+    initialRoleActions(idx + 1);
+    return;
+  }
+
+  switch (p.role) {
+    case 'Envidioso':
+      // Ya se hizo en revealRoles, pasar al siguiente
+      initialRoleActions(idx + 1);
+      break;
+    default:
+      initialRoleActions(idx + 1);
+  }
+}
+
+
 
 /* -------------------- INICIO DE NOCHE -------------------- */
 function startNightPhase() {
@@ -2616,7 +3181,7 @@ function nightTurn(idx) {
             
             // AÑADIR ESTAS VERIFICACIONES
             const isAsesino = partner.role === "Asesino";
-            const isProxeneta = partner.role === "Proxeneta"; // Nueva verificación
+            const isChulo = partner.role === "Chulo"; // Nueva verificación
             
             if (isAsesino) {
               p.infected = true;
@@ -2628,18 +3193,18 @@ function nightTurn(idx) {
               log(`${p.name} se acostó con ${partner.name} (Asesino) → ${p.name} muere por VIH. El Asesino se infecta pero podrá actuar una noche más.`);
             }
             
-            // ESTABLECER CONTROL SI ES PROXENETA
-            if (isProxeneta) {
+            // ESTABLECER CONTROL SI ES Chulo
+            if (isChulo) {
               p.pimpControlled = true;
               partner.pimpId = p.id;
-              log(`${p.name} se acostó con el Proxeneta. ¡Ahora el Proxeneta controla sus acciones!`);
+              log(`${p.name} se acostó con el Chulo. ¡Ahora el Chulo controla sus acciones!`);
             }
             
             game.nightSummaryData.puta = {
               puta: p,
               target: partner,
               isAsesino: isAsesino,
-              isProxeneta: isProxeneta // Añadir este dato al resumen
+              isChulo: isChulo // Añadir este dato al resumen
             };
             
             log(`${p.name} (presa) se acostó automáticamente con ${partner.name} (preso)`);
@@ -2650,7 +3215,7 @@ function nightTurn(idx) {
           return;
         }
 
-        // Si está controlada por un proxeneta, saltar turno
+        // Si está controlada por un Chulo, saltar turno
         if (p.pimpControlled) {
           nightTurn(idx + 1);
           return;
@@ -2666,7 +3231,7 @@ function nightTurn(idx) {
         }
         break;
         
-      case 'Proxeneta': // Nuevo caso para Proxeneta
+      case 'Chulo': // Nuevo caso para Chulo
         if (p.pimpId !== null) {
           const putaPlayer = getPlayer(p.pimpId);
           if (putaPlayer && putaPlayer.status === 'vivo') {
@@ -2803,7 +3368,7 @@ function nightTurn(idx) {
             p.lastPartnerId = targetId;
             const partner = getPlayer(targetId);
             const isAsesino = partner.role === "Asesino";
-            const isProxeneta = partner.role === "Proxeneta"; // Verificar si es Proxeneta
+            const isChulo = partner.role === "Chulo"; // Verificar si es Chulo
             
             if (isAsesino) {
               p.infected = true;
@@ -2812,11 +3377,11 @@ function nightTurn(idx) {
               partner.infectedRound = game.round;
             }
             
-            // Si es Proxeneta, establecer control
-            if (isProxeneta) {
+            // Si es Chulo, establecer control
+            if (isChulo) {
               p.pimpControlled = true;
               partner.pimpId = p.id;
-              log(`${p.name} se acostó con el Proxeneta. ¡Ahora el Proxeneta controla sus acciones!`);
+              log(`${p.name} se acostó con el Chulo. ¡Ahora el Chulo controla sus acciones!`);
             }
             
             // Si el objetivo es Suicida
@@ -2828,72 +3393,72 @@ function nightTurn(idx) {
               puta: p,
               target: partner,
               isAsesino: isAsesino,
-              isProxeneta: isProxeneta
+              isChulo: isChulo
             };
           }
           break;
           
-        case 'Proxeneta': // Acción del Proxeneta
-          if (targetId !== null && p.pimpId !== null) {
-            const putaPlayer = getPlayer(p.pimpId);
-            if (putaPlayer && putaPlayer.status === 'vivo') {
-              putaPlayer.lastPartnerId = targetId;
-              const partner = getPlayer(targetId);
-              const isAsesino = partner.role === "Asesino";
-              
-              if (isAsesino) {
-                putaPlayer.infected = true;
-                partner.delayedInfection = true;
-                partner.infectedRound = game.round;
-              }
-              
-              // Si el objetivo es Suicida
-              if (partner.role === "Suicida") {
-                partner.inLoveWith = putaPlayer.id;
-              }
-              
-              game.nightSummaryData.puta = {
-                puta: putaPlayer,
-                target: partner,
-                isAsesino: isAsesino,
-                controlledBy: p.name
-              };
+      case 'Chulo': // Acción del Chulo
+        if (targetId !== null && p.pimpId !== null) {
+          const putaPlayer = getPlayer(p.pimpId);
+          if (putaPlayer && putaPlayer.status === 'vivo') {
+            putaPlayer.lastPartnerId = targetId;
+            const partner = getPlayer(targetId);
+            const isAsesino = partner.role === "Asesino";
+            
+            if (isAsesino) {
+              putaPlayer.infected = true;
+              partner.delayedInfection = true;
+              partner.infectedRound = game.round;
             }
-          }
-          break;
-        case 'Bartender':
-          if (targetId !== null) {
-            game.nightActions.bartender = targetId;
-            game.nightSummaryData.bartender = {
-              bartender: p,
-              target: getPlayer(targetId)
+            
+            // Si el objetivo es Suicida
+            if (partner.role === "Suicida") {
+              partner.inLoveWith = putaPlayer.id;
+            }
+            
+            game.nightSummaryData.puta = {
+              puta: putaPlayer,
+              target: partner,
+              isAsesino: isAsesino,
+              controlledBy: p.name
             };
           }
-          break;
-        case 'Dealer':
-          if (targetId !== null) {
-            const target = getPlayer(targetId);
-            target.drugged = true;
-            p.dealerLastTarget = targetId;
-            game.nightActions.dealer = targetId;
-            game.nightSummaryData.dealer = {
-              dealer: p,
-              target: target
-            };
-          }
-          break;
-        case 'Hidratador':
-          if (targetId !== null) {
-            const target = getPlayer(targetId);
-            target.hydrated = true;
-            game.nightSummaryData.hydrator = {
-              hydrator: p,
-              target: target
-            };
-          }
-          break;
-        default:
-          // nada
+        }
+        break;
+      case 'Bartender':
+        if (targetId !== null) {
+          game.nightActions.bartender = targetId;
+          game.nightSummaryData.bartender = {
+            bartender: p,
+            target: getPlayer(targetId)
+          };
+        }
+        break;
+      case 'Dealer':
+        if (targetId !== null) {
+          const target = getPlayer(targetId);
+          target.drugged = true;
+          p.dealerLastTarget = targetId;
+          game.nightActions.dealer = targetId;
+          game.nightSummaryData.dealer = {
+            dealer: p,
+            target: target
+          };
+        }
+        break;
+      case 'Hidratador':
+        if (targetId !== null) {
+          const target = getPlayer(targetId);
+          target.hydrated = true;
+          game.nightSummaryData.hydrator = {
+            hydrator: p,
+            target: target
+          };
+        }
+        break;
+      default:
+        // nada
       }
       // pasar al siguiente jugador de la noche
       nightTurn(idx + 1);
@@ -2923,12 +3488,12 @@ function nightSummary() {
         p.hydrated = false;
       } else {
         p.drinks += drinkAmount;
-        addDrinkEvent(`${p.name} debe beber ${drinkAmount} tragos por infección diferida.`);
+        addDrinkEvent(`${p.name} debe beber ${drinkAmount} tragos por eliminacion.`);
       }
       
       game.nightSummaryData.kills.push({
         victim: p,
-        reason: 'infección diferida',
+        reason: 'eliminación',
         drinkAmount: drinkAmount
       });
       
@@ -2955,7 +3520,7 @@ function nightSummary() {
           p.hydrated = false;
         } else {
           p.drinks += drinkAmount;
-          addDrinkEvent(`${p.name} debe beber ${drinkAmount} tragos por infección.`);
+          addDrinkEvent(`${p.name} debe beber ${drinkAmount} tragos por eliminación.`);
         }
         
         p.status = 'eliminado';
@@ -2984,7 +3549,7 @@ function nightSummary() {
               suicidaInLove.hydrated = false;
             } else {
               suicidaInLove.drinks += drinkAmountSuicida;
-              addDrinkEvent(`${suicidaInLove.name} debe beber ${drinkAmountSuicida} tragos por muerte de amor.`);
+              addDrinkEvent(`${suicidaInLove.name} debe beber ${drinkAmountSuicida} tragos por eliminación.`);
             }
             game.nightSummaryData.kills.push({
               victim: suicidaInLove,
@@ -3087,7 +3652,7 @@ const aliveAssassins = game.players.filter(p =>
         victim.hydrated = false;
       } else {
         victim.drinks += drinkAmount;
-        addDrinkEvent(`${victim.name} debe beber ${drinkAmount} tragos por asesinato.`);
+        addDrinkEvent(`${victim.name} debe beber ${drinkAmount} tragos por eliminación.`);
       }
       
       deaths.push(victim);
@@ -3119,7 +3684,7 @@ const aliveAssassins = game.players.filter(p =>
             suicidaInLove.hydrated = false;
           } else {
             suicidaInLove.drinks += drinkAmountSuicida;
-            addDrinkEvent(`${suicidaInLove.name} debe beber ${drinkAmountSuicida} tragos por muerte de amor.`);
+            addDrinkEvent(`${suicidaInLove.name} debe beber ${drinkAmountSuicida} tragos por eliminación.`);
           }
           game.nightSummaryData.kills.push({
             victim: suicidaInLove,
@@ -3193,7 +3758,7 @@ function applyNightArrests() {
         target.hydrated = false;
       } else {
         target.drinks += drinkAmount;
-        addDrinkEvent(`${target.name} debe beber ${drinkAmount} tragos por suicidio.`);
+        addDrinkEvent(`${target.name} debe beber ${drinkAmount} tragos por eliminación.`);
       }
       log(`<div class="eliminated">${target.name} <span class="role">(era ${getPublicRole(target.role)})</span> fue eliminado por votación.</div>`);
     } else {
@@ -3635,6 +4200,7 @@ function daySummary() {
 function activateLudopataAbility(deadPlayer) {
    // Obtener elemento de audio
   const spinAudio = document.getElementById('spinSound');
+  
   // Jugadores objetivo: vivos o presos (no eliminados)
   const targets = game.players.filter(p => p.status !== 'eliminado');
   const results = [];
@@ -4014,6 +4580,7 @@ document.addEventListener('touchmove', e => {
     e.preventDefault();
   }
 }, { passive: false });
+
 </script>
 </body>
 </html>
