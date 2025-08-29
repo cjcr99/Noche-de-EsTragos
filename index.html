@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <title>Noche de EsTragos</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1895,6 +1897,17 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 </div>
 
 <script>
+  
+  function abrirPantallaCompleta() {
+  let elem = document.documentElement; // toda la página
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { // Safari
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { // Edge
+    elem.msRequestFullscreen();
+  }
+}
 
   if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(err => console.error(err));
