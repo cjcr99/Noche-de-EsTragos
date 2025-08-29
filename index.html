@@ -1718,6 +1718,144 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   border-radius: 50%;
   border: 1px solid rgba(230, 194, 41, 0.5);
 }
+
+.floating-menu-container {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  z-index: 1000;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(45deg, #e6c229, #c5a400);
+  color: #000;
+  border-radius: 50px;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.menu-button.expanded {
+  width: 170px;
+}
+
+.menu-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.menu-text {
+  opacity: 0;
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+  font-weight: 600;
+  padding-right: 15px;
+  font-size: 0.9rem;
+}
+
+.menu-button.expanded .menu-text {
+  opacity: 1;
+  width: auto;
+}
+
+/* Modal de confirmación */
+.confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 18, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.confirmation-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  max-width: 350px;
+  width: 90%;
+  box-shadow: var(--box-shadow);
+  border: 2px solid var(--accent-gold);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.confirmation-modal.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-content h3 {
+  color: var(--accent-gold);
+  margin-bottom: 1.5rem;
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  min-width: 100px;
+}
+
+.modal-btn.confirm {
+  background: linear-gradient(45deg, #ff3860, #d7002b);
+  color: white;
+}
+
+.modal-btn.cancel {
+  background: linear-gradient(45deg, #3298dc, #238cd3);
+  color: white;
+}
+
+.modal-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-btn:active {
+  transform: translateY(1px);
+}
+
+
 </style>
 </head>
 <body>
@@ -1733,7 +1871,31 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 <audio id="medusaSound" src="sounds/medusa.mp3" preload="auto"></audio>
 <audio id="notSound" src="sounds/not.mp3" preload="auto"></audio>
 <audio id="asesinoSound" src="sounds/asesino.mp3" preload="auto"></audio>
+
+<div class="floating-menu-container">
+  <div class="menu-button" id="menuButton">
+    <div class="menu-icon">
+      <i class="fas fa-home"></i>
+    </div>
+    <div class="menu-text" id="menuText">
+      <span>Menú Principal</span>
+    </div>
+  </div>
+</div>
+
+<div class="confirmation-modal" id="confirmationModal">
+  <div class="modal-content">
+    <h3><i class="fas fa-exclamation-triangle"></i> Confirmar acción</h3>
+    <p>¿Estás seguro de que quieres volver al menú principal? Se perderá el progreso actual.</p>
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" id="modalCancel">Cancelar</button>
+      <button class="modal-btn confirm" id="modalConfirm">Aceptar</button>
+    </div>
+  </div>
+</div>
+
 <script>
+
   if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(err => console.error(err));
 }
@@ -1741,7 +1903,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 /* ==============================================================
    Noche de Es Tragos – Versión Élite (Actualizada)
    ============================================================== */
-
+let gameStarted = false;
 const app = document.getElementById('app');
 
 // Variables para reinicio
@@ -2708,12 +2870,59 @@ function assignRoles() {
   
   revealRoles(0);
 }
+/* -------------------- ASIGNACIÓN DE ROLES (MODIFICADA) -------------------- */
+function assignRoles() {
+  savedSelectedRoles = game.selectedRoles;
+  let roles = [];
+  
+  if (game.selectedRoles) {
+    Object.entries(game.selectedRoles).forEach(([role, count]) => {
+      for (let i = 0; i < count; i++) {
+        roles.push(role);
+      }
+    });
+    
+    while (roles.length < game.numPlayers) {
+      roles.push("Ciudadano");
+    }
+  } else {
+    const pool = ALL_ROLES;
+    roles = ["Asesino", "Policía"];
+    if (game.numPlayers >= 6) roles.push("Médico", "Bartender");
+    while (roles.length < game.numPlayers) {
+      roles.push(pool[Math.floor(Math.random() * pool.length)]);
+    }
+  }
+  
+  shuffle(roles);
+  game.players.forEach((p, i) => { 
+    p.role = roles[i]; 
+    p.originalRole = roles[i]; 
+  });
+  
+  // Inicializar la primera noche
+  game.round = 1;
+  game.phase = 'night';
+  game.nightActions = { kills: [], protects: [], swaps: [], bartender: null, arrests: [], dealer: null, hydrator: null };
+  game.nightSummaryData = {
+    kills: [],
+    arrests: [],
+    bartender: null,
+    dealer: null,
+    puta: null,
+    swaps: [],
+    hydrator: null
+  };
+  game.assassinVotes = {};
+  
+  revealRoles(0);
+}
 
-/* -------------------- REVELAR ROL A CADA JUGADOR CON IMAGENES -------------------- */
+/* -------------------- REVELAR ROL CON ACCIÓN NOCTURNA INTEGRADA -------------------- */
 function revealRoles(idx) {
   if (idx >= game.players.length) {
-    // Nueva fase: acciones iniciales
-    initialRoleActions(0);
+    // Todas las revelaciones y acciones completadas, mostrar resumen de la primera noche
+    nightSummary();
     return;
   }
   
@@ -2731,7 +2940,6 @@ function revealRoles(idx) {
     let desc = ROLE_DESCRIPTIONS[p.role] || 'Sin habilidades especiales.';
     const roleImage = ROLE_IMAGES[p.role] || 'ciudadano.png';
     
-    // Información para asesinos
     if (p.role === 'Asesino') {
       const otherAssassins = game.players.filter(
         pl => pl.role === 'Asesino' && pl.id !== p.id
@@ -2747,7 +2955,6 @@ function revealRoles(idx) {
     let card = '';
     const roleImageHTML = `<img src="img/${roleImage}" alt="${publicRole}" class="role-image">`;
     
-    // Pantalla especial para Envidioso
     if (p.role === 'Envidioso') {
       const targets = game.players.filter(pl => pl.id !== p.id);
       const options = targets.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
@@ -2784,39 +2991,408 @@ function revealRoles(idx) {
         p.envidiaTargetId = targetId;
         log(`El Envidioso ha elegido envidiar a alguien`);
       } 
-      revealRoles(idx + 1);
+      
+      // Después de revelar el rol, proceder con la acción nocturna (si es la primera noche)
+      if (game.round === 1) {
+        showNightAction(p, () => {
+          revealRoles(idx + 1);
+        });
+      } else {
+        revealRoles(idx + 1);
+      }
     };
     
     document.getElementById('btnGotIt').onclick = btnHandler;
   };
 }
 
-/* ===== NUEVO: FASE DE ACCIONES INICIALES ===== */
-function initialRoleActions(idx) {
-  if (idx >= game.players.length) {
-    // Todas las acciones iniciales realizadas, comenzar la primera noche
-    startNightPhase();
+/* -------------------- MOSTRAR ACCIÓN NOCTURNA (NUEVA FUNCIÓN) -------------------- */
+function showNightAction(player, callback) {
+  // Roles que no tienen acción nocturna
+  const noActionRoles = ['Ciudadano', 'Suicida', 'Envidioso', 'El menor', 'Ludópata'];
+  if (noActionRoles.includes(player.role)) {
+    callback();
     return;
   }
 
-  const p = game.players[idx];
-
-  // Solo jugadores vivos realizan acciones
-  if (p.status !== 'vivo') {
-    initialRoleActions(idx + 1);
+  // Para el Loco: acción automática
+  if (player.role === 'Loco') {
+    const aliveTargets = game.players.filter(pl => pl.status === 'vivo' && pl.id !== player.id);
+    if (aliveTargets.length) {
+      const randomTarget = aliveTargets[Math.floor(Math.random() * aliveTargets.length)];
+      game.nightActions.arrests.push({ officerId: player.id, targetId: randomTarget.id });
+      game.nightSummaryData.arrests.push({
+        officer: player,
+        target: getPlayer(randomTarget.id)
+      });
+    }
+    callback();
     return;
   }
 
-  switch (p.role) {
-    case 'Envidioso':
-      // Ya se hizo en revealRoles, pasar al siguiente
-      initialRoleActions(idx + 1);
+  // Para los demás roles, mostrar interfaz de selección de objetivo
+  let aliveTargets = game.players.filter(pl => 
+    pl.status === 'vivo' && 
+    pl.id !== player.id
+  );
+
+  // Filtros especiales para diferentes roles
+  if (player.role === 'Asesino') {
+    aliveTargets = aliveTargets.filter(pl => pl.role !== 'Asesino');
+  }
+  if (player.role === 'Dealer') {
+    aliveTargets = aliveTargets.filter(pl => pl.id !== player.dealerLastTarget);
+  }
+  if (player.role === 'Puta') {
+    aliveTargets = aliveTargets.filter(pl => pl.id !== player.lastPartnerId);
+  }
+
+  const opts = aliveTargets.map(pl => `<option value="${pl.id}">${pl.name}</option>`).join('');
+  let inner = `<p>Es tu turno en la primera noche, <strong>${player.name}</strong> <span class="role-badge">${getPublicRole(player.role)}</span>.</p>`;
+
+  switch (player.role) {
+    case 'Asesino':
+      const aliveAssassins = game.players.filter(
+        pl => pl.role === "Asesino" && pl.status === "vivo" && pl.id !== player.id
+      );
+      const numAssassins = aliveAssassins.length + 1;
+      
+      let assassinInfo = `<p>Tus compañeros asesinos vivos son: <strong>${aliveAssassins.map(a => a.name).join(', ')}</strong></p>`;
+      let voteInfo = '';
+      
+      if (numAssassins > 1) {
+        const voteCounts = {};
+        Object.values(game.assassinVotes).forEach(targetId => {
+          voteCounts[targetId] = (voteCounts[targetId] || 0) + 1;
+        });
+        
+        voteInfo = `<div class="assassin-vote">
+          <h3>Consejo de Asesinos</h3>
+          <p>Hay ${numAssassins} asesinos en juego. Cada uno vota en su turno.</p>
+          <div class="vote-count">`;
+          
+        for (const [targetId, count] of Object.entries(voteCounts)) {
+          const target = getPlayer(parseInt(targetId));
+          voteInfo += `
+            <div class="${game.assassinVotes[player.id] == targetId ? 'selected' : ''}">
+              <div class="vote-target">${target.name}</div>
+              <div>Votos: ${count}</div>
+            </div>`;
+        }
+        
+        voteInfo += `</div></div>`;
+      }
+      
+      inner += `${assassinInfo}${voteInfo}<p>Elige a quién quieres asesinar:</p>
+            <select id="target">${opts}</select>`;
+      break;
+    case 'Policía':
+      inner += `<p>Elige a quién arrestarás mañana (no conoces a otros policías):</p>
+                <select id="target">${opts}</select>`;
+      break;
+    case 'Ladrón':
+      if (player.thiefUsed) {
+        if (player.stolenRole) {
+          inner += `<p>Ya robaste un rol (${player.stolenRole}). Ahora tienes ese rol.</p>`;
+        } else {
+          inner += `<p>Ya usaste tu robo. No puedes hacer nada.</p>`;
+        }
+      } else {
+        inner += `<p>Puedes robar un rol ahora o esperar:</p>
+                  <select id="target">
+                    <option value="-1">No robar ahora</option>
+                    ${opts}
+                  </select>`;
+      }
+      break;
+    case 'Investigador':
+      if (player.investigatorUsed) {
+        inner += `<p>Ya investigaste a alguien. No puedes hacer nada.</p>`;
+      } else {
+        inner += `<p>Elige a quién revelarás su rol (una sola vez). Luego serás Policía.</p>
+                  <select id="target">${opts}</select>`;
+      }
+      break;
+    case 'Médico':
+      let medicTargets = game.players.filter(pl => 
+        pl.status === 'vivo' && 
+        (player.medicoLastTarget === null || pl.id !== player.medicoLastTarget)
+      );
+      
+      if (medicTargets.length === 0) {
+        inner += `<p>No hay objetivos válidos disponibles para proteger.</p>`;
+      } else {
+        const opts = medicTargets.map(pl => 
+          `<option value="${pl.id}" ${pl.id === player.id ? 'selected' : ''}>${pl.name}${pl.id === player.id ? ' (tú mismo)' : ''}</option>`
+        ).join('');
+        
+        inner += `<p>Elige a quién protegerás esta noche:</p>
+                  <select id="target">${opts}</select>`;
+      }
+      break;
+    case 'Puta':
+      if (player.status === 'preso') {
+        const otherPrisoners = game.players.filter(
+          pl => pl.status === 'preso' && pl.id !== player.id
+        );
+        
+        if (otherPrisoners.length > 0) {
+          const randomPartner = otherPrisoners[Math.floor(Math.random() * otherPrisoners.length)];
+          player.lastPartnerId = randomPartner.id;
+          const partner = getPlayer(randomPartner.id);
+          
+          const isAsesino = partner.role === "Asesino";
+          const isChulo = partner.role === "Chulo";
+          
+          if (isAsesino) {
+            player.infected = true;
+            partner.delayedInfection = true;
+            partner.infectedRound = game.round;
+            log(`${player.name} se acostó con ${partner.name} (Asesino) → ${player.name} muere por VIH. El Asesino se infecta pero podrá actuar una noche más.`);
+          }
+          
+          if (isChulo) {
+            player.pimpControlled = true;
+            partner.pimpId = player.id;
+            log(`${player.name} se acostó con el Chulo. ¡Ahora el Chulo controla sus acciones!`);
+          }
+          
+          game.nightSummaryData.puta = {
+            puta: player,
+            target: partner,
+            isAsesino: isAsesino,
+            isChulo: isChulo
+          };
+          
+          log(`${player.name} (presa) se acostó automáticamente con ${partner.name} (preso)`);
+        } else {
+          log(`${player.name} (presa) no encontró compañeros en prisión`);
+        }
+        callback();
+        return;
+      }
+
+      if (player.pimpControlled) {
+        callback();
+        return;
+      }
+      
+      const possible = aliveTargets.filter(pl => pl.id !== player.lastPartnerId);
+      if (possible.length === 0) {
+        inner += `<p>No hay candidatos válidos para acostarse.</p>`;
+      } else {
+        const optP = possible.map(pl => `<option value="${pl.id}">${pl.name}</option>`).join('');
+        inner += `<p>Elige con quién acostarte (no puedes repetir 2 noches seguidas):</p>
+                  <select id="target">${optP}</select>`;
+      }
+      break;
+    case 'Chulo':
+      if (player.pimpId !== null) {
+        const putaPlayer = getPlayer(player.pimpId);
+        if (putaPlayer && putaPlayer.status === 'vivo') {
+          const possible = aliveTargets.filter(pl => 
+            pl.id !== putaPlayer.lastPartnerId && 
+            pl.id !== player.id
+          );
+          
+          if (possible.length === 0) {
+            inner += `<p>No hay candidatos válidos para la Puta.</p>`;
+          } else {
+            const optP = possible.map(pl => `<option value="${pl.id}">${pl.name}</option>`).join('');
+            inner += `<p>Elige con quién se acostará la Puta (${putaPlayer.name}) esta noche:</p>
+                      <select id="target">${optP}</select>`;
+          }
+        } else {
+          inner += `<p>La Puta que controlas ya no está disponible.</p>`;
+          player.pimpId = null;
+        }
+      } else {
+        inner += `<p>No controlas a ninguna Puta actualmente.</p>`;
+      }
+      break;
+    case 'Bartender':
+      inner += `<p>Elige a quién tomará un trago al amanecer:</p>
+                <select id="target">${opts}</select>`;
+      break;
+    case 'Dealer':
+      const dealerOptions = aliveTargets.filter(pl => pl.id !== player.dealerLastTarget);
+      if (dealerOptions.length === 0) {
+        inner += `<p>No hay candidatos válidos para drogar.</p>`;
+      } else {
+        const optD = dealerOptions.map(pl => `<option value="${pl.id}">${pl.name}</option>`).join('');
+        inner += `<p>Elige a quién drogar (no puedes repetir 2 noches seguidas):</p>
+                  <select id="target">${optD}</select>`;
+      }
+      break;
+    case 'Hidratador':
+      inner += `<p>Elige a quién hidratar (no tomará su próximo trago):</p>
+                <select id="target">${opts}</select>`;
       break;
     default:
-      initialRoleActions(idx + 1);
+      inner += `<p>No tienes acción esta noche.</p>`;
   }
-}
 
+  const html = `<div class="card">
+                  ${inner}
+                  <button id="btnConfirm"><i class="fas fa-check"></i> Confirmar</button>
+                </div>`;
+  setScreen(html);
+  
+  document.getElementById('btnConfirm').onclick = () => {
+    const sel = document.getElementById('target');
+    const targetId = sel ? parseInt(sel.value) : null;
+    
+    switch (player.role) {
+      case 'Asesino':
+        if (targetId !== null) {
+          game.assassinVotes[player.id] = targetId;
+        }
+        break;
+      case 'Policía':
+        if (targetId !== null) {
+          game.nightActions.arrests.push({ officerId: player.id, targetId });
+          game.nightSummaryData.arrests.push({
+            officer: player,
+            target: getPlayer(targetId)
+          });
+        }
+        break;
+      case 'Ladrón':
+        if (!player.thiefUsed && targetId !== null) {
+          if (targetId === -1) {
+            // No robar ahora
+          } else {
+            const victim = getPlayer(targetId);
+            if (victim.role === "Policía" || victim.role === "Investigador") {
+              game.nightActions.arrests.push({ officerId: null, targetId: player.id }); 
+              game.nightSummaryData.arrests.push({
+                officer: null,
+                target: player,
+                reason: 'intento de robo a policía/investigador'
+              });
+              player.thiefUsed = true;
+              log(`¡${player.name} (Ladrón) intentó robar a ${victim.name} (${victim.role}) y fue arrestado!`);
+            } else {
+              player.stolenRole = victim.role;
+              player.role = victim.role;
+              player.thiefUsed = true;
+              game.nightActions.swaps.push({ thiefId: player.id, targetId: victim.id });
+              game.nightSummaryData.swaps.push({
+                thief: player,
+                victim: victim,
+                stolenRole: victim.role
+              });
+            }
+          }
+        }
+        break;
+      case 'Investigador':
+        if (!player.investigatorUsed && targetId !== null) {
+          const victim = getPlayer(targetId);
+          alert(`El rol de ${victim.name} es ${getPublicRole(victim.role)}.`);
+          player.role = "Policía";
+          player.investigatorUsed = true;
+        }
+        break;
+      case 'Médico':
+        if (targetId !== null) {
+          game.nightActions.protects.push({ doctorId: player.id, targetId });
+          player.medicoLastTarget = targetId;
+        }
+        break;
+      case 'Puta':
+        if (targetId !== null) {
+          player.lastPartnerId = targetId;
+          const partner = getPlayer(targetId);
+          const isAsesino = partner.role === "Asesino";
+          const isChulo = partner.role === "Chulo";
+          
+          if (isAsesino) {
+            player.infected = true;
+            partner.delayedInfection = true;
+            partner.infectedRound = game.round;
+          }
+          
+          if (isChulo) {
+            player.pimpControlled = true;
+            partner.pimpId = player.id;
+            log(`${player.name} se acostó con el Chulo. ¡Ahora el Chulo controla sus acciones!`);
+          }
+          
+          if (partner.role === "Suicida") {
+            partner.inLoveWith = player.id;
+          }
+          
+          game.nightSummaryData.puta = {
+            puta: player,
+            target: partner,
+            isAsesino: isAsesino,
+            isChulo: isChulo
+          };
+        }
+        break;
+      case 'Chulo':
+        if (targetId !== null && player.pimpId !== null) {
+          const putaPlayer = getPlayer(player.pimpId);
+          if (putaPlayer && putaPlayer.status === 'vivo') {
+            putaPlayer.lastPartnerId = targetId;
+            const partner = getPlayer(targetId);
+            const isAsesino = partner.role === "Asesino";
+            
+            if (isAsesino) {
+              putaPlayer.infected = true;
+              partner.delayedInfection = true;
+              partner.infectedRound = game.round;
+            }
+            
+            if (partner.role === "Suicida") {
+              partner.inLoveWith = putaPlayer.id;
+            }
+            
+            game.nightSummaryData.puta = {
+              puta: putaPlayer,
+              target: partner,
+              isAsesino: isAsesino,
+              controlledBy: player.name
+            };
+          }
+        }
+        break;
+      case 'Bartender':
+        if (targetId !== null) {
+          game.nightActions.bartender = targetId;
+          game.nightSummaryData.bartender = {
+            bartender: player,
+            target: getPlayer(targetId)
+          };
+        }
+        break;
+      case 'Dealer':
+        if (targetId !== null) {
+          const target = getPlayer(targetId);
+          target.drugged = true;
+          player.dealerLastTarget = targetId;
+          game.nightActions.dealer = targetId;
+          game.nightSummaryData.dealer = {
+            dealer: player,
+            target: target
+          };
+        }
+        break;
+      case 'Hidratador':
+        if (targetId !== null) {
+          const target = getPlayer(targetId);
+          target.hydrated = true;
+          game.nightSummaryData.hydrator = {
+            hydrator: player,
+            target: target
+          };
+        }
+        break;
+    }
+    callback();
+  };
+}
 
 
 /* -------------------- INICIO DE NOCHE -------------------- */
@@ -4392,6 +4968,86 @@ document.addEventListener('touchmove', e => {
     e.preventDefault();
   }
 }, { passive: false });
+
+// Función para reiniciar el juego completamente
+function resetGame() {
+  gameStarted = false;
+  game.numPlayers = 0;
+  game.players = [];
+  game.round = 0;
+  game.phase = '';
+  game.eventLog = [];
+  game.nightActions = null;
+  game.dayArrests = [];
+  game.dayVotes = [];
+  game.selectedRoles = null;
+  game.drinkEvents = [];
+  game.assassinVotes = {};
+  game.nightSummaryData = null;
+  game.pendingLudopata = null;
+  game.difficulty = 'girls';
+  savedPlayers = [];
+  savedSelectedRoles = null;
+}
+
+// Inicializar el botón de menú
+document.addEventListener('DOMContentLoaded', function() {
+  const menuButton = document.getElementById('menuButton');
+  const menuText = document.getElementById('menuText');
+  const confirmationModal = document.getElementById('confirmationModal');
+  const modalCancel = document.getElementById('modalCancel');
+  const modalConfirm = document.getElementById('modalConfirm');
+  let isExpanded = false;
+  
+  // Función para expandir/contraer el menú
+  function toggleMenu() {
+    isExpanded = !isExpanded;
+    menuButton.classList.toggle('expanded', isExpanded);
+  }
+  
+  // Al hacer clic en el botón (icono)
+  menuButton.addEventListener('click', function(e) {
+    // Solo expandir si se hizo clic en el icono, no en el texto
+    if (!e.target.closest('.menu-text')) {
+      toggleMenu();
+    }
+  });
+  
+  // Al hacer clic en el texto del menú
+  menuText.addEventListener('click', function(e) {
+    e.stopPropagation();
+    confirmationModal.classList.add('active');
+  });
+  
+  // Botones del modal
+  modalCancel.addEventListener('click', function() {
+    confirmationModal.classList.remove('active');
+  });
+  
+  modalConfirm.addEventListener('click', function() {
+    resetGame();
+    showStartScreen();
+    confirmationModal.classList.remove('active');
+    menuButton.classList.remove('expanded');
+    isExpanded = false;
+  });
+  
+  // Cerrar modal al hacer clic fuera
+  confirmationModal.addEventListener('click', function(e) {
+    if (e.target === confirmationModal) {
+      confirmationModal.classList.remove('active');
+    }
+  });
+  
+  // Cerrar menú al hacer clic fuera de él
+  document.addEventListener('click', function(e) {
+    if (isExpanded && !menuButton.contains(e.target)) {
+      menuButton.classList.remove('expanded');
+      isExpanded = false;
+    }
+  });
+});
 </script>
+
 </body>
 </html>
