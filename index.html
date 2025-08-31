@@ -151,9 +151,9 @@ body {
 
 .role-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 15px;
 }
 
 .role-card {
@@ -668,39 +668,71 @@ p {
             }
         }
         
-        /* Estilos para el contenedor de burbujas */
-.bubbles-container {
+
+/* ESTILOS CORREGIDOS PARA BURBUJAS */
+.bubbles {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: -1;
-  border-radius: 20px;
+  z-index: 1; /* Cambiado de -1 a 1 para que estén detrás del contenido pero sobre el fondo */
+  pointer-events: none; /* Para que no interfieran con los clics */
 }
 
-/* Estilos para cada burbuja */
 .bubble {
   position: absolute;
-  bottom: -100px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   animation: rise 10s infinite ease-in;
+  /* Tamaño aleatorio para cada burbuja */
+  width: 20px;
+  height: 20px;
 }
+
+/* Añadir diferentes tamaños para las burbujas */
+.bubble:nth-child(1) { width: 15px; height: 15px; }
+.bubble:nth-child(2) { width: 25px; height: 25px; }
+.bubble:nth-child(3) { width: 20px; height: 20px; }
+.bubble:nth-child(4) { width: 30px; height: 30px; }
+.bubble:nth-child(5) { width: 18px; height: 18px; }
+.bubble:nth-child(6) { width: 22px; height: 22px; }
+.bubble:nth-child(7) { width: 28px; height: 28px; }
+
+/* Posicionamiento aleatorio para las burbujas */
+.bubble:nth-child(1) { left: 10%; }
+.bubble:nth-child(2) { left: 20%; animation-delay: 1s; }
+.bubble:nth-child(3) { left: 35%; animation-delay: 3s; }
+.bubble:nth-child(4) { left: 50%; animation-delay: 2s; }
+.bubble:nth-child(5) { left: 65%; animation-delay: 4s; }
+.bubble:nth-child(6) { left: 80%; animation-delay: 1.5s; }
+.bubble:nth-child(7) { left: 90%; animation-delay: 3.5s; }
 
 @keyframes rise {
   0% {
-    bottom: -100px;
-    transform: translateX(0);
+    bottom: -50px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 0;
   }
   50% {
-    transform: translateX(100px);
+    transform: translateX(50px) rotate(180deg);
+    opacity: 0.6;
   }
   100% {
     bottom: 100%;
-    transform: translateX(-100px);
+    transform: translateX(-50px) rotate(360deg);
+    opacity: 0;
   }
+}
+
+/* Asegurar que el contenido del carrusel esté por encima de las burbujas */
+.carousel-image,
+.carousel-title,
+.carousel-description,
+.carousel-drinks {
+  position: relative;
+  z-index: 2;
 }
 
 
@@ -1462,32 +1494,8 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   margin-top: 15px;
 }
 
-.role-item-card {
-  background: rgba(40, 40, 60, 0.6);
-  border-radius: 12px;
-  padding: 15px;
-  transition: all 0.3s ease;
-  border-left: 3px solid var(--accent-gold);
-  display: flex;
-  align-items: center;
-  gap: 35px;
-}
 
-.role-item-card:hover {
-  transform: translateY(-3px);
-  background: rgba(50, 50, 70, 0.7);
-}
 
-.role-item-icon {
-  font-size: 1.5rem;
-  min-width: 40px;
-  text-align: center;
-}
-
-.role-item-name {
-  flex: 1;
-  font-weight: 500;
-}
 
 .role-counter {
   text-align: center;
@@ -1498,6 +1506,8 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   border-radius: 10px;
   background: rgba(30, 30, 45, 0.8);
 }
+
+
 
 .role-counter.total-ok {
   color: var(--role-good);
@@ -1529,6 +1539,76 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   outline: none;
   border-color: var(--accent-blue);
   box-shadow: 0 0 0 2px rgba(50, 152, 220, 0.3);
+}
+/* Estilos para los controles de contador de roles */
+.role-counter-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.role-counter-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent-gold);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.role-counter-btn:hover {
+  transform: scale(1.1);
+  background: #ffd700;
+}
+.role-counter-value {
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.role-counter-btn:active {
+  transform: scale(0.95);
+}
+
+/* Asegurar que todas las tarjetas de rol tengan el mismo tamaño */
+.role-item-card {
+  display: grid;
+  grid-template-columns: 40px 1fr 100px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  background: rgba(40, 40, 60, 0.6);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border-left: 3px solid var(--accent-gold);
+  min-height: 60px;
+}
+.role-item-card:hover {
+  transform: translateY(-3px);
+  background: rgba(50, 50, 70, 0.7);
+}
+.role-item-icon {
+  font-size: 1.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.role-item-name {
+  font-weight: 500;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Animación para la sección de asignación */
@@ -1857,6 +1937,148 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   transform: translateY(1px);
 }
 
+/* Nuevos estilos para gestión de jugadores */
+.player-management {
+  margin-top: 1.5rem;
+}
+
+.player-sets-container {
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 1rem 0;
+  border: 1px solid rgba(230, 194, 41, 0.3);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.player-set {
+  padding: 10px;
+  margin: 8px 0;
+  background: rgba(30, 30, 45, 0.6);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 3px solid var(--accent-gold);
+}
+
+.player-set:hover {
+  background: rgba(50, 50, 70, 0.7);
+  transform: translateX(5px);
+}
+
+.player-set h4 {
+  margin: 0 0 5px 0;
+  color: var(--accent-gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-set .date {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.player-set .players {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.player-set-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.player-set-actions button {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  width: auto;
+}
+
+.save-players-section {
+  margin-top: 1.5rem;
+  padding: 15px;
+  background: rgba(30, 30, 45, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(230, 194, 41, 0.3);
+}
+
+.save-players-section h3 {
+  margin-top: 0;
+  color: var(--accent-gold);
+}
+
+.save-name-input {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.save-name-input input {
+  flex: 1;
+  padding: 10px;
+  background: rgba(20, 20, 30, 0.7);
+  color: var(--text);
+  border: 1px solid var(--accent-gold);
+  border-radius: 8px;
+}
+
+.player-tag {
+  display: inline-block;
+  background: rgba(230, 194, 41, 0.2);
+  padding: 3px 8px;
+  border-radius: 12px;
+  margin: 3px;
+  font-size: 0.9rem;
+}
+
+.no-players-saved {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Estilos para el autocompletado de nombres */
+.name-input-container {
+  position: relative;
+  width: 100%;
+  margin: 12px 0;
+}
+
+.suggestions-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--accent-gold);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 100;
+  display: none;
+}
+
+.name-suggestion {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.name-suggestion:hover {
+  background-color: rgba(230, 194, 41, 0.2);
+}
+
+/* Asegurar que el input tenga un z-index menor */
+#playerName {
+  position: relative;
+  z-index: 101;
+}
+
 
 </style>
 </head>
@@ -1913,6 +2135,71 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   navigator.serviceWorker.register('/sw.js').catch(err => console.error(err));
 }
 
+// ===== FUNCIONES PARA GESTIÓN DE NOMBRES INDIVIDUALES =====
+
+// Guardar un nombre en la lista de nombres utilizados
+function savePlayerName(name) {
+  if (!name || name.trim() === '') return;
+  
+  const savedNames = JSON.parse(localStorage.getItem('playerNames') || '[]');
+  const normalizedNewName = name.trim().toLowerCase();
+  
+  // Evitar duplicados (insensible a mayúsculas)
+  if (!savedNames.some(n => n.toLowerCase() === normalizedNewName)) {
+    savedNames.push(name.trim());
+    localStorage.setItem('playerNames', JSON.stringify(savedNames));
+  }
+}
+
+// Obtener todos los nombres guardados
+function getSavedPlayerNames() {
+  return JSON.parse(localStorage.getItem('playerNames') || '[]');
+}
+
+// ===== FUNCIONES DE ALMACENAMIENTO DE JUGADORES =====
+
+// Guardar conjunto de jugadores
+function savePlayerSet(playerNames, setName = null) {
+  const timestamp = new Date().toISOString();
+  const name = setName || `Partida ${new Date().toLocaleDateString()}`;
+  
+  const playerSets = JSON.parse(localStorage.getItem('playerSets') || '[]');
+  
+  // Evitar duplicados exactos
+  const playersString = JSON.stringify(playerNames.sort());
+  const isDuplicate = playerSets.some(set => 
+    JSON.stringify(set.players.sort()) === playersString
+  );
+  
+  if (isDuplicate) {
+    return false; // No guardar duplicados exactos
+  }
+  
+  playerSets.push({
+    id: timestamp,
+    name: name,
+    players: playerNames,
+    date: timestamp
+  });
+  
+  localStorage.setItem('playerSets', JSON.stringify(playerSets));
+  return true;
+}
+
+// Obtener todos los conjuntos de jugadores guardados
+function getPlayerSets() {
+  return JSON.parse(localStorage.getItem('playerSets') || '[]');
+}
+
+// Eliminar un conjunto de jugadores
+function deletePlayerSet(id) {
+  const playerSets = getPlayerSets();
+  const updatedSets = playerSets.filter(set => set.id !== id);
+  localStorage.setItem('playerSets', JSON.stringify(updatedSets));
+  return updatedSets;
+}
+
+
 /* ==============================================================
    Noche de Es Tragos – Versión Élite (Actualizada)
    ============================================================== */
@@ -1952,19 +2239,19 @@ const DRINK_CONFIG = {
     losingTeam: 1
   },
   girls: {
-    murder: 2,
-    arrest: 1,
-    elimination: 2,
-    bartender: 1,
+    murder: 3,
+    arrest: 2,
+    elimination: 3,
+    bartender: 2,
     tie: 1,
     losingTeam: 2
   },
   alcoholico: {
     murder: 3,
-    arrest: 1,
+    arrest: 2,
     elimination: 3,
     bartender: 2,
-    tie: 2,
+    tie: 1,
     losingTeam: 2
   }
 };
@@ -2215,6 +2502,7 @@ function showStartScreen() {
       
       <button id="btnStart"><i class="fas fa-play"></i> Iniciar partida</button>
       <button id="btnInfo" class="secondary"><i class="fas fa-book"></i> Instrucciones</button>
+      <button id="btnManagePlayers" class="secondary"><i class="fas fa-users"></i> Jugadores guardados</button>
     </div>`;
   
   setScreen(html);
@@ -2224,7 +2512,9 @@ function showStartScreen() {
   
   document.getElementById('btnInfo').onclick = showInstructions;
   document.getElementById('btnStart').onclick = () => startSetup();
+  document.getElementById('btnManagePlayers').onclick = showPlayerManagement;
 }
+
 
 /* ===== FUNCIONALIDAD DEL CARRUSEL ===== */
 function initCarousel() {
@@ -2299,6 +2589,99 @@ function initCarousel() {
   
   // Inicializar el carrusel
   updateCarousel();
+}
+
+// ===== PANTALLA DE GESTIÓN DE JUGADORES =====
+
+function showPlayerManagement() {
+  const playerSets = getPlayerSets();
+  
+  let playerSetsHTML = '';
+  
+  if (playerSets.length === 0) {
+    playerSetsHTML = `<div class="no-players-saved">
+      <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+      <p>No hay jugadores guardados</p>
+    </div>`;
+  } else {
+    playerSetsHTML = playerSets.map(set => `
+      <div class="player-set" data-id="${set.id}">
+        <h4>
+          ${set.name}
+          <span class="date">${new Date(set.date).toLocaleDateString()}</span>
+        </h4>
+        <div class="players">
+          ${set.players.map(player => `<span class="player-tag">${player}</span>`).join('')}
+        </div>
+        <div class="player-set-actions">
+          <button class="use-set secondary"><i class="fas fa-play"></i> Usar</button>
+          <button class="delete-set"><i class="fas fa-trash"></i> Eliminar</button>
+        </div>
+      </div>
+    `).join('');
+  }
+  
+  const html = `
+    <div class="card">
+      <h2><i class="fas fa-users"></i> Jugadores Guardados</h2>
+      <p>Selecciona un grupo de jugadores guardado o crea uno nuevo.</p>
+      
+      <div class="player-sets-container">
+        ${playerSetsHTML}
+      </div>
+      
+      <div class="save-players-section">
+        <h3><i class="fas fa-save"></i> Guardar jugadores actuales</h3>
+        <p>Si estás en medio de una partida, puedes guardar estos jugadores para futuras partidas.</p>
+        <div class="save-name-input">
+          <input type="text" id="saveSetName" placeholder="Nombre para este grupo">
+          <button id="btnSavePlayers" class="secondary"><i class="fas fa-save"></i> Guardar</button>
+        </div>
+      </div>
+      
+      <button id="btnBackToStart"><i class="fas fa-arrow-left"></i> Volver al inicio</button>
+    </div>
+  `;
+  
+  setScreen(html);
+  
+  // Event listeners para los botones
+  document.getElementById('btnBackToStart').onclick = showStartScreen;
+  
+  document.querySelectorAll('.use-set').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const setId = this.closest('.player-set').dataset.id;
+      const playerSet = getPlayerSets().find(set => set.id === setId);
+      if (playerSet) {
+        startGameWithPlayers(playerSet.players);
+      }
+    });
+  });
+  
+  document.querySelectorAll('.delete-set').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const setId = this.closest('.player-set').dataset.id;
+      deletePlayerSet(setId);
+      showPlayerManagement(); // Recargar la vista
+    });
+  });
+  
+  document.getElementById('btnSavePlayers').addEventListener('click', function() {
+    if (game.players.length === 0) {
+      alert('No hay jugadores actuales para guardar.');
+      return;
+    }
+    
+    constsetName = document.getElementById('saveSetName').value.trim();
+    const playerNames = game.players.map(p => p.name);
+    
+    if (savePlayerSet(playerNames, setName || null)) {
+      alert('Jugadores guardados correctamente.');
+      document.getElementById('saveSetName').value = '';
+    } else {
+      alert('Este grupo de jugadores ya existe.');
+    }
+  });
 }
 
 /* -------------------- INSTRUCCIONES MEJORADAS -------------------- */
@@ -2677,30 +3060,35 @@ function showRoleSelection() {
         </div>
       </div>
       
-      <div class="role-assignment-container" id="manualSelection">
-        <h3>Asignación Manual de Roles</h3>
-        <p>Asigna la cantidad de cada rol (total: ${game.numPlayers}):</p>
-        
-        <div class="role-grid">
-          ${ALL_ROLES.map(role => `
-            <div class="role-item-card">
-              <div class="role-item-icon">
-                <i class="fas ${ROLE_ICONS[role]}"></i>
-              </div>
-              <div class="role-item-name">${role}</div>
-              <input type="number" class="role-input" id="role_${role}" min="0" max="${game.numPlayers}" value="0">
-            </div>
-          `).join('')}
+     <div class="role-assignment-container" id="manualSelection">
+  <h3>Asignación Manual de Roles</h3>
+  <p>Asigna la cantidad de cada rol (total: ${game.numPlayers}):</p>
+  
+  <div class="role-grid">
+    ${ALL_ROLES.map(role => `
+      <div class="role-item-card">
+        <div class="role-item-icon">
+          <i class="fas ${ROLE_ICONS[role]}"></i>
         </div>
-        
-        <div class="role-counter" id="roleCounter">Total seleccionado: 0/${game.numPlayers}</div>
+        <div class="role-item-name">${role}</div>
+        <div class="role-counter-controls">
+          <button class="role-counter-btn decrement" data-role="${role}">-</button>
+          <span class="role-counter-value" id="role_${role}_value">0</span>
+          <button class="role-counter-btn increment" data-role="${role}">+</button>
+        </div>
       </div>
+    `).join('')}
+  </div>
+  
+  <div class="role-counter" id="roleCounter">Total seleccionado: 0/${game.numPlayers}</div>
+</div>
       
       <button id="btnRoleNext"><i class="fas fa-arrow-right"></i> Continuar</button>
     </div>
   `;
   
   setScreen(html);
+  
   
   // Seleccionar la primera opción por defecto
   const randomCard = document.querySelector('[data-option="random"]');
@@ -2728,6 +3116,40 @@ function showRoleSelection() {
     });
   });
   
+ document.querySelector('.role-grid').addEventListener('click', function(e) {
+  if (e.target.classList.contains('role-counter-btn')) {
+    const btn = e.target;
+    const role = btn.dataset.role;
+    const span = document.getElementById(`role_${role}_value`);
+    let value = parseInt(span.textContent) || 0;
+    
+    // Calcular el total actual
+    let total = 0;
+    document.querySelectorAll('.role-counter-value').forEach(s => {
+      total += parseInt(s.textContent) || 0;
+    });
+    
+    if (btn.classList.contains('increment')) {
+      // No permitir incrementar si ya se alcanzó el límite
+      if (total >= game.numPlayers) {
+        return;
+      }
+      if (value < game.numPlayers) {
+        value++;
+      }
+    } else if (btn.classList.contains('decrement')) {
+      if (value > 0) {
+        value--;
+      }
+    }
+    
+    span.textContent = value;
+    updateRoleCounter();
+  }
+});
+  
+  
+  
   // Actualizar contador de roles seleccionados
   const roleInputs = document.querySelectorAll('.role-input');
   roleInputs.forEach(input => {
@@ -2739,53 +3161,76 @@ function showRoleSelection() {
   document.getElementById('btnRoleNext').onclick = () => {
     const selectedOption = document.querySelector('.role-selection-card.selected').dataset.option;
     
+    
     if (selectedOption === 'random') {
       collectNames(0, []);
     } else {
-      const selectedRoles = {};
-      let total = 0;
-      roleInputs.forEach(input => {
-        const role = input.id.replace('role_', '');
-        const count = parseInt(input.value) || 0;
-        if (count > 0) {
-          selectedRoles[role] = count;
-          total += count;
-        }
-      });
-      
-      if (total > game.numPlayers) {
-        alert(`Has seleccionado ${total} roles, pero solo hay ${game.numPlayers} jugadores.`);
-        return;
-      }
-      
-      // Validar que haya al menos 1 asesino
-      if (!selectedRoles["Asesino"] || selectedRoles["Asesino"] < 1) {
-        alert("Debe haber al menos un asesino.");
-        return;
-      }
-      
-      game.selectedRoles = selectedRoles;
-      collectNames(0, []);
+     const selectedRoles = {};
+  let total = 0;
+  document.querySelectorAll('.role-counter-value').forEach(span => {
+    const role = span.id.replace('role_', '').replace('_value', '');
+    const count = parseInt(span.textContent) || 0;
+    if (count > 0) {
+      selectedRoles[role] = count;
+      total += count;
     }
+  });
+  
+  if (total > game.numPlayers) {
+    alert(`Has seleccionado ${total} roles, pero solo hay ${game.numPlayers} jugadores.`);
+    return;
+  }
+  
+  // Validar que haya al menos 1 asesino
+  if (!selectedRoles["Asesino"] || selectedRoles["Asesino"] < 1) {
+    alert("Debe haber al menos un asesino.");
+    return;
+  }
+  
+  game.selectedRoles = selectedRoles;
+  collectNames(0, []);
+}
   };
+}
+
+// Función para actualizar el estado de los botones
+function updateButtonStates() {
+  const manualSection = document.getElementById('manualSelection');
+  if (!manualSection || !manualSection.classList.contains('visible')) return;
+
+  let total = 0;
+  document.querySelectorAll('.role-counter-value').forEach(span => {
+    total += parseInt(span.textContent) || 0;
+  });
+
+  const incrementButtons = document.querySelectorAll('.role-counter-btn.increment');
+  incrementButtons.forEach(btn => {
+    if (total >= game.numPlayers) {
+      btn.disabled = true;
+      btn.style.opacity = '0.5';
+      btn.style.cursor = 'not-allowed';
+    } else {
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.style.cursor = 'pointer';
+    }
+  });
 }
 
 function updateRoleCounter() {
   const manualSection = document.getElementById('manualSelection');
   if (!manualSection.classList.contains('visible')) return;
-  
+
   let total = 0;
-  document.querySelectorAll('.role-input').forEach(input => {
-    total += parseInt(input.value) || 0;
+  document.querySelectorAll('.role-counter-value').forEach(span => {
+    total += parseInt(span.textContent) || 0;
   });
-  
+
   const counter = document.getElementById('roleCounter');
   if (counter) {
     counter.textContent = `Total seleccionado: ${total}/${game.numPlayers}`;
-    
-    // Actualizar clase según el total
     counter.classList.remove('total-ok', 'total-warning', 'total-error');
-    
+
     if (total === game.numPlayers) {
       counter.classList.add('total-ok');
     } else if (total > game.numPlayers) {
@@ -2794,48 +3239,148 @@ function updateRoleCounter() {
       counter.classList.add('total-warning');
     }
   }
+  
+  // Actualizar estado de los botones
+  updateButtonStates();
+}
+
+// ===== INICIAR JUEGO CON JUGADORES GUARDADOS =====
+
+function startGameWithPlayers(playerNames) {
+  game.numPlayers = playerNames.length;
+  savedPlayers = playerNames.slice();
+  game.players = playerNames.map((nm, i) => ({
+    id: i,
+    name: nm.trim() || `Jugador ${i + 1}`,
+    role: null,
+    originalRole: null,
+    status: 'vivo',
+    detainedRounds: 0,
+    lastPartnerId: null,
+    thiefUsed: false,
+    stolenRole: null,
+    investigatorUsed: false,
+    infected: false,
+    drugged: false,
+    dealerLastTarget: null,
+    drinks: 0,
+    hydrated: false,
+    envidiaTargetId: null,
+    inLoveWith: null,
+    willBecomeAssassin: false,
+    pimpControlled: false,
+    pimpId: null,
+    medicoLastTarget: null,
+    delayedInfection: false,
+    infectedRound: null
+  }));
+  
+  // Ir directamente a la selección de roles
+  showRoleSelection();
 }
 
 
 /* -------------------- RECOLECTAR NOMBRES -------------------- */
 function collectNames(idx, names) {
   if (idx >= game.numPlayers) {
-    savedPlayers = names.slice(); // Guardar para reinicio
+    savedPlayers = names.slice();
+    
+    // Guardar automáticamente los jugadores
+    savePlayerSet(names, `Partida ${new Date().toLocaleDateString()}`);
+    
+    // Guardar cada nombre individualmente
+    names.forEach(name => savePlayerName(name));
+    
     game.players = names.map((nm, i) => ({
       id: i,
       name: nm.trim() || `Jugador ${i + 1}`,
       role: null,
       originalRole: null,
-      status: 'vivo',       // vivo / preso / eliminado
-      detainedRounds: 0,    // Rondas restantes de detención
+      status: 'vivo',
+      detainedRounds: 0,
       lastPartnerId: null,
       thiefUsed: false,
-      stolenRole: null,     // Rol robado (para Ladrón)
+      stolenRole: null,
       investigatorUsed: false,
       infected: false,
-      drugged: false,      // Estado drogado (para Dealer)
-      dealerLastTarget: null, // Último objetivo del Dealer
-      drinks: 0,            // Tragos acumulados
-      hydrated: false,      // Hidratador
-      envidiaTargetId: null,// Envidioso
-      inLoveWith: null,     // Suicida enamorado
-      willBecomeAssassin: false, // Para "El menor" después del arresto
-      pimpControlled: false,      // Para Puta: si está controlada por Chulo
-      pimpId: null,               // Para Chulo: ID de la Puta controlada
-      medicoLastTarget: null,      // Para Médico: último objetivo protegido
-      delayedInfection: false,     // Nueva propiedad: infección diferida
-      infectedRound: null          // Nueva propiedad: ronda de infección
+      drugged: false,
+      dealerLastTarget: null,
+      drinks: 0,
+      hydrated: false,
+      envidiaTargetId: null,
+      inLoveWith: null,
+      willBecomeAssassin: false,
+      pimpControlled: false,
+      pimpId: null,
+      medicoLastTarget: null,
+      delayedInfection: false,
+      infectedRound: null
     }));
     assignRoles();
     return;
   }
+  
+  const savedNames = getSavedPlayerNames();
+  const suggestionsHTML = savedNames.map(name => 
+    `<div class="name-suggestion" data-name="${name}">${name}</div>`
+  ).join('');
+  
   const html = `
     <div class="card">
       <h2><i class="fas fa-user"></i> Nombre del jugador ${idx + 1}</h2>
-      <input type="text" id="playerName" placeholder="Nombre">
+      <div class="name-input-container">
+        <input type="text" id="playerName" placeholder="Nombre" autocomplete="off">
+        <div class="suggestions-box">${suggestionsHTML}</div>
+      </div>
       <button id="btnNextName"><i class="fas fa-arrow-right"></i> Siguiente</button>
     </div>`;
+  
   setScreen(html);
+  
+  // Configurar el autocompletado
+  const input = document.getElementById('playerName');
+  const suggestionsBox = document.querySelector('.suggestions-box');
+  
+  // Mostrar/ocultar sugerencias al enfocar/desenfocar
+  input.addEventListener('focus', function() {
+    suggestionsBox.style.display = 'block';
+  });
+  
+  input.addEventListener('blur', function() {
+    // Ocultar después de un pequeño retraso para permitir clics
+    setTimeout(() => {
+      suggestionsBox.style.display = 'none';
+    }, 200);
+  });
+  
+  // Filtrar sugerencias mientras se escribe
+  input.addEventListener('input', function() {
+    const value = this.value.toLowerCase();
+    const filteredSuggestions = savedNames.filter(name => 
+      name.toLowerCase().includes(value)
+    );
+    
+    suggestionsBox.innerHTML = filteredSuggestions.map(name => 
+      `<div class="name-suggestion" data-name="${name}">${name}</div>`
+    ).join('');
+    
+    // Reasignar event listeners a las nuevas sugerencias
+    document.querySelectorAll('.name-suggestion').forEach(suggestion => {
+      suggestion.addEventListener('mousedown', function() {
+        input.value = this.getAttribute('data-name');
+        suggestionsBox.style.display = 'none';
+      });
+    });
+  });
+  
+  // Event listener para las sugerencias
+  document.querySelectorAll('.name-suggestion').forEach(suggestion => {
+    suggestion.addEventListener('mousedown', function() {
+      input.value = this.getAttribute('data-name');
+      suggestionsBox.style.display = 'none';
+    });
+  });
+  
   document.getElementById('btnNextName').onclick = () => {
     const n = document.getElementById('playerName').value.trim();
     if (!n) { alert('Introduce un nombre.'); return; }
@@ -2843,6 +3388,7 @@ function collectNames(idx, names) {
     collectNames(idx + 1, names);
   };
 }
+
 
 /* -------------------- ASIGNACIÓN DE ROLES -------------------- */
 function assignRoles() {
@@ -4002,18 +4548,18 @@ function nightSummary() {
   setScreen(summaryHTML);
 
   document.getElementById('btnNextDay').onclick = () => {
-    if (checkWinConditions()) return;
-    if (game.pendingLudopata) {
-      activateLudopataAbility(game.pendingLudopata);
+  if (checkWinConditions()) return;
+  if (game.pendingLudopata) {
+    activateLudopataAbility(game.pendingLudopata);
+  } else {
+    // Verificar si es nivel alcoholico y hay al menos 2 eliminados
+    if (game.difficulty === 'alcoholico') {
+      medusaEvent();
     } else {
-      if (game.difficulty === 'alcoholico') {
-        medusaEvent();
-      } else {
-        startDayPhase();
-      }
+      startDayPhase();
     }
-  };
-}
+  }
+};
 
 function processAssassinVotes(protectedSet, deaths) {
   // En processAssassinVotes, permitir que asesinos infectados voten
@@ -4249,41 +4795,42 @@ function updatePrisonersAtStartOfDay() {
 }
 
 /* -------------------- EVENTO LA MEDUSA (ALCOHOLICO) -------------------- */
-function medusaEvent() {
+  function medusaEvent() {
   log(`<span class="neon">--- Evento La Medusa ---</span>`);
   
-  // Solo jugadores vivos pueden participar
-  const alivePlayers = game.players.filter(p => p.status === 'vivo');
+  // SOLO jugadores eliminados pueden participar
+  const eliminatedPlayers = game.players.filter(p => p.status === 'eliminado');
   
-  // Si hay menos de 2 jugadores vivos, saltar evento
-  if (alivePlayers.length < 2) {
-    log(`No hay suficientes jugadores para La Medusa.`);
+  // Si hay menos de 2 jugadores eliminados, saltar evento
+  if (eliminatedPlayers.length < 2) {
+    log(`No hay suficientes jugadores eliminados para La Medusa.`);
+    // Después de la noche, pasar al día
     startDayPhase();
     return;
   }
   
   game.medusaChoices = {};
-  medusaTurn(0);
+  medusaTurn(0, eliminatedPlayers);
 }
 
-function medusaTurn(idx) {
-  const alivePlayers = game.players.filter(p => p.status === 'vivo');
-  
-  if (idx >= alivePlayers.length) {
-    resolveMedusaEvent();
+
+function medusaTurn(idx, eliminatedPlayers) {
+  if (idx >= eliminatedPlayers.length) {
+    resolveMedusaEvent(eliminatedPlayers);
     return;
   }
   
-  const p = alivePlayers[idx];
+  const p = eliminatedPlayers[idx];
   
+  // Mostrar confirmación para el jugador eliminado
   showConfirmPlayer(p, () => {
-    const options = alivePlayers.filter(pl => pl.id !== p.id)
+    const options = eliminatedPlayers.filter(pl => pl.id !== p.id)
       .map(pl => `<option value="${pl.id}">${pl.name}</option>`)
       .join('');
     
     const html = `<div class="card">
       <div class="medusa-event">
-        <h3>La Medusa</h3>
+        <h3>La Medusa (Eliminados)</h3>
         <p>Elige a quién quieres matar con la mirada:</p>
         <select id="medusaChoice">${options}</select>
         <button id="btnMedusa"><i class="fas fa-eye"></i> Enviar</button>
@@ -4296,39 +4843,33 @@ function medusaTurn(idx) {
       const choiceId = parseInt(document.getElementById('medusaChoice').value);
       game.medusaChoices[p.id] = choiceId;
       log(`${p.name} ha hecho su elección en La Medusa.`);
-      medusaTurn(idx + 1);
+      medusaTurn(idx + 1, eliminatedPlayers);
     };
   });
-}
 
-function resolveMedusaEvent() {
+
+
+function resolveMedusaEvent(eliminatedPlayers) {
   const matches = [];
-  const processedPairs = new Set(); // Para evitar duplicados
+  const processedPairs = new Set();
 
   // Buscar parejas que se eligieron mutuamente
   Object.entries(game.medusaChoices).forEach(([chooserId, chosenId]) => {
     const chooser = getPlayer(parseInt(chooserId));
     const chosen = getPlayer(chosenId);
     
-    // Verificar si el elegido también eligió al que lo eligió
     if (game.medusaChoices[chosenId] === parseInt(chooserId)) {
-      // Crear un identificador único para la pareja (sin importar el orden)
       const pairKey = [Math.min(chooserId, chosenId), Math.max(chooserId, chosenId)].join('-');
       
-      // Solo procesar si no hemos visto esta pareja antes
       if (!processedPairs.has(pairKey)) {
         processedPairs.add(pairKey);
         matches.push({ player1: chooser, player2: chosen });
-        
-        if (checkWinConditions()) return;
       }
-      
-      
     }
   });
-  
+
   // Aplicar tragos a las parejas que hicieron match
-  const medusaResults = []; // Almacenar resultados para mostrar
+  const medusaResults = [];
   matches.forEach(pair => {
     const drinkAmount = 1;
     
@@ -4344,7 +4885,6 @@ function resolveMedusaEvent() {
       pair.player2.drinks += drinkAmount;
     }
     
-    // Solo un mensaje por match (no por jugador)
     medusaResults.push({
       player1: pair.player1.name,
       player2: pair.player2.name,
@@ -4352,21 +4892,18 @@ function resolveMedusaEvent() {
     });
   });
   
-  // Si hubo matches, mostrar resumen
   if (medusaResults.length > 0) {
     log(`<span class="neon">Resultados de La Medusa: Se formaron ${medusaResults.length} parejas!</span>`);
     showMedusaResults(medusaResults);
   } else {
     log(`No hubo matches en La Medusa. Nadie bebe.`);
-    // SOLUCIÓN: Avanzar a la fase correspondiente
-    if (game.phase === 'night') {
-      startDayPhase();
-    } else {
-      if (checkWinConditions()) return;
-      startNightPhase();
-    }
+    startDayPhase();
   }
 }
+
+
+
+  
 
 function showMedusaResults(results) {
   playSound('medusaSound'); // SONIDO DE MEDUSA
@@ -4404,14 +4941,12 @@ function showMedusaResults(results) {
   
   // SOLUCIÓN: Avanzar a la fase correspondiente
   document.getElementById('btnContinueMedusa').onclick = () => {
-    if (game.phase === 'night') {
       startDayPhase();
-    } else {
-      if (checkWinConditions()) return;
-      startNightPhase();
-    }
+  
   };
 }
+}
+
 
 /* -------------------- VOTACIÓN DIARIA -------------------- */
 function startVoting(idx) {
@@ -4587,11 +5122,6 @@ function daySummary() {
     if (game.pendingLudopata) {
       activateLudopataAbility(game.pendingLudopata);
     } else {
-      // En nivel Alcoholico, después del día, evento La Medusa
-      if (game.difficulty === 'alcoholico') {
-        medusaEvent();
-      } else {
-        if (checkWinConditions()) return;
         startNightPhase();
       }
     }
